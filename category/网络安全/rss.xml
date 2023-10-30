@@ -5,8 +5,15 @@
         <link>http://example.com</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Sat, 28 Oct 2023 19:09:44 +0800</pubDate>
-        <lastBuildDate>Sat, 28 Oct 2023 19:09:44 +0800</lastBuildDate>
+        <pubDate>Mon, 30 Oct 2023 12:00:34 +0800</pubDate>
+        <lastBuildDate>Mon, 30 Oct 2023 12:00:34 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://example.com/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/</guid>
+            <title>域环境</title>
+            <link>http://example.com/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/</link>
+            <pubDate>Mon, 30 Oct 2023 12:00:34 +0800</pubDate>
+            <description><![CDATA[  ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://example.com/2023/10/28/sql%E6%B3%A8%E5%85%A5/</guid>
             <title>sql注入</title>

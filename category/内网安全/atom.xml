@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com</id>
+    <title>云逸&#39;bolg • Posts by &#34;内网安全&#34; category</title>
+    <link href="http://example.com" />
+    <updated>2023-10-30T04:00:34.000Z</updated>
+    <entry>
+        <id>http://example.com/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/</id>
+        <title>域环境</title>
+        <link rel="alternate" href="http://example.com/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/"/>
+        <content type="html"></content>
+        <updated>2023-10-30T04:00:34.000Z</updated>
+    </entry>
+</feed>
