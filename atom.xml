@@ -5,9 +5,9 @@
     <link href="http://example.com" />
     <updated>2023-10-30T14:15:36.000Z</updated>
     <entry>
-        <id>http://example.com/2023/10/30/network-security/web-security/Basic-vulnerabilities/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</id>
+        <id>http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</id>
         <title>文件包含漏洞</title>
-        <link rel="alternate" href="http://example.com/2023/10/30/network-security/web-security/Basic-vulnerabilities/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/>
+        <link rel="alternate" href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/>
         <content type="html">&lt;p&gt;&lt;strong&gt;文件包含漏洞（File Inclusion Vulnerability）是一种常见的网络安全漏洞，通常发生在 web 应用程序中。这种漏洞允许攻击者在应用程序中包含、执行或显示本不应该被访问的文件内容。文件包含漏洞通常发生在以下两种情况中：&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;本地文件包含（Local File Inclusion，LFI）：攻击者通过构造恶意请求，使应用程序包含本地文件系统上的文件，通常是敏感文件。这些文件可以包括密码文件、配置文件、日志文件等，泄露敏感信息或执行恶意代码。攻击者通常通过修改 URL 参数或请求头来实施这种攻击。&lt;/strong&gt;&lt;/li&gt;
@@ -587,9 +587,9 @@
         <updated>2023-10-30T03:44:45.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2023/10/28/sql%E6%B3%A8%E5%85%A5/</id>
+        <id>http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</id>
         <title>sql注入</title>
-        <link rel="alternate" href="http://example.com/2023/10/28/sql%E6%B3%A8%E5%85%A5/"/>
+        <link rel="alternate" href="http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/"/>
         <content type="html">&lt;p&gt;对 mysql 不了解的不会语句的去看数据库篇&lt;/p&gt;
 &lt;p&gt;mysql15 以后默认存放一个 infomation_schema 里面 这个库里面有很多表 重点是这三个表 columns 、tables、schemata 表字段 CHEMA_NAME 记录着库的信息&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -640,9 +640,9 @@
         <updated>2023-10-28T11:09:44.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2023/10/27/docker%E9%80%83%E9%80%B8/</id>
+        <id>http://example.com/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/</id>
         <title>docker逃逸</title>
-        <link rel="alternate" href="http://example.com/2023/10/27/docker%E9%80%83%E9%80%B8/"/>
+        <link rel="alternate" href="http://example.com/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/"/>
         <content type="html">&lt;p&gt;&lt;em&gt;特权模式&lt;/em&gt;逃逸&lt;/p&gt;
 &lt;p&gt;当容器启动加上–privileged 选项时，容器可以访问宿主机上所有设备&lt;/p&gt;
 &lt;p&gt;启动一个特权容器&lt;br&gt;

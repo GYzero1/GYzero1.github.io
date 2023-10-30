@@ -8,9 +8,9 @@
         <pubDate>Sat, 28 Oct 2023 19:09:44 +0800</pubDate>
         <lastBuildDate>Sat, 28 Oct 2023 19:09:44 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://example.com/2023/10/28/sql%E6%B3%A8%E5%85%A5/</guid>
+            <guid isPermalink="true">http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</guid>
             <title>sql注入</title>
-            <link>http://example.com/2023/10/28/sql%E6%B3%A8%E5%85%A5/</link>
+            <link>http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</link>
             <pubDate>Sat, 28 Oct 2023 19:09:44 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;对 mysql 不了解的不会语句的去看数据库篇&lt;/p&gt;
 &lt;p&gt;mysql15 以后默认存放一个 infomation_schema 里面 这个库里面有很多表 重点是这三个表 columns 、tables、schemata 表字段 CHEMA_NAME 记录着库的信息&lt;/p&gt;
