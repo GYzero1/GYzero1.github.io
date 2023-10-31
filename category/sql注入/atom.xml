@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>http://gyzero.shop</id>
     <title>云逸&#39;bolg • Posts by &#34;sql注入&#34; category</title>
-    <link href="http://example.com" />
+    <link href="http://gyzero.shop" />
     <updated>2023-10-31T00:53:37.000Z</updated>
     <entry>
-        <id>http://example.com/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/</id>
+        <id>http://gyzero.shop/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/</id>
         <title>sql注入绕过</title>
-        <link rel="alternate" href="http://example.com/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/"/>
+        <link rel="alternate" href="http://gyzero.shop/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/"/>
         <content type="html">&lt;p&gt;两个空格代替一个空格，用 Tab 代替空格，% a0 = 空格 %20 %09 %0a %0b %0c %0d % a0 %00 /&lt;strong&gt;/ /&lt;em&gt;!&lt;/em&gt;/ select * from users where id=1 /&lt;em&gt;!union&lt;/em&gt;//&lt;em&gt;!select&lt;/em&gt;/1,2,3,4; %09 TAB 键（水平） %0a 新建一行 %0c 新的一页 %0d return 功能 %0b TAB 键（垂直） % a0 空格 可以将空格字符替换成注释 /&lt;/strong&gt;/ 还可以使用 /*! 这里的根据 mysql 版本&lt;/p&gt;
 &lt;h3 id=&#34;大小写绕过&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#大小写绕过&#34;&gt;#&lt;/a&gt; 大小写绕过&lt;/h3&gt;
 &lt;p&gt;将字符串设置为大小写，例如&lt;/p&gt;
@@ -163,9 +163,9 @@
         <updated>2023-10-31T00:53:37.000Z</updated>
     </entry>
     <entry>
-        <id>http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</id>
+        <id>http://gyzero.shop/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</id>
         <title>sql注入</title>
-        <link rel="alternate" href="http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/"/>
+        <link rel="alternate" href="http://gyzero.shop/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/"/>
         <content type="html">&lt;p&gt;对 mysql 不了解的不会语句的去看数据库篇&lt;/p&gt;
 &lt;h3 id=&#34;mysql数据库结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql数据库结构&#34;&gt;#&lt;/a&gt; mysql 数据库结构&lt;/h3&gt;
 &lt;p&gt;mysql15 以后默认存放一个 infomation_schema 里面 这个库里面有很多表 重点是这三个表 columns 、tables、schemata 表字段 CHEMA_NAME 记录着库的信息&lt;/p&gt;

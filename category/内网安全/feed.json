@@ -2,11 +2,11 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "云逸'bolg • All posts by \"内网安全\" category",
     "description": "",
-    "home_page_url": "http://example.com",
+    "home_page_url": "http://gyzero.shop",
     "items": [
         {
-            "id": "http://example.com/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/",
-            "url": "http://example.com/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/",
+            "id": "http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/",
+            "url": "http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/",
             "title": "域环境",
             "date_published": "2023-10-30T04:00:34.000Z",
             "content_html": "",

@@ -2,15 +2,15 @@
 <rss version="2.0">
     <channel>
         <title>云逸&#39;bolg • Posts by &#34;web安全&#34; category</title>
-        <link>http://example.com</link>
+        <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
         <pubDate>Tue, 31 Oct 2023 08:53:37 +0800</pubDate>
         <lastBuildDate>Tue, 31 Oct 2023 08:53:37 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://example.com/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/</guid>
             <title>sql注入绕过</title>
-            <link>http://example.com/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/</link>
+            <link>http://gyzero.shop/2023/10/31/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87/</link>
             <pubDate>Tue, 31 Oct 2023 08:53:37 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;两个空格代替一个空格，用 Tab 代替空格，% a0 = 空格 %20 %09 %0a %0b %0c %0d % a0 %00 /&lt;strong&gt;/ /&lt;em&gt;!&lt;/em&gt;/ select * from users where id=1 /&lt;em&gt;!union&lt;/em&gt;//&lt;em&gt;!select&lt;/em&gt;/1,2,3,4; %09 TAB 键（水平） %0a 新建一行 %0c 新的一页 %0d return 功能 %0b TAB 键（垂直） % a0 空格 可以将空格字符替换成注释 /&lt;/strong&gt;/ 还可以使用 /*! 这里的根据 mysql 版本&lt;/p&gt;
 &lt;h3 id=&#34;大小写绕过&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#大小写绕过&#34;&gt;#&lt;/a&gt; 大小写绕过&lt;/h3&gt;
@@ -166,9 +166,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</guid>
             <title>文件包含漏洞</title>
-            <link>http://example.com/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</link>
+            <link>http://gyzero.shop/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</link>
             <pubDate>Mon, 30 Oct 2023 22:15:36 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;文件包含漏洞（File Inclusion Vulnerability）是一种常见的网络安全漏洞，通常发生在 web 应用程序中。这种漏洞允许攻击者在应用程序中包含、执行或显示本不应该被访问的文件内容。文件包含漏洞通常发生在以下两种情况中：&lt;/p&gt;
 &lt;ol&gt;
@@ -355,7 +355,7 @@
 &lt;li&gt;allow_url_fopen:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;allow_url_fopen 是一个 PHP 配置选项，用于控制是否允许通过 fopen () 函数或其他文件处理函数来访问远程资源。如果这个选项被启用（设置为 1），PHP 允许在代码中使用类似 fopen (“&lt;a href=&#34;http://example.com/resource&#34;&gt;http://example.com/resource&lt;/a&gt;”, “r”) 的方式打开远程 URL，并读取它们的内容。如果禁用（设置为 0），PHP 将不允许这样的操作。
+&lt;li&gt;allow_url_fopen 是一个 PHP 配置选项，用于控制是否允许通过 fopen () 函数或其他文件处理函数来访问远程资源。如果这个选项被启用（设置为 1），PHP 允许在代码中使用类似 fopen (“&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2V4YW1wbGUuY29tL3Jlc291cmNl&#34;&gt;http://example.com/resource&lt;/span&gt;”, “r”) 的方式打开远程 URL，并读取它们的内容。如果禁用（设置为 0），PHP 将不允许这样的操作。
 &lt;ul&gt;
 &lt;li&gt;需要小心，因为启用 allow_url_fopen 可能会导致安全风险，特别是在处理用户提供的 URL 时。攻击者可能尝试包含恶意远程文件或执行恶意代码，从而引发安全问题。&lt;/li&gt;
 &lt;/ul&gt;
@@ -366,7 +366,7 @@
 &lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;allow_url_include 是另一个 PHP 配置选项，它控制是否允许通过 include 和 require 函数包含远程文件，如 include “&lt;a href=&#34;http://example.com/malicious.php&#34;&gt;http://example.com/malicious.php&lt;/a&gt;”;。如果启用（设置为 1），PHP 允许包含远程文件。如果禁用（设置为 0），PHP 将不允许包含远程文件。&lt;/p&gt;
+&lt;p&gt;allow_url_include 是另一个 PHP 配置选项，它控制是否允许通过 include 和 require 函数包含远程文件，如 include “&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2V4YW1wbGUuY29tL21hbGljaW91cy5waHA=&#34;&gt;http://example.com/malicious.php&lt;/span&gt;”;。如果启用（设置为 1），PHP 允许包含远程文件。如果禁用（设置为 0），PHP 将不允许包含远程文件。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;启用 allow_url_include 可能会引发安全风险，因为攻击者可以尝试包含远程恶意代码.&lt;/li&gt;
 &lt;/ul&gt;
@@ -562,9 +562,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</guid>
             <title>sql注入</title>
-            <link>http://example.com/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</link>
+            <link>http://gyzero.shop/2023/10/28/%E6%BC%8F%E6%B4%9E/sql%E6%B3%A8%E5%85%A5/</link>
             <pubDate>Sat, 28 Oct 2023 19:09:44 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;对 mysql 不了解的不会语句的去看数据库篇&lt;/p&gt;
 &lt;h3 id=&#34;mysql数据库结构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mysql数据库结构&#34;&gt;#&lt;/a&gt; mysql 数据库结构&lt;/h3&gt;

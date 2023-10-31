@@ -2,15 +2,15 @@
 <rss version="2.0">
     <channel>
         <title>云逸&#39;bolg • Posts by &#34;python基础&#34; category</title>
-        <link>http://example.com</link>
+        <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
         <pubDate>Mon, 30 Oct 2023 11:44:45 +0800</pubDate>
         <lastBuildDate>Mon, 30 Oct 2023 11:44:45 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://example.com/2023/10/30/python%E5%BE%AA%E7%8E%AF/python%E5%BE%AA%E7%8E%AF/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2023/10/30/python%E5%BE%AA%E7%8E%AF/python%E5%BE%AA%E7%8E%AF/</guid>
             <title>python循环判断</title>
-            <link>http://example.com/2023/10/30/python%E5%BE%AA%E7%8E%AF/python%E5%BE%AA%E7%8E%AF/</link>
+            <link>http://gyzero.shop/2023/10/30/python%E5%BE%AA%E7%8E%AF/python%E5%BE%AA%E7%8E%AF/</link>
             <pubDate>Mon, 30 Oct 2023 11:44:45 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;strong&gt;判断语句和循环语句&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;if&lt;/strong&gt;&lt;/p&gt;
