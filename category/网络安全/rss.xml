@@ -8,9 +8,9 @@
         <pubDate>Thu, 09 Nov 2023 20:28:50 +0800</pubDate>
         <lastBuildDate>Thu, 09 Nov 2023 20:28:50 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://gyzero.shop/2023/11/09/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</guid>
             <title>Windows提权</title>
-            <link>http://gyzero.shop/2023/11/09/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</link>
+            <link>http://gyzero.shop/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</link>
             <pubDate>Thu, 09 Nov 2023 20:28:50 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;提权基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#提权基础&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;提权基础&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;获取 webshell 后一般都是 www-data 权限权限很低所以要进行提权把权限提高为了后续渗透顺利&lt;/p&gt;

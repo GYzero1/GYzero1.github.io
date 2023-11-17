@@ -5,9 +5,9 @@
     <link href="http://gyzero.shop" />
     <updated>2023-11-09T12:28:50.000Z</updated>
     <entry>
-        <id>http://gyzero.shop/2023/11/09/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</id>
+        <id>http://gyzero.shop/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</id>
         <title>Windows提权</title>
-        <link rel="alternate" href="http://gyzero.shop/2023/11/09/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/"/>
+        <link rel="alternate" href="http://gyzero.shop/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/"/>
         <content type="html">&lt;h3 id=&#34;提权基础&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#提权基础&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;label&#34;&gt;提权基础&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;获取 webshell 后一般都是 www-data 权限权限很低所以要进行提权把权限提高为了后续渗透顺利&lt;/p&gt;
 &lt;p&gt;windows 的常用提权方法，主要分为漏洞提权、windwos 特性提权、第三方组件提权，数据库提权 ftp 提权 令牌窃取提权等姿势。&lt;/p&gt;
