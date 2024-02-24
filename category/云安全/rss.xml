@@ -5,8 +5,16 @@
         <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Fri, 27 Oct 2023 14:33:01 +0800</pubDate>
-        <lastBuildDate>Fri, 27 Oct 2023 14:33:01 +0800</lastBuildDate>
+        <pubDate>Mon, 19 Feb 2024 15:32:52 +0800</pubDate>
+        <lastBuildDate>Mon, 19 Feb 2024 15:32:52 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2024/02/19/network-security/Cloud-Security/%E5%85%AC%E6%9C%89%E4%BA%91/</guid>
+            <title>公有云</title>
+            <link>http://gyzero.shop/2024/02/19/network-security/Cloud-Security/%E5%85%AC%E6%9C%89%E4%BA%91/</link>
+            <pubDate>Mon, 19 Feb 2024 15:32:52 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;公有云介绍&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://gyzero.shop/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/</guid>
             <title>docker逃逸</title>

