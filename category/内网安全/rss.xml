@@ -5,8 +5,136 @@
         <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Fri, 10 Nov 2023 17:52:23 +0800</pubDate>
-        <lastBuildDate>Fri, 10 Nov 2023 17:52:23 +0800</lastBuildDate>
+        <pubDate>Sun, 03 Mar 2024 17:22:07 +0800</pubDate>
+        <lastBuildDate>Sun, 03 Mar 2024 17:22:07 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2024/03/03/network-security/neiwang/%E5%86%85%E7%BD%91%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</guid>
+            <title>内网信息收集</title>
+            <link>http://gyzero.shop/2024/03/03/network-security/neiwang/%E5%86%85%E7%BD%91%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</link>
+            <pubDate>Sun, 03 Mar 2024 17:22:07 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;进入内网后要对当前网络环境进行判断&lt;/p&gt;
+&lt;p&gt;判断出当前机器所处网络环境的拓扑，以及当前电脑在内网是什么角色当前机器的权限&lt;/p&gt;
+&lt;h3 id=&#34;本机信息收集&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#本机信息收集&#34;&gt;#&lt;/a&gt; 本机信息收集&lt;/h3&gt;
+&lt;h4 id=&#34;查询网络配置信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询网络配置信息&#34;&gt;#&lt;/a&gt; 查询网络配置信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ipconfig /all&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304135135624.png&#34; alt=&#34;image-20240304135135624&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看用户详细信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看用户详细信息&#34;&gt;#&lt;/a&gt; 查看用户详细信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;whoami /all&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304135324706.png&#34; alt=&#34;image-20240304135324706&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看系统版本补丁等&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看系统版本补丁等&#34;&gt;#&lt;/a&gt; 查看系统版本补丁等&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;systeminfo&lt;/code&gt;  可查看系统信息打了那些补丁为后续提权查找漏洞准备&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304140357064.png&#34; alt=&#34;image-20240304140357064&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看系统启动的服务&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看系统启动的服务&#34;&gt;#&lt;/a&gt; 查看系统启动的服务&lt;/h4&gt;
+&lt;p&gt;net start&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304140458074.png&#34; alt=&#34;image-20240304140458074&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看系统进程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看系统进程&#34;&gt;#&lt;/a&gt; 查看系统进程&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304140610127.png&#34; alt=&#34;image-20240304140610127&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看主机计划任务列表&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看主机计划任务列表&#34;&gt;#&lt;/a&gt; 查看主机计划任务列表&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304140751585.png&#34; alt=&#34;image-20240304140751585&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看本机用户域用户&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看本机用户域用户&#34;&gt;#&lt;/a&gt; 查看本机用户域用户&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;net user&lt;/code&gt; net user /domain&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304141626726.png&#34; alt=&#34;image-20240304141626726&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查询域数量&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询域数量&#34;&gt;#&lt;/a&gt; 查询域数量&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;net view /domain&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304141803745.png&#34; alt=&#34;image-20240304141803745&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查询域组&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询域组&#34;&gt;#&lt;/a&gt; 查询域组&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;net group /domain&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304141928484.png&#34; alt=&#34;image-20240304141928484&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查询域中的-domain-admins-组的成员&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询域中的-domain-admins-组的成员&#34;&gt;#&lt;/a&gt; 查询域中的 “Domain Admins” 组的成员&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;net group &amp;quot;domain admins&amp;quot; /domain&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304142138340.png&#34; alt=&#34;image-20240304142138340&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查询域时间主域名&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询域时间主域名&#34;&gt;#&lt;/a&gt; 查询域时间主域名&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;net time /domain&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304142231136.png&#34; alt=&#34;image-20240304142231136&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1hZDAxLXVoNWZmNDQ1aHN1aC55dW55aS5pbw==&#34;&gt;主域名为 ad01.yunyi.io&lt;/span&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查arp缓存&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查arp缓存&#34;&gt;#&lt;/a&gt; 查 ARP 缓存&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;arp -a&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304142335688.png&#34; alt=&#34;image-20240304142335688&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查环境变量&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查环境变量&#34;&gt;#&lt;/a&gt; 查环境变量&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;set&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304142615252.png&#34; alt=&#34;image-20240304142615252&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看安装软件的版本信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看安装软件的版本信息&#34;&gt;#&lt;/a&gt; 查看安装软件的版本信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;powershell &amp;quot;Get-WmiObject -class Win32_Product |Select-Object -Property name,version&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304143132821.png&#34; alt=&#34;image-20240304143132821&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;域信任列表信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域信任列表信息&#34;&gt;#&lt;/a&gt; 域信任列表信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;nltest /domain_trusts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304143407722.png&#34; alt=&#34;image-20240304143407722&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;防火墙配置信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#防火墙配置信息&#34;&gt;#&lt;/a&gt; 防火墙配置信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;netsh firewall show config&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304143537981.png&#34; alt=&#34;image-20240304143537981&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;网络详细信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#网络详细信息&#34;&gt;#&lt;/a&gt; 网络详细信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;ipconfig /all&lt;/code&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS15dW55aS02bzZoaThocDRraDAwYjJwN2EuaW8=&#34;&gt; 可看到有域 yunyi.io&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304143755101.png&#34; alt=&#34;image-20240304143755101&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查看网络端口信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看网络端口信息&#34;&gt;#&lt;/a&gt; 查看网络端口信息&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;netstat -ano&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304144042633.png&#34; alt=&#34;image-20240304144042633&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;查杀软查提权&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查杀软查提权&#34;&gt;#&lt;/a&gt; 查杀软查提权&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;tasklist&lt;/code&gt;  查看当前计算机上所有进程的列表&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;systeminfo&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查完补丁信息可以去&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9pLmhhY2tpbmc4LmNvbS90aXF1YW4vJUU2JTlGJUE1JUU4JUFGJUEy&#34;&gt; https://i.hacking8.com/tiquan/ 查询&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304144509958.png&#34; alt=&#34;image-20240304144509958&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取系统运行软件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304144622209.png&#34; alt=&#34;image-20240304144622209&#34;&gt;&lt;/p&gt;
+&lt;p&gt;识别杀软&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304144943521.png&#34; alt=&#34;image-20240304144943521&#34;&gt;&lt;/p&gt;
+&lt;p&gt;查询当前工作环境&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304145111793.png&#34; alt=&#34;image-20240304145111793&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;易受攻击的常见端口&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#易受攻击的常见端口&#34;&gt;#&lt;/a&gt; 易受攻击的常见端口&lt;/h3&gt;
+&lt;p&gt;80 / 8080     &lt;strong&gt;HTTP&lt;/strong&gt;         　　　　　　　　　　　　　　　　　　　　　Web 攻击 \ 爆破 \ 对应服务器版本漏洞&lt;/p&gt;
+&lt;p&gt;443            &lt;strong&gt;HTTPS&lt;/strong&gt;                                                同上&lt;/p&gt;
+&lt;p&gt;7001/7002      &lt;strong&gt;WebLogic 控制台&lt;/strong&gt;　　　　　　　　　　　　　　　　　　　　　　java 反序列化 \ 弱口令&lt;/p&gt;
+&lt;p&gt;8080 /8089     &lt;strong&gt;Jboss/Resin/Jetty/Jenkins&lt;/strong&gt;    　　　　　　　　　　　　　　　反序列化 \ 控制台弱口令&lt;/p&gt;
+&lt;p&gt;9090          &lt;strong&gt;WebSphere 控制台&lt;/strong&gt;       　　　　　　　　　　　　　　　　　java 反序列化 \ 弱口令&lt;/p&gt;
+&lt;p&gt;4848          &lt;strong&gt;GlassFish&lt;/strong&gt; 控制台       　　　　　　　　　　　　　　　　　弱口令&lt;/p&gt;
+&lt;p&gt;1352          &lt;strong&gt;Lotus domino&lt;/strong&gt; 邮件服务                                  弱口令 \ 信息泄露 \ 爆破&lt;/p&gt;
+&lt;p&gt;10000         &lt;strong&gt;Webmin-Web&lt;/strong&gt; 控制面板                                  弱口令&lt;/p&gt;
+&lt;p&gt;3306         &lt;strong&gt;MySQL&lt;/strong&gt;　　                                           注入 \ 提权 \ 爆破&lt;/p&gt;
+&lt;p&gt;1433         &lt;strong&gt;SQLserver&lt;/strong&gt;                                           注入 \ 提权 \SA 弱口令 \ 爆破&lt;/p&gt;
+&lt;p&gt;1521          &lt;strong&gt;Oracle&lt;/strong&gt; 数据库                                         TNS 爆破 \ 注入 \ 反弹 Shell&lt;/p&gt;
+&lt;p&gt;5432          PostgreSQL 数据库                                    爆破 \ 注入 \ 弱口令&lt;/p&gt;
+&lt;p&gt;27017 / 27018  MongoDB                                            爆破 \ 未授权访问&lt;/p&gt;
+&lt;p&gt;6379           Redis 数据库                                          可尝试未授权访问 \ 弱口令爆破&lt;/p&gt;
+&lt;p&gt;5000          SysBase/DB2 数据库                                   爆破 \ 注入&lt;/p&gt;
+&lt;p&gt;25          &lt;strong&gt;SMTP&lt;/strong&gt; 邮件服务                                   邮件伪造&lt;/p&gt;
+&lt;p&gt;110         &lt;strong&gt;POP3&lt;/strong&gt; 协议                                       爆破 \ 嗅探&lt;/p&gt;
+&lt;p&gt;143         &lt;strong&gt;IMAP&lt;/strong&gt; 协议                                       爆破&lt;/p&gt;
+&lt;p&gt;53         &lt;strong&gt;DNS&lt;/strong&gt; 域名系统                                   允许区域传送 \DNS 劫持 \ 缓存投毒 \ 欺骗&lt;/p&gt;
+&lt;p&gt;67 / 68      &lt;strong&gt;DHCP&lt;/strong&gt; 服务                                      劫持 \ 欺骗&lt;/p&gt;
+&lt;p&gt;161        &lt;strong&gt;SNMP&lt;/strong&gt; 协议                                      爆破 \ 搜集目标内网信息&lt;/p&gt;
+&lt;p&gt;2181        &lt;strong&gt;Zookeeper&lt;/strong&gt; 服务                                   未授权访问&lt;/p&gt;
+&lt;p&gt;8069         &lt;strong&gt;Zabbix&lt;/strong&gt; 服务                                      远程执行 \ SQL 注入&lt;/p&gt;
+&lt;p&gt;9200 /9300   &lt;strong&gt;Elasticsearch&lt;/strong&gt; 服务                                远程执行&lt;/p&gt;
+&lt;p&gt;11211        &lt;strong&gt;Memcache&lt;/strong&gt; 服务                                 未授权访问&lt;/p&gt;
+&lt;p&gt;512 / 513 /514  &lt;strong&gt;Linux Rexec&lt;/strong&gt; 服务                                爆破 \ Rlogin 登陆&lt;/p&gt;
+&lt;p&gt;873          &lt;strong&gt;Rsync&lt;/strong&gt; 服务                                      匿名访问 \ 文件上传&lt;/p&gt;
+&lt;p&gt;3690        &lt;strong&gt;Svn&lt;/strong&gt; 服务                                        Svn 泄露 \ 未授权访问&lt;/p&gt;
+&lt;p&gt;50000         &lt;strong&gt;SAP Management Console&lt;/strong&gt;                                远程执行&lt;/p&gt;
+&lt;h3 id=&#34;存活主机探测&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#存活主机探测&#34;&gt;#&lt;/a&gt; 存活主机探测&lt;/h3&gt;
+&lt;h4 id=&#34;icmp协议探测&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#icmp协议探测&#34;&gt;#&lt;/a&gt; icmp 协议探测&lt;/h4&gt;
+&lt;p&gt;win&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for /L %I in (1,1,254) Do @ping -w 1 -n 1 10.10.10.%I | findstr &amp;quot;TTL&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;linux&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;for k in $( seq 1 255);do ping -c 1 192.168.7.$k|grep &amp;quot;ttl&amp;quot;|awk -F &amp;quot;[ :]+&amp;quot; &#39;&amp;#123;print $4&amp;#125;&#39;; done&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;但是速度太慢&lt;/p&gt;
+&lt;h4 id=&#34;invoke-tspingsweepps1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#invoke-tspingsweepps1&#34;&gt;#&lt;/a&gt; Invoke-TSPingSweep.ps1&lt;/h4&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;powershell.exe -exec bypass -Command &#34;Import-Module ./Invoke-TSPingSweep.ps1; Invoke-TSPingSweep -StartAddress 10.10.10.1 -EndAddress 10.10.10.254 -ResolveHost -ScanPort -Port 445,135&#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304194141615.png&#34; alt=&#34;image-20240304194141615&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;arp-scan&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#arp-scan&#34;&gt;#&lt;/a&gt; ARP-scan&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;arp-scan -t 10.10.10.0/24&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304194058816.png&#34; alt=&#34;image-20240304194058816&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;nbtscan&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nbtscan&#34;&gt;#&lt;/a&gt; nbtscan&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3d3dy51bml4d2l6Lm5ldC90b29scy9uYnRzY2FuLmh0bWw=&#34;&gt;http://www.unixwiz.net/tools/nbtscan.html&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nbtscan 10.10.10.0/24&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304221708922.png&#34; alt=&#34;image-20240304221708922&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;tcping&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#tcping&#34;&gt;#&lt;/a&gt; tcping&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9lbGlmdWxrZXJzb24uY29tL3Byb2plY3RzL3RjcGluZy5waHA=&#34;&gt;https://elifulkerson.com/projects/tcping.php&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;tcping -n ip 端口&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304222152734.png&#34; alt=&#34;image-20240304222152734&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;fscan&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#fscan&#34;&gt;#&lt;/a&gt; fscan&lt;/h4&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3NoYWRvdzFuZy9mc2Nhbg==&#34;&gt;https://github.com/shadow1ng/fscan&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;fscan.exe -h 10.10.10.1-255 -p 22,445&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304222456424.png&#34; alt=&#34;image-20240304222456424&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/</guid>
             <title>linux提权</title>
@@ -477,7 +605,156 @@ Net.WebClient).DownloadString(&#39;http://192.168.27.11/PrivescCheck.ps1&#39;); 
             <title>域环境</title>
             <link>http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/</link>
             <pubDate>Mon, 30 Oct 2023 12:00:34 +0800</pubDate>
-            <description><![CDATA[  ]]></description>
+            <description><![CDATA[ &lt;h3 id=&#34;域&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域&#34;&gt;#&lt;/a&gt; 域&lt;/h3&gt;
+&lt;p&gt;在计算机网络中，&lt;strong&gt;域环境&lt;/strong&gt;是一种组织资源和用户的方式，它允许集中管理和控制网络中的各种对象。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;域（Domain）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;域是一个逻辑上分组的计算机、用户和设备集合，它们共享一个安全边界和一组共同的策略。&lt;/li&gt;
+&lt;li&gt;域的边界通常由网络协议、安全策略和域控制器来定义。&lt;/li&gt;
+&lt;li&gt;域提供了集中式的管理和认证，使得网络资源的访问和管理更加方便和安全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;域控制器（Domain Controller）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;域控制器是域环境中的核心组件，负责管理域中的安全认证和授权、用户账户和计算机账户的管理。&lt;/li&gt;
+&lt;li&gt;它运行特定的服务，如活动目录服务（Active Directory Service）。&lt;/li&gt;
+&lt;li&gt;域控制器保存了域中的用户、组、计算机等对象的信息，并提供身份验证和授权服务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;活动目录（Active Directory）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;活动目录是一种目录服务，用于在网络环境中存储、组织和提供对网络资源的访问。&lt;/li&gt;
+&lt;li&gt;它包含了域内所有对象的信息，如用户、组、计算机等，并提供了一种层次结构来组织这些对象。&lt;/li&gt;
+&lt;li&gt;活动目录允许管理员通过分配权限和策略来控制用户对资源的访问和使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集中式身份验证和授权&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;活动目录允许用户通过单一的登录认证来访问网络上的各种资源，无论是文件共享、打印机、电子邮件等。&lt;/li&gt;
+&lt;li&gt;用户登录后，活动目录负责验证其身份，并根据其权限授予对资源的访问权限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集中式资源管理&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;活动目录可以存储和管理网络中的各种资源，包括用户账户、计算机账户、组、文件共享、打印机等。&lt;/li&gt;
+&lt;li&gt;管理员可以使用活动目录管理工具对这些资源进行组织、分配权限、设置策略等操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;层次结构组织&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;活动目录使用层次结构来组织网络资源和用户信息，这种层次结构称为目录树或者域树。&lt;/li&gt;
+&lt;li&gt;目录树由各种对象组成，包括域、组织单位（OU）、容器、用户、计算机等，这些对象可以按照管理员的需求进行组织和管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;灵活的安全模型&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;活动目录提供了灵活的安全模型，可以根据组织的需求来设置不同级别的安全策略和权限控制。&lt;/li&gt;
+&lt;li&gt;管理员可以通过活动目录设置用户访问权限、密码策略、帐户锁定策略、加密选项等，以确保网络安全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;集中式管理工具&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;微软提供了各种管理工具，如 “活动目录用户和计算机”、“组策略管理编辑器” 等，用于管理和配置活动目录环境。&lt;/li&gt;
+&lt;li&gt;这些工具提供了用户界面和命令行界面，可以用于执行各种管理任务，如创建用户、组织单位、设置组策略等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;复制和同步&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;活动目录支持在多个域控制器之间进行复制和同步，以确保数据的一致性和可用性。&lt;/li&gt;
+&lt;li&gt;当有新的数据或者更改发生时，活动目录会自动将这些变更复制到其他域控制器，以保持整个活动目录环境的同步。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;域成员（Domain Member）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;域成员是加入域的计算机或设备，它们受到域控制器的管理。&lt;/li&gt;
+&lt;li&gt;加入域后，域成员可以通过活动目录中的账户进行身份验证，并且可以访问域中共享的资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;组策略（Group Policy）&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;组策略是一种管理工具，用于在域环境中配置和管理用户和计算机的操作系统和应用程序设置。&lt;/li&gt;
+&lt;li&gt;管理员可以通过组策略向域中的用户和计算机分配特定的设置和权限，以实现统一的管理和安全策略。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;常见的域环境&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#常见的域环境&#34;&gt;#&lt;/a&gt; 常见的域环境&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;单域&lt;/strong&gt;：在一个地理位置固定的小公司中，建立一个域通常就可以满足需求。在一个域内，至少需要两台域服务器，一台作为&lt;strong&gt;域控制器&lt;/strong&gt;（Domain Controller，DC），另一台作为备份 DC。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;父域和子域&lt;/strong&gt;：出于管理和其他需求，需要在网络中划分多个域。第一个域称为&lt;strong&gt;父域&lt;/strong&gt;，各分部的域称为该域的&lt;strong&gt;子域&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;域树&lt;/strong&gt;：域树是多个域通过建立信任关系组成的集合。在域树内，父域和子域可以相互管理，并跨网络分配文件、打印机等设备和资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;域森林&lt;/strong&gt;：域森林是指多个域树通过建立信任关系的集合。域森林允许不同域之间实现资源共享、管理、通信和数据传输。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;活动目录&lt;/strong&gt;（Active Directory，AD）：活动目录是域环境中提供目录服务的组件。它是微软提供的统一管理基础的平台，用于集中管理账号、软件、环境和增强安全性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;域内权限&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域内权限&#34;&gt;#&lt;/a&gt; 域内权限&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;安全组（Security Group）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安全组用于管理对资源的访问权限。&lt;/li&gt;
+&lt;li&gt;可以将用户或计算机添加到安全组中，从而授予他们访问某些资源的权限。&lt;/li&gt;
+&lt;li&gt;安全组的权限可以直接应用于文件夹、共享文件夹、打印机等资源，或者通过组策略应用于计算机。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分发组（Distribution Group）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分发组用于向一组用户或计算机发送邮件。&lt;/li&gt;
+&lt;li&gt;分发组通常用于群发邮件、通知、公告等目的，而不涉及访问资源的权限管理。&lt;/li&gt;
+&lt;li&gt;分发组的成员可以收到组发的邮件，但不会获得访问资源的权限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;域本地组（Domain Local Group）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;域本地组是一种在单个域内使用的组，用于管理对资源的访问权限。&lt;/li&gt;
+&lt;li&gt;可以将用户、全局组或其他域本地组添加到域本地组中，并为该组分配访问资源的权限。&lt;/li&gt;
+&lt;li&gt;域本地组的权限范围局限于单个域内，不会跨域生效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;全局组（Global Group）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;全局组用于组织和管理用户和计算机。&lt;/li&gt;
+&lt;li&gt;可以将用户添加到全局组中，然后将全局组添加到安全组或域本地组中，从而为他们分配访问资源的权限。&lt;/li&gt;
+&lt;li&gt;全局组的权限范围跨越整个域，适用于跨域资源访问的权限管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;通用组（Universal Group）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通用组是一种特殊类型的组，可以跨域使用。&lt;/li&gt;
+&lt;li&gt;可以将全局组、域本地组或其他通用组添加到通用组中，从而创建具有跨域权限的组。&lt;/li&gt;
+&lt;li&gt;通用组通常用于复杂的跨域资源访问场景，如多域架构或跨域信任环境下的权限管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;域环境搭建&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域环境搭建&#34;&gt;#&lt;/a&gt; 域环境搭建&lt;/h3&gt;
+&lt;p&gt;winservser12-ad 10.10.10.137&lt;/p&gt;
+&lt;p&gt;winserver12 10.10.10.12&lt;/p&gt;
+&lt;p&gt;12ad 安装 Active Directory 域服务&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303161445246.png&#34; alt=&#34;image-20240303161445246&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303162103134.png&#34; alt=&#34;image-20240303162103134&#34;&gt;&lt;/p&gt;
+&lt;p&gt;点击将此服务器提升为域控制器&lt;/p&gt;
+&lt;p&gt;创建一个新林&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303162255653.png&#34; alt=&#34;image-20240303162255653&#34;&gt;&lt;/p&gt;
+&lt;p&gt;创建密码&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303162407087.png&#34; alt=&#34;image-20240303162407087&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303162608011.png&#34; alt=&#34;image-20240303162608011&#34;&gt;&lt;/p&gt;
+&lt;p&gt;重启后显示 YUNYI 输入设置的密码&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303163345745.png&#34; alt=&#34;image-20240303163345745&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303163434498.png&#34; alt=&#34;image-20240303163434498&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303163503532.png&#34; alt=&#34;image-20240303163503532&#34;&gt;&lt;/p&gt;
+&lt;p&gt;创建成功，创建一个新用户 test12&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303170230723.png&#34; alt=&#34;image-20240303170230723&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着把 12servser4 的 dns 设置成 ad 的 ip&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303170514382.png&#34; alt=&#34;image-20240303170514382&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设置隶属于 yunyi.io 输入刚才创建的用户 test12 然后重启&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303170622943.png&#34; alt=&#34;image-20240303170622943&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303170725741.png&#34; alt=&#34;image-20240303170725741&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303171037565.png&#34; alt=&#34;image-20240303171037565&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240303171338213.png&#34; alt=&#34;image-20240303171338213&#34;&gt;&lt;/p&gt;
+ ]]></description>
         </item>
     </channel>
 </rss>
