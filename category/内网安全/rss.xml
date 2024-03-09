@@ -5,12 +5,111 @@
         <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Tue, 05 Mar 2024 14:48:19 +0800</pubDate>
-        <lastBuildDate>Tue, 05 Mar 2024 14:48:19 +0800</lastBuildDate>
+        <pubDate>Fri, 08 Mar 2024 16:46:43 +0800</pubDate>
+        <lastBuildDate>Fri, 08 Mar 2024 16:46:43 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://gyzero.shop/2024/03/05/network-security/neiwang/win%E5%8D%8F%E8%AE%AE/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2024/03/08/network-security/neiwang/BloodHound%E5%B7%A5%E5%85%B7/BloodHound%E5%B7%A5%E5%85%B7/</guid>
+            <title>BloodHound工具</title>
+            <link>http://gyzero.shop/2024/03/08/network-security/neiwang/BloodHound%E5%B7%A5%E5%85%B7/BloodHound%E5%B7%A5%E5%85%B7/</link>
+            <pubDate>Fri, 08 Mar 2024 16:46:43 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;strong&gt;BloodHound&lt;/strong&gt; 是一个基于单页 JavaScript 网页应用程序，构建在 Linkurious 之上，使用 Electron 编译，由 C# 数据收集器提供数据给 Neo4j 数据库。它利用图论来揭示 Active Directory 或 Azure 环境中隐藏且常常无意的关系&lt;/p&gt;
+&lt;p&gt;攻击者可以使用 &lt;strong&gt;BloodHound&lt;/strong&gt; 轻松识别复杂的攻击路径，这些路径在其他情况下很难快速识别。防御者也可以使用 &lt;strong&gt;BloodHound&lt;/strong&gt; 来识别并消除这些攻击路径。无论是蓝队还是红队，都可以使用 &lt;strong&gt;BloodHound&lt;/strong&gt; 更深入地了解 Active Directory 或 Azure 环境中的权限关系&lt;/p&gt;
+&lt;h3 id=&#34;neo4j-数据库&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#neo4j-数据库&#34;&gt;#&lt;/a&gt; Neo4j 数据库&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;apt-get install neo4j&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;安装成功后启动&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;neo4j start&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308172653141.png&#34; alt=&#34;image-20240308172653141&#34;&gt;&lt;/p&gt;
+&lt;p&gt;浏览器访问&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Host : http://localhost:7474
+Username : neo4j
+Password : neo4j
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;安装bloodhound&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安装bloodhound&#34;&gt;#&lt;/a&gt; 安装 BloodHound&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;https://github.com/BloodHoundAD/BloodHound/releases&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;安装完成后到目录下执行 &lt;code&gt;./BloodHound --no-sandbox&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;输入 neo4j 设置的账号密码就可以进来了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308173248743.png&#34; alt=&#34;image-20240308173248743&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数据收集&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#数据收集&#34;&gt;#&lt;/a&gt; 数据收集&lt;/h3&gt;
+&lt;p&gt;BloodHound 有；两个版本采集工具&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308173703965.png&#34; alt=&#34;image-20240308173703965&#34;&gt;&lt;/p&gt;
+&lt;p&gt;SharpHound 是官方的数据收集器，用于 BloodHound。 这是写的 C# 和使用本地 Windows API 职能和 LDAP 名字空间的功能 收集的数据域控制器和加入域的 windows 系统。&lt;/p&gt;
+&lt;p&gt;SharpHound 将自动确定什么领域当前用户 属于，找到一个域控制器，用于这一领域，并启动 &amp;quot;默认&amp;quot; 收集方法。 默认的收集方法将会收集的 下列信息域控制器：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安全组成员身份&lt;/li&gt;
+&lt;li&gt;域信任&lt;/li&gt;
+&lt;li&gt;Abusable 权利上的活动目录的对象&lt;/li&gt;
+&lt;li&gt;小组政策的链接&lt;/li&gt;
+&lt;li&gt;OU 树形结构&lt;/li&gt;
+&lt;li&gt;几个属性，从计算机、小组和用户的对象&lt;/li&gt;
+&lt;li&gt;SQL 管理的链接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此外，SharpHound 将尝试收集以下信息 从各个领域加入了 windows 计算机：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;成员的地方管理程序，分布 COM 和远程管理组&lt;/li&gt;
+&lt;li&gt;活动的会议，其 SharpHound 将尝试相互关联的系统 用户交互式登录在&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当完成后，SharpHound 会创建这些类文件和将它们放入 一个压缩文件&lt;/p&gt;
+&lt;p&gt;基本的使用&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;SharpHound.exe &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; all&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;执行完毕后会生成一个 zip 文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308175014319.png&#34; alt=&#34;image-20240308175014319&#34;&gt;&lt;/p&gt;
+&lt;p&gt;把这个文件导入到 BloodHound，把 zip 文件复制到 kali 点击 upload data&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308175229654.png&#34; alt=&#34;image-20240308175229654&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308175146642.png&#34; alt=&#34;image-20240308175146642&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308181338898.png&#34; alt=&#34;image-20240308181338898&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里三个模块分别是&lt;br&gt;
+ 1 、 Database Info （数据库信息），可以查看当前数据库中的域用户、域计算机等统计信息。&lt;br&gt;
+2 、 Node Indo （节点信息），单击某个节点时，在这里可以看到对应节点的相关信息。&lt;br&gt;
+3 、 Analysis （分析查询），在 BloodHound 中预设了一些查询条件，具体如下：&lt;/p&gt;
+&lt;p&gt;右键节点分别是&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308181635837.png&#34; alt=&#34;image-20240308181635837&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设置为起始节点。&lt;br&gt;
+设置为结束节点。&lt;br&gt;
+到这里的最短路径。&lt;br&gt;
+从拥有的到这里的最短路径。&lt;br&gt;
+编辑节点。&lt;br&gt;
+将组标记为拥有。&lt;br&gt;
+将集团标记为高价值。&lt;br&gt;
+删除节点&lt;/p&gt;
+&lt;p&gt;Analysis 这里有一些预设好的查询&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240308182140085.png&#34; alt=&#34;image-20240308182140085&#34;&gt;&lt;/p&gt;
+&lt;p&gt;预构建的分析查询。&lt;br&gt;
+域信息。&lt;br&gt;
+查找所有域管理员。&lt;br&gt;
+映射域信任。&lt;br&gt;
+查找安装了不支持的操作系统的计算机。&lt;br&gt;
+危险的特权。&lt;br&gt;
+查找具有 DCSync 权限的主体。&lt;br&gt;
+具有外部域组成员身份的用户。&lt;br&gt;
+具有外部域组成员资格的组。&lt;br&gt;
+查找域用户为本地管理员的计算机。&lt;br&gt;
+查找域用户可以读取 LAPS 密码的计算机。&lt;br&gt;
+查找从域用户到高价值目标的所有路径。&lt;br&gt;
+查找域用户可以进行 RDP 的工作站。&lt;br&gt;
+查找域用户可以进行 RDP 的服务器。&lt;br&gt;
+查找域用户组的危险权限。&lt;br&gt;
+查找非域控制器的域管理员登录。&lt;br&gt;
+Kerberos 交互。&lt;br&gt;
+查找高价值组的 Kerberoastable 成员。&lt;br&gt;
+列出所有 Kerberoastable 帐户。&lt;br&gt;
+查找具有最大权限的 Kerberoastable 用户。&lt;br&gt;
+查找 AS-REP 可烘焙用户 (DontReqPreAuth)。&lt;br&gt;
+最短路径。&lt;br&gt;
+到无约束委托系统的最短路径。&lt;br&gt;
+来自 Kerberoastable 用户的最短路径。&lt;br&gt;
+从 Kerberoastable 用户到域管理员的最短路径。&lt;br&gt;
+自拥有的校长的最短路径。&lt;br&gt;
+从拥有的主体到域管理员的最短路径。&lt;br&gt;
+通向高价值目标的最短路径。&lt;br&gt;
+从域用户到高价值目标的最短路径。&lt;br&gt;
+查找通向域管理员的最短路径&lt;/p&gt;
+&lt;p&gt;官方文档&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;https://bloodhound.readthedocs.io/en/latest/further-reading/further-reading.html&lt;/code&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2024/03/05/network-security/neiwang/win%E5%8D%8F%E8%AE%AE/win%E5%8D%8F%E8%AE%AE/</guid>
             <title>win协议认证知识</title>
-            <link>http://gyzero.shop/2024/03/05/network-security/neiwang/win%E5%8D%8F%E8%AE%AE/</link>
+            <link>http://gyzero.shop/2024/03/05/network-security/neiwang/win%E5%8D%8F%E8%AE%AE/win%E5%8D%8F%E8%AE%AE/</link>
             <pubDate>Tue, 05 Mar 2024 14:48:19 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;ntlm协议&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ntlm协议&#34;&gt;#&lt;/a&gt; NTLM 协议&lt;/h2&gt;
 &lt;p&gt;NTLM（NT LAN Manager）是一套由微软开发的安全协议套件，用于在基于 Windows 的网络中进行身份验证、完整性和机密性保护。NTLM 最初是在上世纪 90 年代初引入的，经过多次修订以增强安全性和功能现在已经更新了 NTMLv2 和 kerberos 协议。&lt;/p&gt;
@@ -317,6 +416,33 @@
 &lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304144943521.png&#34; alt=&#34;image-20240304144943521&#34;&gt;&lt;/p&gt;
 &lt;p&gt;查询当前工作环境&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240304145111793.png&#34; alt=&#34;image-20240304145111793&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;敏感文件密码收集&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#敏感文件密码收集&#34;&gt;#&lt;/a&gt; 敏感文件密码收集&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;#指定目录下搜集各类敏感文件
+dir /a /s /b d:\&amp;quot;*.txt&amp;quot;
+dir /a /s /b d:\&amp;quot;*.xml&amp;quot;
+dir /a /s /b d:\&amp;quot;*.mdb&amp;quot;
+dir /a /s /b d:\&amp;quot;*.sql&amp;quot;
+dir /a /s /b d:\&amp;quot;*.mdf&amp;quot;
+dir /a /s /b d:\&amp;quot;*.eml&amp;quot;
+dir /a /s /b d:\&amp;quot;*.pst&amp;quot;
+dir /a /s /b d:\&amp;quot;*conf*&amp;quot;
+dir /a /s /b d:\&amp;quot;*bak*&amp;quot;
+dir /a /s /b d:\&amp;quot;*pwd*&amp;quot;
+dir /a /s /b d:\&amp;quot;*pass*&amp;quot;
+dir /a /s /b d:\&amp;quot;*login*&amp;quot;
+dir /a /s /b d:\&amp;quot;*user*&amp;quot;
+findstr /si pass *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si userpwd *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si pwd *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si login *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+findstr /si user *.inc *.config *.ini *.txt *.asp *.aspx *.php *.jsp *.xml *.cgi *.bak
+
+
+find /etc/ -name passwd -exec grep &amp;quot;root&amp;quot; &amp;#123;&amp;#125; \; &amp;gt; /tmp/test.txt
+find /etc/ -name passwd -exec grep -H &amp;quot;root&amp;quot; &amp;#123;&amp;#125; \;
+/etc/passwd:root:x:0:0:root:/root:/bin/bash
+/etc/passwd:operator:x:11:0:operator:/root:/sbin/nologin
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;易受攻击的常见端口&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#易受攻击的常见端口&#34;&gt;#&lt;/a&gt; 易受攻击的常见端口&lt;/h3&gt;
 &lt;p&gt;80 / 8080     &lt;strong&gt;HTTP&lt;/strong&gt;         　　　　　　　　　　　　　　　　　　　　　Web 攻击 \ 爆破 \ 对应服务器版本漏洞&lt;/p&gt;
 &lt;p&gt;443            &lt;strong&gt;HTTPS&lt;/strong&gt;                                                同上&lt;/p&gt;
