@@ -775,6 +775,13 @@ find /etc/ -name passwd -exec grep -H &amp;quot;root&amp;quot; &amp;#123;&amp;#1
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">http://gyzero.shop/2024/03/03/network-security/neiwang/NTLMRelay/</guid>
+            <title>NTLMRelay</title>
+            <link>http://gyzero.shop/2024/03/03/network-security/neiwang/NTLMRelay/</link>
+            <pubDate>Sun, 03 Mar 2024 17:22:07 +0800</pubDate>
+            <description><![CDATA[  ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">http://gyzero.shop/2024/02/19/network-security/Cloud-Security/%E5%85%AC%E6%9C%89%E4%BA%91/</guid>
             <title>公有云</title>
             <link>http://gyzero.shop/2024/02/19/network-security/Cloud-Security/%E5%85%AC%E6%9C%89%E4%BA%91/</link>

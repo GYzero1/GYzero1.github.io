@@ -693,6 +693,13 @@ find /etc/ -name passwd -exec grep -H &amp;quot;root&amp;quot; &amp;#123;&amp;#1
         <updated>2024-03-03T09:22:07.000Z</updated>
     </entry>
     <entry>
+        <id>http://gyzero.shop/2024/03/03/network-security/neiwang/NTLMRelay/</id>
+        <title>NTLMRelay</title>
+        <link rel="alternate" href="http://gyzero.shop/2024/03/03/network-security/neiwang/NTLMRelay/"/>
+        <content type="html"></content>
+        <updated>2024-03-03T09:22:07.000Z</updated>
+    </entry>
+    <entry>
         <id>http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/</id>
         <title>linux提权</title>
         <link rel="alternate" href="http://gyzero.shop/2023/11/10/network-security/neiwang/linux%E6%8F%90%E6%9D%83/linux%E6%8F%90%E6%9D%83/"/>

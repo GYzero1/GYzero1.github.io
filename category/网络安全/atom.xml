@@ -772,6 +772,13 @@ find /etc/ -name passwd -exec grep -H &amp;quot;root&amp;quot; &amp;#123;&amp;#1
         <updated>2024-03-03T09:22:07.000Z</updated>
     </entry>
     <entry>
+        <id>http://gyzero.shop/2024/03/03/network-security/neiwang/NTLMRelay/</id>
+        <title>NTLMRelay</title>
+        <link rel="alternate" href="http://gyzero.shop/2024/03/03/network-security/neiwang/NTLMRelay/"/>
+        <content type="html"></content>
+        <updated>2024-03-03T09:22:07.000Z</updated>
+    </entry>
+    <entry>
         <id>http://gyzero.shop/2024/02/19/network-security/Cloud-Security/%E5%85%AC%E6%9C%89%E4%BA%91/</id>
         <title>公有云</title>
         <link rel="alternate" href="http://gyzero.shop/2024/02/19/network-security/Cloud-Security/%E5%85%AC%E6%9C%89%E4%BA%91/"/>
